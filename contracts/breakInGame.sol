@@ -567,4 +567,7 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             return;
         }
     }
+
+    
+    function vrfJailBreak(uint256 randomness, bytes32 requestId) internal {}
 }
