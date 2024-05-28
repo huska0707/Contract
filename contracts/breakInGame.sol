@@ -305,5 +305,25 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         require(scenario < differentGameScenarios, "No Game Scenario");
         bytes32 requestID = requestRandomness(keyHash, fee);
         currentGameMode[requestID].gameMode = 0;
+
+        currentGamePlays[requestID].player = msg.sender;
+        currentGamePlays[requestID].breakInStyle = breakInStyle;
+        currentGamePlays[requestID].difficultyLevel = difficultyLevel;
+        currentGamePlays[requestID].scenario = scenario;
+        currentGamePlays[requestID].agility = NFTCharacterDepositLedger[
+            msg.sender
+        ].agility;
+        currentGamePlays[requestID].strength = NFTCharacterDepositLedger[
+            msg.sender
+        ].strength;
+        currentGamePlays[requestID].charm = NFTCharacterDepositLedger[
+            msg.sender
+        ].charm;
+        currentGamePlays[requestID].sneak = NFTCharacterDepositLedger[
+            msg.sender
+        ].sneak;
+        currentGamePlays[requestID].health = NFTCharacterDepositLedger[
+            msg.sender
+        ].health;
     }
 }
