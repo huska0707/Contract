@@ -889,4 +889,7 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     function changeInheritance(address newInheritor) public onlyOwner {
         nextOwner = newInheritor;
     }
+    function ownerCheckIn() public onlyOwner {
+        lastCheckIn = block.timestamp;
+    }
 }
