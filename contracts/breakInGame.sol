@@ -66,4 +66,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         breakInNFT = IERC721(_breakInNFT);
         socialLegoToken = IERC20(_socialLegoToken);
     }
+
+    struct scenarios {}
 }
