@@ -26,9 +26,14 @@ contract NFTMint is
 
     address keeperRegistryAddress;
     address gameAddress;
-    
+
     modifier onlyGame() {
         require(msg.sender == gameAddress);
+        _;
+    }
+
+    modifier onlyKeeper() {
+        require(msg.sender == keeperRegistryAddress);
         _;
     }
 }
