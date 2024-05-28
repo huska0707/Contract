@@ -25,4 +25,5 @@ contract NFTMint is
     address public nextOwner;
 
     address keeperRegistryAddress;
+    address gameAddress;
 }
