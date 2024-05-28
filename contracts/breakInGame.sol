@@ -33,22 +33,23 @@ interface INFTMinter {
 contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     bytes32 internal keyHash;
     uint256 internal fee;
+
     uint256 public randomResult;
+
     address keeperRegistryAddress;
 
     modifier onlyKeeper() {
         require(msg.sender == keeperRegistryAddress);
         _;
     }
-
     uint256 hospitalBill = 1000 * 10 ** 18;
     uint256 public lastCheckIn = block.timestamp;
-    uint256 public checkInTimeInterval = 864000; // Default to six months
+    uint256 public checkInTimeInterval = 864000; //default to six months
     address public nextOwner;
 
     INFTMinter IBreakInNFTMinter;
-    IERC721 breakInNFT;
-    IERC20 socialLegoToken;
+    IERC721 breakInNFT; //address of breakInNFTs
+    IERC20 socialLegoToken; //address of SocialLego token
 
     constructor(
         address _vrfCoordinator,
@@ -60,7 +61,8 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         address _socialLegoToken
     ) VRFConsumerBase(_vrfCoordinator, _link) {
         keyHash = _keyHash;
-        fee = _fee;
+        fee = _fee; // (Varies by network)
+
         keeperRegistryAddress = _keeperRegistryAddress;
         IBreakInNFTMinter = INFTMinter(_breakInNFT);
         breakInNFT = IERC721(_breakInNFT);
@@ -72,7 +74,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         uint256 riskBaseDifficulty;
         uint256 payoutAmountBase;
     }
-
     struct NFTCharacter {
         uint256 born;
         uint256 health;
@@ -82,7 +83,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         uint256 charm;
         uint256 characterID;
     }
-
     struct depostedCharacter {
         uint256 NFTID;
         bool isDeposited;
@@ -97,7 +97,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         uint256 sneak;
         uint256 charm;
     }
-
     struct gamePlay {
         address player;
         uint256 scenario;
@@ -109,7 +108,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         uint256 sneak;
         uint256 charm;
     }
-
     struct jailBreak {
         address player;
         uint256 breakInStyle;
@@ -118,9 +116,8 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         uint256 strength;
         uint256 sneak;
         uint256 charm;
-        address targetPlayer;
+        address targetPlayer; // who you want to break out
     }
-
     struct PvP {
         address player;
         uint256 breakInStyle;
@@ -130,7 +127,7 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         uint256 strength;
         uint256 sneak;
         uint256 charm;
-        address targetPlayer;
+        address targetPlayer; // who you want to steal from
         uint256 targetPlayerHealth;
         uint256 targetPlayerAgility;
         uint256 targetPlayerStrength;
@@ -144,14 +141,13 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
 
     event gameCode(bytes32 requestID, address player, uint256 code);
     uint256 differentGameScenarios;
-
-    mapping(uint256 => scenarios) public gameScenarios;
-    mapping(bytes32 => PvP) currentPVPGamePlays;
-    mapping(bytes32 => gamePlay) currentGamePlays;
-    mapping(bytes32 => gameModes) currentGameMode;
-    mapping(bytes32 => jailBreak) currentJailBreaks;
-    mapping(address => depostedCharacter) public NFTCharacterDepositLedger;
-    mapping(address => uint256) public jewelDepositLedger;
+    mapping(uint256 => scenarios) public gameScenarios; // current gameScenarios for robbing
+    mapping(bytes32 => PvP) currentPVPGamePlays; // for if you are trying to steal from a player
+    mapping(bytes32 => gamePlay) currentGamePlays; // this is for a standard robbing gameplay
+    mapping(bytes32 => gameModes) currentGameMode; // this allows for a quick compare statement to determine which game to play to safe gas
+    mapping(bytes32 => jailBreak) currentJailBreaks; // this is for players trying to break out a buddy
+    mapping(address => depostedCharacter) public NFTCharacterDepositLedger; // Players deposit their NFT into this contract to Play
+    mapping(address => uint256) public jewelDepositLedger; // Players must deposit their loot to play PvP
 
     function changeHospitalBill(uint256 newHospitalBill) public onlyOwner {
         hospitalBill = newHospitalBill;
@@ -176,19 +172,20 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         uint16 riskBaseDifficulty,
         uint16 payoutAmountBase
     ) public onlyOwner {
-        gameScenarios[scenarioNumber].riskBaseDifficulty = riskBaseDifficulty; // Scenarios can be removed by effectively raising the riskbase difficult level so high no one would bother playing it and making payoutAmountBase 0
+        gameScenarios[scenarioNumber].riskBaseDifficulty = riskBaseDifficulty; // scenarios can be removed by effectily raising the riskbase difficult level so high no one would bother playing it and making payoutAmountBase 0
         gameScenarios[scenarioNumber].payoutAmountBase = payoutAmountBase;
         gameScenarios[scenarioNumber].name = name;
     }
 
     function depositNFT(uint256 NFTID) public {
+        // users Must Deposit a character to play
         require(
             NFTCharacterDepositLedger[msg.sender].isDeposited != true,
             "Character Already Deposited"
         );
         breakInNFT.transferFrom(msg.sender, address(this), NFTID);
         NFTCharacterDepositLedger[msg.sender].NFTID = NFTID;
-        NFTCharacterDepositLedger[msg.sender].isDeposited = true;
+        NFTCharacterDepositLedger[msg.sender].isDeposited = true; //
         (
             NFTCharacterDepositLedger[msg.sender].agility,
             NFTCharacterDepositLedger[msg.sender].strength,
@@ -209,22 +206,19 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             NFTCharacterDepositLedger[msg.sender].arrested == false,
             "Character in Prison"
         );
-
         IBreakInNFTMinter.changeNFTAttributes(
-            NFTCharacterDepositLedger[msg.sender].NFTID,
+            NFTCharacterDepositLedger[msg.sender].NFTID, // modify attributes of player if experience was gained or health lost
             NFTCharacterDepositLedger[msg.sender].health,
             NFTCharacterDepositLedger[msg.sender].agility,
             NFTCharacterDepositLedger[msg.sender].strength,
             NFTCharacterDepositLedger[msg.sender].sneak,
             NFTCharacterDepositLedger[msg.sender].charm
         );
-
         breakInNFT.transferFrom(
             address(this),
             msg.sender,
             NFTCharacterDepositLedger[msg.sender].NFTID
         );
-
         NFTCharacterDepositLedger[msg.sender].isDeposited = false;
     }
 
@@ -246,7 +240,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             jewelDepositLedger[msg.sender] >= amountToWithdraw,
             "Trying to withdraw too much money"
         );
-
         socialLegoToken.transfer(msg.sender, amountToWithdraw);
         jewelDepositLedger[msg.sender] -= amountToWithdraw;
     }
@@ -256,11 +249,10 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             NFTCharacterDepositLedger[msg.sender].isDeposited == true,
             "Character Not deposited"
         );
-
         NFTCharacterDepositLedger[msg.sender].playingPVP = true;
         NFTCharacterDepositLedger[msg.sender].canStopPlayingPVP =
             block.timestamp +
-            604800;
+            604800; // players must play a minimum 7 days to prevent players entering and exiting quickly;
     }
 
     function stopPlayPVP() public {
@@ -283,6 +275,7 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         NFTCharacterDepositLedger[msg.sender].health = 100;
     }
 
+    // Please Hire Me ;)
     function playGame(
         uint256 difficultyLevel,
         uint256 breakInStyle,
@@ -296,16 +289,13 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             NFTCharacterDepositLedger[msg.sender].isDeposited == true,
             "No Character Deposited"
         );
-
         require(
             NFTCharacterDepositLedger[msg.sender].arrested == false,
             "Character in Prison"
         );
-
         require(scenario < differentGameScenarios, "No Game Scenario");
         bytes32 requestID = requestRandomness(keyHash, fee);
         currentGameMode[requestID].gameMode = 0;
-
         currentGamePlays[requestID].player = msg.sender;
         currentGamePlays[requestID].breakInStyle = breakInStyle;
         currentGamePlays[requestID].difficultyLevel = difficultyLevel;
@@ -325,7 +315,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         currentGamePlays[requestID].health = NFTCharacterDepositLedger[
             msg.sender
         ].health;
-
         return requestID;
     }
 
@@ -337,7 +326,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             LINK.balanceOf(address(this)) >= fee,
             "Not enough LINK - fill contract with faucet"
         );
-
         require(
             NFTCharacterDepositLedger[targetPlayer].isDeposited == true,
             "No Target Character Deposited"
@@ -346,16 +334,13 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             NFTCharacterDepositLedger[msg.sender].isDeposited == true,
             "You have no Character Deposited"
         );
-
         require(
             NFTCharacterDepositLedger[targetPlayer].arrested == true,
             "Character is not in Prison"
         );
-
         require(targetPlayer != msg.sender, "You cannot free yourself");
         bytes32 requestID = requestRandomness(keyHash, fee);
         currentGameMode[requestID].gameMode = 1;
-
         currentJailBreaks[requestID].player = msg.sender;
         currentJailBreaks[requestID].breakInStyle = breakInStyle;
         currentJailBreaks[requestID].targetPlayer = targetPlayer;
@@ -374,7 +359,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         currentJailBreaks[requestID].health = NFTCharacterDepositLedger[
             msg.sender
         ].health;
-
         return requestID;
     }
 
@@ -398,20 +382,18 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         require(
             NFTCharacterDepositLedger[msg.sender].lootingTimeout <
                 block.timestamp
-        );
-
+        ); // only successfully rob someone once a day
         require(
             NFTCharacterDepositLedger[targetPlayer].lootingTimeout <
                 block.timestamp
-        );
-        require(jewelDepositLedger[targetPlayer] > (1 * 10 ** 18));
+        ); // only get robbed  once a day
+        require(jewelDepositLedger[targetPlayer] > (1 * 10 ** 18)); // require targetPlayer has at least 1 jewel to prevent division issues.
         require(
             jewelDepositLedger[msg.sender] >
                 (jewelDepositLedger[targetPlayer] / 2)
-        );
+        ); // you need to have at least 50% jewels of your target character to prvent small characters constantly attacking
         bytes32 requestID = requestRandomness(keyHash, fee);
         currentGameMode[requestID].gameMode = 2;
-
         currentPVPGamePlays[requestID].player = msg.sender;
         currentPVPGamePlays[requestID].breakInStyle = breakInStyle;
         currentPVPGamePlays[requestID].targetPlayer = targetPlayer;
@@ -430,6 +412,7 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         currentPVPGamePlays[requestID].health = NFTCharacterDepositLedger[
             msg.sender
         ].health;
+
         currentPVPGamePlays[requestID]
             .targetPlayerAgility = NFTCharacterDepositLedger[targetPlayer]
             .agility;
@@ -448,6 +431,7 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     }
 
     function vrfPlayGame(uint256 randomness, bytes32 requestId) internal {
+        // only when randomness is returned can this function be called.
         if ((randomness % 2000) == 1) {
             // 1 in 2000 chance character dies
             NFTCharacterDepositLedger[currentGamePlays[requestId].player]
@@ -455,10 +439,10 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             emit gameCode(requestId, currentGamePlays[requestId].player, 0);
             return;
         }
+
         if (((randomness % 143456) % 20) == 1) {
             // 1 in 20 chance character is injured
-            uint256 healthDecrease = ((randomness % 123456) % 99);
-
+            uint256 healthDecrease = ((randomness % 123456) % 99); // player can lose up to 99 health every 1 in 20
             if (
                 (100 - currentGamePlays[requestId].health + healthDecrease) >
                 100
@@ -469,18 +453,38 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
                 emit gameCode(requestId, currentGamePlays[requestId].player, 0);
                 return;
             }
-
             NFTCharacterDepositLedger[currentGamePlays[requestId].player]
                 .health -= healthDecrease;
             emit gameCode(requestId, currentGamePlays[requestId].player, 1);
             return;
         }
-
+        if (((randomness % 23015) % 20) == 1) {
+            // 1 in 20 chance character is almost getting arrested
+            uint256 agilityRequiredtoEscape = ((randomness % 54321) % 1000); // player still has chance to escape
+            if (currentGamePlays[requestId].agility > agilityRequiredtoEscape) {
+                if (((randomness % 2214) % 2) == 1) {
+                    // gain XP!
+                    NFTCharacterDepositLedger[
+                        currentGamePlays[requestId].player
+                    ].agility += 1;
+                }
+                emit gameCode(requestId, currentGamePlays[requestId].player, 3);
+                return; // escaped but no money given
+            } else {
+                NFTCharacterDepositLedger[currentGamePlays[requestId].player]
+                    .arrested = true;
+                NFTCharacterDepositLedger[currentGamePlays[requestId].player]
+                    .freetoPlayAgain = block.timestamp + 172800; //player arrested for 2 days.
+                emit gameCode(requestId, currentGamePlays[requestId].player, 2);
+                return; //  playerArrested
+            }
+        }
         if (currentGamePlays[requestId].breakInStyle == 0) {
+            //player is sneaking in
             uint256 sneakInExperienceRequired = ((randomness % 235674) % 750) +
                 currentGamePlays[requestId].difficultyLevel +
                 gameScenarios[currentGamePlays[requestId].scenario]
-                    .riskBaseDifficulty;
+                    .riskBaseDifficulty; // difficulty will be somewhere between 0 to 10000 pluse the difficulty level which will be about 100 to 950
             if (currentGamePlays[requestId].sneak > sneakInExperienceRequired) {
                 uint256 totalWon = currentGamePlays[requestId].difficultyLevel *
                     gameScenarios[currentGamePlays[requestId].scenario]
@@ -488,8 +492,8 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
                 jewelDepositLedger[
                     currentGamePlays[requestId].player
                 ] += totalWon;
-                // Player gains XP if successful
                 if (((randomness % 2214) % 2) == 1) {
+                    // gain XP!
                     NFTCharacterDepositLedger[
                         currentGamePlays[requestId].player
                     ].sneak += 1;
@@ -504,8 +508,8 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             emit gameCode(requestId, currentGamePlays[requestId].player, 4);
             return;
         }
-
         if (currentGamePlays[requestId].breakInStyle == 1) {
+            // player is breaking in with charm
             uint256 charmInExperienceRequired = ((randomness % 453678) % 750) +
                 currentGamePlays[requestId].difficultyLevel +
                 gameScenarios[currentGamePlays[requestId].scenario]
@@ -517,8 +521,8 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
                 jewelDepositLedger[
                     currentGamePlays[requestId].player
                 ] += totalWon;
-                // Player gains XP if successful
                 if (((randomness % 2214) % 2) == 1) {
+                    // gain XP!
                     NFTCharacterDepositLedger[
                         currentGamePlays[requestId].player
                     ].charm += 1;
@@ -533,13 +537,13 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             emit gameCode(requestId, currentGamePlays[requestId].player, 4);
             return;
         }
-
         if (currentGamePlays[requestId].breakInStyle == 2) {
+            // player is breaking in with strength
             uint256 strengthInExperienceRequired = ((randomness % 786435) %
                 750) +
                 currentGamePlays[requestId].difficultyLevel +
                 gameScenarios[currentGamePlays[requestId].scenario]
-                    .riskBaseDifficulty;
+                    .riskBaseDifficulty; // strength is used for daylight robbery
             if (
                 currentGamePlays[requestId].strength >
                 strengthInExperienceRequired
@@ -550,8 +554,8 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
                 jewelDepositLedger[
                     currentGamePlays[requestId].player
                 ] += totalWon;
-                // Player gains XP if successful
                 if (((randomness % 2214) % 2) == 1) {
+                    // gain XP!
                     NFTCharacterDepositLedger[
                         currentGamePlays[requestId].player
                     ].strength += 1;
@@ -711,6 +715,7 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             return;
         }
     }
+
     function vrfPlayPVP(uint256 randomness, bytes32 requestId) internal {
         // only when randomness is returned can this function be called.
         if ((randomness % 100) == 1) {
@@ -869,26 +874,28 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         return requestRandomness(keyHash, fee);
     }
 
+    /**
+     * Callback function used by VRF Coordinator
+     */
     function fulfillRandomness(
         bytes32 requestId,
         uint256 randomness
     ) internal override {
         if (currentGameMode[requestId].gameMode == 0) {
-            // Game mode 0: play the game using the random number
             vrfPlayGame(randomness, requestId);
         }
         if (currentGameMode[requestId].gameMode == 1) {
-            // Game mode 1: perform jailbreak logic using the random number
             vrfJailBreak(randomness, requestId);
         }
         if (currentGameMode[requestId].gameMode == 2) {
-            // Game mode 2: play Player vs Player using the random number
             vrfPlayPVP(randomness, requestId);
         }
     }
+
     function changeInheritance(address newInheritor) public onlyOwner {
         nextOwner = newInheritor;
     }
+
     function ownerCheckIn() public onlyOwner {
         lastCheckIn = block.timestamp;
     }
@@ -896,12 +903,13 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     function changeCheckInTime(
         uint256 newCheckInTimeInterval
     ) public onlyOwner {
-        checkInTimeInterval = newCheckInTimeInterval;
+        checkInTimeInterval = newCheckInTimeInterval; // let owner change check in case he know he will be away for a while.
     }
 
     function passDownInheritance() internal {
         transferOwnership(nextOwner);
     }
+
     function checkUpkeep(
         bytes calldata /* checkData */
     )
@@ -913,19 +921,18 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         return (
             block.timestamp > (lastCheckIn + checkInTimeInterval),
             bytes("")
-        );
+        ); // make sure to check in at least once every 6 months
     }
 
     function performUpkeep(
         bytes calldata /* performData */
     ) external override onlyKeeper {
-        // If upkeep is needed, pass down the inheritance
         passDownInheritance();
     }
 
     function withdraw(uint256 amount) public onlyOwner returns (bool) {
         require(amount <= address(this).balance);
-        payable(msg.sender).transfer(amount);
+        payable(msg.sender).transfer(amount); //if the owner send to sender
         return true;
     }
 
@@ -937,4 +944,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     }
 
     receive() external payable {
+        // nothing to do but accept money
+    }
 }
