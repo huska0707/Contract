@@ -86,10 +86,10 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     struct depostedCharacter {
         uint256 NFTID;
         bool isDeposited;
-        bool arrested; 
+        bool arrested;
         uint256 freetoPlayAgain;
         bool playingPVP;
         uint256 canStopPlayingPVP;
-        
+        uint256 lootingTimeout;
     }
 }
