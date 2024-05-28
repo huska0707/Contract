@@ -262,4 +262,8 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             block.timestamp +
             604800;
     }
+
+    function stopPlayPVP() public {
+        
+    }
 }
