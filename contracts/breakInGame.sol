@@ -209,5 +209,14 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             NFTCharacterDepositLedger[msg.sender].arrested == false,
             "Character in Prison"
         );
+
+        IBreakInNFTMinter.changeNFTAttributes(
+            NFTCharacterDepositLedger[msg.sender].NFTID,
+            NFTCharacterDepositLedger[msg.sender].health,
+            NFTCharacterDepositLedger[msg.sender].agility,
+            NFTCharacterDepositLedger[msg.sender].strength,
+            NFTCharacterDepositLedger[msg.sender].sneak,
+            NFTCharacterDepositLedger[msg.sender].charm
+        );
     }
 }
