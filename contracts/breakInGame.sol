@@ -67,5 +67,7 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         socialLegoToken = IERC20(_socialLegoToken);
     }
 
-    struct scenarios {}
+    struct scenarios {
+        string name;
+    }
 }
