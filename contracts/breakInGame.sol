@@ -277,5 +277,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             NFTCharacterDepositLedger[msg.sender].isDeposited == true,
             "Character Not Deposited"
         );
+        require(NFTCharacterDepositLedger[msg.sender].health < 100);
     }
 }
