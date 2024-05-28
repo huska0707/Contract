@@ -872,5 +872,10 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     function fulfillRandomness(
         bytes32 requestId,
         uint256 randomness
-    ) internal override {}
+    ) internal override {
+        if (currentGameMode[requestId].gameMode == 0) {
+            // Game mode 0: play the game using the random number
+            vrfPlayGame(randomness, requestId);
+        }
+    }
 }
