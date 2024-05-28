@@ -568,7 +568,9 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         }
     }
 
+
     function vrfJailBreak(uint256 randomness, bytes32 requestId) internal {
+        // only when randomness is returned can this function be called.
         if ((randomness % 1000) == 1) {
             // 5x higher chance of dying because its a jail
             // 1 in 1000 chance character dies
@@ -577,5 +579,138 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             emit gameCode(requestId, currentJailBreaks[requestId].player, 0);
             return;
         }
+
+        if (((randomness % 143456) % 10) == 1) {
+            //2x higher chance of getting injured
+            // 1 in 100 chance character is injured
+            uint256 healthDecrease = ((randomness % 123456) % 99); // player can lose up to 99 health every 1 in 100
+            if (
+                (100 - currentJailBreaks[requestId].health + healthDecrease) >
+                100
+            ) {
+                // players don't have to heal if they get injured before but if they get injured again and its greater than 100, they die
+                NFTCharacterDepositLedger[msg.sender].isDeposited = false; //
+                emit gameCode(
+                    requestId,
+                    currentJailBreaks[requestId].player,
+                    0
+                );
+                return;
+            }
+            NFTCharacterDepositLedger[currentJailBreaks[requestId].player]
+                .health -= healthDecrease;
+            emit gameCode(requestId, currentJailBreaks[requestId].player, 1);
+            return;
+        }
+        if (((randomness % 23015) % 5) == 1) {
+            // really high chance of getting spotted
+            // 1 in 5 chance character is almost getting arrested
+            uint256 agilityRequiredtoEscape = ((randomness % 54321) % 1000); // player still has chance to escape
+            if (
+                currentJailBreaks[requestId].agility > agilityRequiredtoEscape
+            ) {
+                if (((randomness % 2214) % 2) == 1) {
+                    // gain XP!
+                    NFTCharacterDepositLedger[
+                        currentJailBreaks[requestId].player
+                    ].agility += 1;
+                }
+                emit gameCode(
+                    requestId,
+                    currentJailBreaks[requestId].player,
+                    3
+                );
+                return; // escaped but no money given
+            } else {
+                NFTCharacterDepositLedger[msg.sender].arrested = true;
+                NFTCharacterDepositLedger[msg.sender].freetoPlayAgain =
+                    block.timestamp +
+                    259200; //player arrested for 3 days.
+                emit gameCode(
+                    requestId,
+                    currentJailBreaks[requestId].player,
+                    2
+                );
+                return; //  playerArrested
+            }
+        }
+        if (currentJailBreaks[requestId].breakInStyle == 0) {
+            //player is sneaking in
+            uint256 sneakInExperienceRequired = ((randomness % 235674) % 1000); // difficulty will be somewhere between 0 to 10000
+            if (
+                currentJailBreaks[requestId].sneak > sneakInExperienceRequired
+            ) {
+                NFTCharacterDepositLedger[
+                    currentJailBreaks[requestId].targetPlayer
+                ].arrested = false;
+                if (((randomness % 2214) % 2) == 1) {
+                    // gain XP!
+                    NFTCharacterDepositLedger[
+                        currentJailBreaks[requestId].player
+                    ].sneak += 1;
+                }
+                emit gameCode(
+                    requestId,
+                    currentJailBreaks[requestId].targetPlayer,
+                    5
+                );
+                return;
+            }
+            emit gameCode(requestId, currentJailBreaks[requestId].player, 4);
+            return;
+        }
+        if (currentJailBreaks[requestId].breakInStyle == 1) {
+            // player is breaking in with charm
+            uint256 charmInExperienceRequired = ((randomness % 453678) % 1000);
+            if (
+                currentJailBreaks[requestId].charm > charmInExperienceRequired
+            ) {
+                NFTCharacterDepositLedger[
+                    currentJailBreaks[requestId].targetPlayer
+                ].arrested = false;
+                if (((randomness % 2214) % 2) == 1) {
+                    // gain XP!
+                    NFTCharacterDepositLedger[
+                        currentJailBreaks[requestId].player
+                    ].charm += 1;
+                }
+                emit gameCode(
+                    requestId,
+                    currentJailBreaks[requestId].targetPlayer,
+                    5
+                );
+                return;
+            }
+            emit gameCode(requestId, currentJailBreaks[requestId].player, 4);
+            return;
+        }
+        if (currentJailBreaks[requestId].breakInStyle == 2) {
+            // player is breaking in with strength
+            uint256 strengthInExperienceRequired = ((randomness % 786435) %
+                1000);
+            if (
+                currentJailBreaks[requestId].strength >
+                strengthInExperienceRequired
+            ) {
+                NFTCharacterDepositLedger[
+                    currentJailBreaks[requestId].targetPlayer
+                ].arrested = false;
+                if (((randomness % 2214) % 4) == 1) {
+                    // gain XP!
+                    NFTCharacterDepositLedger[
+                        currentJailBreaks[requestId].player
+                    ].strength += 1;
+                }
+                emit gameCode(
+                    requestId,
+                    currentJailBreaks[requestId].targetPlayer,
+                    5
+                );
+                return;
+            }
+            emit gameCode(requestId, currentJailBreaks[requestId].player, 4);
+            return;
+        }
     }
+
 }
