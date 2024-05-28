@@ -381,5 +381,14 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     function playPVP(
         uint256 breakInStyle,
         address targetPlayer
-    ) public returns (bytes32) {}
+    ) public returns (bytes32) {
+        require(
+            LINK.balanceOf(address(this)) >= fee,
+            "Not enough LINK - fill contract with faucet"
+        );
+        require(
+            NFTCharacterDepositLedger[targetPlayer].isDeposited == true,
+            "No Target Character Deposited"
+        );
+    }
 }
