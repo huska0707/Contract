@@ -284,8 +284,13 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     }
 
     function playGame(
-    uint256 difficultyLevel,
-    uint256 breakInStyle,
-    uint256 scenario
-) public returns (bytes32) {}
+        uint256 difficultyLevel,
+        uint256 breakInStyle,
+        uint256 scenario
+    ) public returns (bytes32) {
+        require(
+            LINK.balanceOf(address(this)) >= fee,
+            "Not enough LINK - fill contract with faucet"
+        );
+    }
 }
