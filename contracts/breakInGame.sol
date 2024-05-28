@@ -411,5 +411,37 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         );
         bytes32 requestID = requestRandomness(keyHash, fee);
         currentGameMode[requestID].gameMode = 2;
+
+        currentPVPGamePlays[requestID].player = msg.sender;
+        currentPVPGamePlays[requestID].breakInStyle = breakInStyle;
+        currentPVPGamePlays[requestID].targetPlayer = targetPlayer;
+        currentPVPGamePlays[requestID].agility = NFTCharacterDepositLedger[
+            msg.sender
+        ].agility;
+        currentPVPGamePlays[requestID].strength = NFTCharacterDepositLedger[
+            msg.sender
+        ].strength;
+        currentPVPGamePlays[requestID].charm = NFTCharacterDepositLedger[
+            msg.sender
+        ].charm;
+        currentPVPGamePlays[requestID].sneak = NFTCharacterDepositLedger[
+            msg.sender
+        ].sneak;
+        currentPVPGamePlays[requestID].health = NFTCharacterDepositLedger[
+            msg.sender
+        ].health;
+        currentPVPGamePlays[requestID]
+            .targetPlayerAgility = NFTCharacterDepositLedger[targetPlayer]
+            .agility;
+        currentPVPGamePlays[requestID]
+            .targetPlayerStrength = NFTCharacterDepositLedger[targetPlayer]
+            .strength;
+        currentPVPGamePlays[requestID]
+            .targetPlayerCharm = NFTCharacterDepositLedger[targetPlayer].charm;
+        currentPVPGamePlays[requestID]
+            .targetPlayerSneak = NFTCharacterDepositLedger[targetPlayer].sneak;
+        currentPVPGamePlays[requestID]
+            .targetPlayerHealth = NFTCharacterDepositLedger[targetPlayer]
+            .health;
     }
 }
