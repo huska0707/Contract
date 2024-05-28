@@ -568,7 +568,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         }
     }
 
-
     function vrfJailBreak(uint256 randomness, bytes32 requestId) internal {
         // only when randomness is returned can this function be called.
         if ((randomness % 1000) == 1) {
@@ -712,5 +711,153 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             return;
         }
     }
+    function vrfPlayPVP(uint256 randomness, bytes32 requestId) internal {
+        // only when randomness is returned can this function be called.
+        if ((randomness % 100) == 1) {
+            //  really high chance of getting killed
+            // 1 in 100 chance character dies
+            NFTCharacterDepositLedger[currentPVPGamePlays[requestId].player]
+                .isDeposited = false; //
+            emit gameCode(requestId, currentPVPGamePlays[requestId].player, 0);
+            return;
+        }
 
+        if (((randomness % 143456) % 11) == 3) {
+            //really high chance of getting injured
+            // 1 in 11 chance character is injured
+            uint256 healthDecrease = ((randomness % 123456) % 99); // player can lose up to 99 health every 1 in 100
+            if (
+                (100 - currentPVPGamePlays[requestId].health + healthDecrease) >
+                100
+            ) {
+                // players don't have to heal if they get injured before but if they get injured again and its greater than 100, they die
+                NFTCharacterDepositLedger[msg.sender].isDeposited = false; //
+                emit gameCode(
+                    requestId,
+                    currentPVPGamePlays[requestId].player,
+                    0
+                );
+                return;
+            }
+            NFTCharacterDepositLedger[currentPVPGamePlays[requestId].player]
+                .health -= healthDecrease;
+            emit gameCode(requestId, currentPVPGamePlays[requestId].player, 1);
+            return;
+        }
+        // no chance of getting arrested since you are a robbing another player
+        // There is nothing stopping players with 800 sneak targeting players with 300 sneak.
+        // It is assumed that the 800 sneak character will be more vulnerbale to strength attacks.
+        // Players have to decide if they want to play more defensivly by equally levelling up each trait
+        // or focus on one specfic trait which allows them to attack better but have worse defense.
+        // Oh and please hire me.
+        if (currentPVPGamePlays[requestId].breakInStyle == 0) {
+            //player is sneaking in
+            uint256 sneakInExperienceRequired = ((randomness % 235674) % 1000) +
+                currentPVPGamePlays[requestId].targetPlayerSneak; // difficulty will be somewhere between 0 to 10000 plus the difficulty level which will be about 100 to 950
+            if (
+                currentPVPGamePlays[requestId].sneak > sneakInExperienceRequired
+            ) {
+                uint256 totalWon = jewelDepositLedger[
+                    currentPVPGamePlays[requestId].targetPlayer
+                ] / 20; // player can only lose 5% max each day
+                if (((randomness % 2214) % 2) == 1) {
+                    // gain XP!
+                    NFTCharacterDepositLedger[
+                        currentPVPGamePlays[requestId].player
+                    ].sneak += 1;
+                }
+                jewelDepositLedger[
+                    currentPVPGamePlays[requestId].targetPlayer
+                ] -= totalWon;
+                jewelDepositLedger[
+                    currentPVPGamePlays[requestId].player
+                ] += totalWon;
+                NFTCharacterDepositLedger[currentPVPGamePlays[requestId].player]
+                    .lootingTimeout = block.timestamp + 86400; // players can only loot once a day
+                NFTCharacterDepositLedger[
+                    currentPVPGamePlays[requestId].targetPlayer
+                ].lootingTimeout = block.timestamp + 86400; // players can only get looted once a day
+                emit gameCode(
+                    requestId,
+                    currentPVPGamePlays[requestId].player,
+                    totalWon
+                );
+                return;
+            }
+            emit gameCode(requestId, currentPVPGamePlays[requestId].player, 4);
+            return;
+        }
+        if (currentPVPGamePlays[requestId].breakInStyle == 1) {
+            // player is breaking in with charm
+            uint256 charmInExperienceRequired = ((randomness % 453678) % 1000) +
+                currentPVPGamePlays[requestId].targetPlayerCharm;
+            if (
+                currentPVPGamePlays[requestId].charm > charmInExperienceRequired
+            ) {
+                uint256 totalWon = jewelDepositLedger[
+                    currentPVPGamePlays[requestId].targetPlayer
+                ] / 20;
+                if (((randomness % 2214) % 2) == 1) {
+                    // gain XP!
+                    NFTCharacterDepositLedger[
+                        currentPVPGamePlays[requestId].player
+                    ].charm += 1;
+                }
+                jewelDepositLedger[
+                    currentPVPGamePlays[requestId].player
+                ] += totalWon;
+                NFTCharacterDepositLedger[currentPVPGamePlays[requestId].player]
+                    .lootingTimeout = block.timestamp + 86400; // players can only loot once a day
+                NFTCharacterDepositLedger[
+                    currentPVPGamePlays[requestId].targetPlayer
+                ].lootingTimeout = block.timestamp + 86400; // players can only get looted once a day
+                emit gameCode(
+                    requestId,
+                    currentPVPGamePlays[requestId].player,
+                    totalWon
+                );
+                return;
+            }
+            emit gameCode(requestId, currentPVPGamePlays[requestId].player, 4);
+            return;
+        }
+        if (currentPVPGamePlays[requestId].breakInStyle == 2) {
+            // player is breaking in with strength
+            uint256 strengthInExperienceRequired = ((randomness % 786435) %
+                1000) + currentPVPGamePlays[requestId].targetPlayerStrength; // strength is used for daylight robbery
+            if (
+                currentPVPGamePlays[requestId].strength >
+                strengthInExperienceRequired
+            ) {
+                uint256 totalWon = jewelDepositLedger[
+                    currentPVPGamePlays[requestId].targetPlayer
+                ] / 20; // player can only lose 5% max each day
+                if (((randomness % 2214) % 2) == 1) {
+                    // gain XP!
+                    NFTCharacterDepositLedger[
+                        currentPVPGamePlays[requestId].player
+                    ].strength += 1;
+                }
+                jewelDepositLedger[
+                    currentPVPGamePlays[requestId].targetPlayer
+                ] -= totalWon;
+                jewelDepositLedger[
+                    currentPVPGamePlays[requestId].player
+                ] += totalWon;
+                NFTCharacterDepositLedger[currentPVPGamePlays[requestId].player]
+                    .lootingTimeout = block.timestamp + 86400; // players can only loot once a day
+                NFTCharacterDepositLedger[
+                    currentPVPGamePlays[requestId].targetPlayer
+                ].lootingTimeout = block.timestamp + 86400; // players can only get looted once a day
+                emit gameCode(
+                    requestId,
+                    currentPVPGamePlays[requestId].player,
+                    totalWon
+                );
+                return;
+            }
+            emit gameCode(requestId, currentPVPGamePlays[requestId].player, 4);
+            return;
+        }
+    }
 }
