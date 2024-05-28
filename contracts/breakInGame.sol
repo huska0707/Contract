@@ -98,5 +98,7 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         uint256 charm;
     }
 
-    struct gamePlay {}
+    struct gamePlay {
+        address player;
+    }
 }
