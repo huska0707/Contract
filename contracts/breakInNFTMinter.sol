@@ -60,4 +60,15 @@ contract NFTMint is
         uint256 charm;
         uint256 characterID;
     }
+
+    struct mintableNFTCharacter {
+        uint256 health;
+        uint256 agility;
+        uint256 strength;
+        uint256 sneak;
+        uint256 charm;
+        string imageURI;
+        string name;
+        string description;
+    }
 }
