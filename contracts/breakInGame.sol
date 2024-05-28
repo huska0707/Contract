@@ -40,4 +40,9 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         require(msg.sender == keeperRegistryAddress);
         _;
     }
+
+    uint256 hospitalBill = 1000 * 10 ** 18;
+    uint256 public lastCheckIn = block.timestamp;
+    uint256 public checkInTimeInterval = 864000; // Default to six months
+    address public nextOwner;
 }
