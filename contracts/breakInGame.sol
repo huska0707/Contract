@@ -133,5 +133,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         address targetPlayer;
         uint256 targetPlayerHealth; 
          uint256 targetPlayerAgility;
+         uint256 targetPlayerStrength; 
     }
 }
