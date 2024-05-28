@@ -404,5 +404,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             NFTCharacterDepositLedger[targetPlayer].lootingTimeout <
                 block.timestamp
         );
+        require(jewelDepositLedger[targetPlayer] > (1 * 10 ** 18));
     }
 }
