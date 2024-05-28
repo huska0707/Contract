@@ -902,4 +902,12 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     function passDownInheritance() internal {
         transferOwnership(nextOwner);
     }
+    function checkUpkeep(
+        bytes calldata /* checkData */
+    )
+        external
+        view
+        override
+        returns (bool upkeepNeeded, bytes memory /* performData */)
+    {}
 }
