@@ -49,4 +49,15 @@ contract NFTMint is
 
         keeperRegistryAddress = _keeperRegistryAddress;
     }
+
+    struct NFTCharacter {
+        string name;
+        uint256 born;
+        uint256 health;
+        uint256 agility;
+        uint256 strength;
+        uint256 sneak;
+        uint256 charm;
+        uint256 characterID;
+    }
 }
