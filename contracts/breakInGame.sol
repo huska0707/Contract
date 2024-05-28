@@ -246,5 +246,7 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             jewelDepositLedger[msg.sender] >= amountToWithdraw,
             "Trying to withdraw too much money"
         );
+
+        socialLegoToken.transfer(msg.sender, amountToWithdraw);
     }
 }
