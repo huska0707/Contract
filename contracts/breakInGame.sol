@@ -271,4 +271,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         );
         NFTCharacterDepositLedger[msg.sender].playingPVP = false;
     }
+
+    function hospitalVisit() public {}
 }
