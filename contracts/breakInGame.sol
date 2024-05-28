@@ -227,4 +227,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
 
         NFTCharacterDepositLedger[msg.sender].isDeposited = false;
     }
+
+    function depositJewels(uint256 amountToDeposit) public {}
 }
