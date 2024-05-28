@@ -60,5 +60,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         address _socialLegoToken
     ) VRFConsumerBase(_vrfCoordinator, _link) {
         keyHash = _keyHash;
+        fee = _fee;
     }
 }
