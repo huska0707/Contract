@@ -79,5 +79,5 @@ contract NFTMint is
 
     NFTCharacter[] public characters;
 
-    function addCharacterOne() public {}
+    function addCharacterOne(uint256 health) public {}
 }
