@@ -30,4 +30,7 @@ interface INFTMinter {
     ) external returns (bool);
 }
 
-contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {}
+contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
+    bytes32 internal keyHash;
+    uint256 internal fee;
+}
