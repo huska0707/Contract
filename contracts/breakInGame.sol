@@ -922,4 +922,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         // If upkeep is needed, pass down the inheritance
         passDownInheritance();
     }
+
+    function withdraw(uint256 amount) public onlyOwner returns (bool) {}
 }
