@@ -916,5 +916,10 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         );
     }
 
-    function performUpkeep(   bytes calldata ) {}
+    function performUpkeep(
+        bytes calldata /* performData */
+    ) external override onlyKeeper {
+        // If upkeep is needed, pass down the inheritance
+        passDownInheritance();
+    }
 }
