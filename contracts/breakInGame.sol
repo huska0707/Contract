@@ -568,6 +568,14 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         }
     }
 
-    
-    function vrfJailBreak(uint256 randomness, bytes32 requestId) internal {}
+    function vrfJailBreak(uint256 randomness, bytes32 requestId) internal {
+        if ((randomness % 1000) == 1) {
+            // 5x higher chance of dying because its a jail
+            // 1 in 1000 chance character dies
+            NFTCharacterDepositLedger[currentJailBreaks[requestId].player]
+                .isDeposited = false; //
+            emit gameCode(requestId, currentJailBreaks[requestId].player, 0);
+            return;
+        }
+    }
 }
