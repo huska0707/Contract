@@ -16,7 +16,9 @@ contract NFTMint is
 {
     bytes32 internal keyHash;
     uint256 internal fee;
-    
+
     uint256 public mintFee = 0.002 * 10 ** 18;
     uint256 public randomResult;
+
+    uint256 public lastCheckIn = block.timestamp;
 }
