@@ -354,5 +354,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
 
         require(targetPlayer != msg.sender, "You cannot free yourself");
         bytes32 requestID = requestRandomness(keyHash, fee);
+        currentGameMode[requestID].gameMode = 1;
     }
 }
