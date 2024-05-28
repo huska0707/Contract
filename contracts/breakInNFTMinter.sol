@@ -72,4 +72,6 @@ contract NFTMint is
         string description;
     }
     uint256 public totalMintableCharacters;
+
+    mapping(uint256 => mintableNFTCharacter) public mintableNFTCharacterStruct;
 }
