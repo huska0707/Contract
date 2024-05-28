@@ -180,4 +180,11 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         gameScenarios[scenarioNumber].payoutAmountBase = payoutAmountBase;
         gameScenarios[scenarioNumber].name = name;
     }
+
+    function depositNFT(uint256 NFTID) public {
+        require(
+            NFTCharacterDepositLedger[msg.sender].isDeposited != true,
+            "Character Already Deposited"
+        );
+    }
 }
