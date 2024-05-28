@@ -377,4 +377,9 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
 
         return requestID;
     }
+
+    function playPVP(
+        uint256 breakInStyle,
+        address targetPlayer
+    ) public returns (bytes32) {}
 }
