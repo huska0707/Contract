@@ -13,4 +13,7 @@ contract NFTMint is
     VRFConsumerBase,
     Ownable,
     KeeperCompatibleInterface
-{}
+{
+    bytes32 internal keyHash;
+    uint256 internal fee;
+}
