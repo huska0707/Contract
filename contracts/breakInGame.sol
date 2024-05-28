@@ -45,4 +45,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     uint256 public lastCheckIn = block.timestamp;
     uint256 public checkInTimeInterval = 864000; // Default to six months
     address public nextOwner;
+
+    INFTMinter IBreakInNFTMinter;
 }
