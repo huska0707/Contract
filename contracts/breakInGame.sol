@@ -151,5 +151,10 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     mapping(bytes32 => gameModes) currentGameMode;
     mapping(bytes32 => jailBreak) currentJailBreaks;
     mapping(address => depostedCharacter) public NFTCharacterDepositLedger;
-    mapping(address => uint256) public jewelDepositLedger; 
+    mapping(address => uint256) public jewelDepositLedger;
+
+    function changeHospitalBill(uint256 newHospitalBill) public onlyOwner {
+        hospitalBill = newHospitalBill;
+        lastCheckIn = block.timestamp;
+    }
 }
