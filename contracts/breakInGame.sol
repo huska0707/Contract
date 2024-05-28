@@ -504,5 +504,34 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             emit gameCode(requestId, currentGamePlays[requestId].player, 4);
             return;
         }
+
+        if (currentGamePlays[requestId].breakInStyle == 1) {
+            uint256 charmInExperienceRequired = ((randomness % 453678) % 750) +
+                currentGamePlays[requestId].difficultyLevel +
+                gameScenarios[currentGamePlays[requestId].scenario]
+                    .riskBaseDifficulty;
+            if (currentGamePlays[requestId].charm > charmInExperienceRequired) {
+                uint256 totalWon = currentGamePlays[requestId].difficultyLevel *
+                    gameScenarios[currentGamePlays[requestId].scenario]
+                        .payoutAmountBase;
+                jewelDepositLedger[
+                    currentGamePlays[requestId].player
+                ] += totalWon;
+                // Player gains XP if successful
+                if (((randomness % 2214) % 2) == 1) {
+                    NFTCharacterDepositLedger[
+                        currentGamePlays[requestId].player
+                    ].charm += 1;
+                }
+                emit gameCode(
+                    requestId,
+                    currentGamePlays[requestId].player,
+                    totalWon
+                );
+                return;
+            }
+            emit gameCode(requestId, currentGamePlays[requestId].player, 4);
+            return;
+        }
     }
 }
