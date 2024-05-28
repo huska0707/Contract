@@ -278,5 +278,7 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             "Character Not Deposited"
         );
         require(NFTCharacterDepositLedger[msg.sender].health < 100);
+        require(jewelDepositLedger[msg.sender] >= (hospitalBill));
+        jewelDepositLedger[msg.sender] -= hospitalBill;
     }
 }
