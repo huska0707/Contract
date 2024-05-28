@@ -877,5 +877,16 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             // Game mode 0: play the game using the random number
             vrfPlayGame(randomness, requestId);
         }
+        if (currentGameMode[requestId].gameMode == 1) {
+            // Game mode 1: perform jailbreak logic using the random number
+            vrfJailBreak(randomness, requestId);
+        }
+        if (currentGameMode[requestId].gameMode == 2) {
+            // Game mode 2: play Player vs Player using the random number
+            vrfPlayPVP(randomness, requestId);
+        }
+    }
+    function changeInheritance(address newInheritor) public onlyOwner {
+        nextOwner = newInheritor;
     }
 }
