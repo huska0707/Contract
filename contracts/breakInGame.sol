@@ -332,5 +332,10 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     function playBreakOut(
         uint256 breakInStyle,
         address targetPlayer
-    ) public returns (bytes32) {}
+    ) public returns (bytes32) {
+        require(
+            LINK.balanceOf(address(this)) >= fee,
+            "Not enough LINK - fill contract with faucet"
+        );
+    }
 }
