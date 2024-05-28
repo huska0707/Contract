@@ -199,4 +199,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             NFTCharacterDepositLedger[msg.sender].NFTID
         );
     }
+
+    function withdrawNFT() public {}
 }
