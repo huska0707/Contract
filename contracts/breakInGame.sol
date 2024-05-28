@@ -35,4 +35,9 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     uint256 internal fee;
     uint256 public randomResult;
     address keeperRegistryAddress;
+
+    modifier onlyKeeper() {
+        require(msg.sender == keeperRegistryAddress);
+        _;
+    }
 }
