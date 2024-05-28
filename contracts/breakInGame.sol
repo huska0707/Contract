@@ -87,6 +87,7 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         uint256 NFTID;
         bool isDeposited;
         bool arrested; 
+        uint256 freetoPlayAgain;
         
     }
 }
