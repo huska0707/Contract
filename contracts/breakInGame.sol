@@ -395,5 +395,9 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             "You have no Character Deposited"
         );
         require(targetPlayer != msg.sender, "You cannot rob from yourself");
+        require(
+            NFTCharacterDepositLedger[msg.sender].lootingTimeout <
+                block.timestamp
+        );
     }
 }
