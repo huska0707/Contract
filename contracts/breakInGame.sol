@@ -238,5 +238,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             address(this),
             amountToDeposit
         );
+        jewelDepositLedger[msg.sender] += amountToDeposit;
     }
 }
