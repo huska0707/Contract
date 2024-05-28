@@ -186,5 +186,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             NFTCharacterDepositLedger[msg.sender].isDeposited != true,
             "Character Already Deposited"
         );
+        breakInNFT.transferFrom(msg.sender, address(this), NFTID);
     }
 }
