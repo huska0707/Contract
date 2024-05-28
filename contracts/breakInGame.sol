@@ -34,4 +34,5 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     bytes32 internal keyHash;
     uint256 internal fee;
     uint256 public randomResult;
+    address keeperRegistryAddress;
 }
