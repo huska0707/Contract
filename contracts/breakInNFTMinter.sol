@@ -21,4 +21,5 @@ contract NFTMint is
     uint256 public randomResult;
 
     uint256 public lastCheckIn = block.timestamp;
+    uint256 public checkInTimeInterval = 864000;
 }
