@@ -169,4 +169,15 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         gameScenarios[gameScenarioID].payoutAmountBase = payoutAmountBase;
         differentGameScenarios += 1;
     }
+
+    function modifyScenario(
+        uint256 scenarioNumber,
+        string memory name,
+        uint16 riskBaseDifficulty,
+        uint16 payoutAmountBase
+    ) public onlyOwner {
+        gameScenarios[scenarioNumber].riskBaseDifficulty = riskBaseDifficulty; // Scenarios can be removed by effectively raising the riskbase difficult level so high no one would bother playing it and making payoutAmountBase 0
+        gameScenarios[scenarioNumber].payoutAmountBase = payoutAmountBase;
+        gameScenarios[scenarioNumber].name = name;
+    }
 }
