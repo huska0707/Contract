@@ -129,12 +129,16 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         uint256 agility;
         uint256 strength;
         uint256 sneak;
-        uint256 charm; 
+        uint256 charm;
         address targetPlayer;
-        uint256 targetPlayerHealth; 
-         uint256 targetPlayerAgility;
-         uint256 targetPlayerStrength; 
-         uint256 targetPlayerSneak;
-         uint256 targetPlayerCharm;
+        uint256 targetPlayerHealth;
+        uint256 targetPlayerAgility;
+        uint256 targetPlayerStrength;
+        uint256 targetPlayerSneak;
+        uint256 targetPlayerCharm;
+    }
+
+    struct gameModes {
+        uint256 gameMode; // 0 if robbing, 1 if jailBreak, 2 if PvP
     }
 }
