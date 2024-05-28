@@ -78,4 +78,6 @@ contract NFTMint is
     mapping(bytes32 => address) requestToSender;
 
     NFTCharacter[] public characters;
+
+    function addCharacterOne() public {}
 }
