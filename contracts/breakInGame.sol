@@ -405,5 +405,9 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
                 block.timestamp
         );
         require(jewelDepositLedger[targetPlayer] > (1 * 10 ** 18));
+        require(
+            jewelDepositLedger[msg.sender] >
+                (jewelDepositLedger[targetPlayer] / 2)
+        );
     }
 }
