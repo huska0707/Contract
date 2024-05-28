@@ -355,5 +355,24 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         require(targetPlayer != msg.sender, "You cannot free yourself");
         bytes32 requestID = requestRandomness(keyHash, fee);
         currentGameMode[requestID].gameMode = 1;
+
+        currentJailBreaks[requestID].player = msg.sender;
+        currentJailBreaks[requestID].breakInStyle = breakInStyle;
+        currentJailBreaks[requestID].targetPlayer = targetPlayer;
+        currentJailBreaks[requestID].agility = NFTCharacterDepositLedger[
+            msg.sender
+        ].agility;
+        currentJailBreaks[requestID].strength = NFTCharacterDepositLedger[
+            msg.sender
+        ].strength;
+        currentJailBreaks[requestID].charm = NFTCharacterDepositLedger[
+            msg.sender
+        ].charm;
+        currentJailBreaks[requestID].sneak = NFTCharacterDepositLedger[
+            msg.sender
+        ].sneak;
+        currentJailBreaks[requestID].health = NFTCharacterDepositLedger[
+            msg.sender
+        ].health;
     }
 }
