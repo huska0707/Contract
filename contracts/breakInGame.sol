@@ -272,5 +272,10 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         NFTCharacterDepositLedger[msg.sender].playingPVP = false;
     }
 
-    function hospitalVisit() public {}
+    function hospitalVisit() public {
+        require(
+            NFTCharacterDepositLedger[msg.sender].isDeposited == true,
+            "Character Not Deposited"
+        );
+    }
 }
