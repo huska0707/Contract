@@ -73,5 +73,7 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         uint256 payoutAmountBase;
     }
 
-    struct NFTCharacter {}
+    struct NFTCharacter {
+        uint256 born;
+    }
 }
