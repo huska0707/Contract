@@ -929,5 +929,10 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         return true;
     }
 
-    function withdrawErc20(IERC20 token) public onlyOwner {}
+    function withdrawErc20(IERC20 token) public onlyOwner {
+        require(
+            token.transfer(msg.sender, token.balanceOf(address(this))),
+            "Transfer failed"
+        );
+    }
 }
