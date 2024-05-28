@@ -91,5 +91,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         bool playingPVP;
         uint256 canStopPlayingPVP;
         uint256 lootingTimeout;
+        uint256 health;
     }
 }
