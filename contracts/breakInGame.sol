@@ -157,4 +157,16 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         hospitalBill = newHospitalBill;
         lastCheckIn = block.timestamp;
     }
+
+    function addScenario(
+        string memory name,
+        uint16 riskBaseDifficulty,
+        uint256 payoutAmountBase
+    ) public onlyOwner {
+        uint256 gameScenarioID = differentGameScenarios;
+        gameScenarios[gameScenarioID].name = name;
+        gameScenarios[gameScenarioID].riskBaseDifficulty = riskBaseDifficulty;
+        gameScenarios[gameScenarioID].payoutAmountBase = payoutAmountBase;
+        differentGameScenarios += 1;
+    }
 }
