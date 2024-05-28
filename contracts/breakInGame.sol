@@ -101,6 +101,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     struct gamePlay {
         address player;
         uint256 scenario;
-        
+        uint256 breakInStyle;
     }
 }
