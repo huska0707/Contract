@@ -23,4 +23,6 @@ contract NFTMint is
     uint256 public lastCheckIn = block.timestamp;
     uint256 public checkInTimeInterval = 864000;
     address public nextOwner;
+
+    address keeperRegistryAddress;
 }
