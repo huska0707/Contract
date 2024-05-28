@@ -410,5 +410,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
                 (jewelDepositLedger[targetPlayer] / 2)
         );
         bytes32 requestID = requestRandomness(keyHash, fee);
+        currentGameMode[requestID].gameMode = 2;
     }
 }
