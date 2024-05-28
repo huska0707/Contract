@@ -69,5 +69,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
 
     struct scenarios {
         string name;
+        uint256 riskBaseDifficulty;
     }
 }
