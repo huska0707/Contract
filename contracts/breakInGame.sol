@@ -895,5 +895,7 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
 
     function changeCheckInTime(
         uint256 newCheckInTimeInterval
-    ) public onlyOwner {}
+    ) public onlyOwner {
+        checkInTimeInterval = newCheckInTimeInterval;
+    }
 }
