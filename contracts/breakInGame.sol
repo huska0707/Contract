@@ -144,4 +144,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
 
     event gameCode(bytes32 requestID, address player, uint256 code);
     uint256 differentGameScenarios;
+
+    mapping(uint256 => scenarios) public gameScenarios;
 }
