@@ -337,5 +337,10 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             LINK.balanceOf(address(this)) >= fee,
             "Not enough LINK - fill contract with faucet"
         );
+
+        require(
+            NFTCharacterDepositLedger[targetPlayer].isDeposited == true,
+            "No Target Character Deposited"
+        );
     }
 }
