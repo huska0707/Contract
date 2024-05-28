@@ -304,5 +304,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
 
         require(scenario < differentGameScenarios, "No Game Scenario");
         bytes32 requestID = requestRandomness(keyHash, fee);
+        currentGameMode[requestID].gameMode = 0;
     }
 }
