@@ -74,4 +74,5 @@ contract NFTMint is
     uint256 public totalMintableCharacters;
 
     mapping(uint256 => mintableNFTCharacter) public mintableNFTCharacterStruct;
+    mapping(bytes32 => NFTCharacter) NFTCharacterStruct;
 }
