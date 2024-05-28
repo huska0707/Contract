@@ -146,5 +146,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     uint256 differentGameScenarios;
 
     mapping(uint256 => scenarios) public gameScenarios;
-    mapping(bytes32 => PvP) currentPVPGamePlays; 
+    mapping(bytes32 => PvP) currentPVPGamePlays;
+    mapping(bytes32 => gamePlay) currentGamePlays;
 }
