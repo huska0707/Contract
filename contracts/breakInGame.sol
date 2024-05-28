@@ -142,5 +142,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         uint256 gameMode; // 0 if robbing, 1 if jailBreak, 2 if PvP
     }
 
-       event gameCode(bytes32 requestID, address player, uint256 code);
+    event gameCode(bytes32 requestID, address player, uint256 code);
+    uint256 differentGameScenarios;
 }
