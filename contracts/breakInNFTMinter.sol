@@ -71,4 +71,5 @@ contract NFTMint is
         string name;
         string description;
     }
+    uint256 public totalMintableCharacters;
 }
