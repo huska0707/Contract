@@ -200,5 +200,10 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         );
     }
 
-    function withdrawNFT() public {}
+    function withdrawNFT() public {
+        require(
+            NFTCharacterDepositLedger[msg.sender].isDeposited == true,
+            "No Character Deposited"
+        );
+    }
 }
