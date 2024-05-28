@@ -455,5 +455,9 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             emit gameCode(requestId, currentGamePlays[requestId].player, 0);
             return;
         }
+        if (((randomness % 143456) % 20) == 1) {
+        // 1 in 20 chance character is injured
+        uint256 healthDecrease = ((randomness % 123456) % 99);
+        }
     }
 }
