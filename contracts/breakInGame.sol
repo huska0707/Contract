@@ -62,5 +62,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         keyHash = _keyHash;
         fee = _fee;
         keeperRegistryAddress = _keeperRegistryAddress;
+        IBreakInNFTMinter = INFTMinter(_breakInNFT);
     }
 }
