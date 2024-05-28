@@ -399,5 +399,10 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             NFTCharacterDepositLedger[msg.sender].lootingTimeout <
                 block.timestamp
         );
+
+        require(
+            NFTCharacterDepositLedger[targetPlayer].lootingTimeout <
+                block.timestamp
+        );
     }
 }
