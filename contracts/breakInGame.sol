@@ -282,4 +282,10 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         jewelDepositLedger[msg.sender] -= hospitalBill;
         NFTCharacterDepositLedger[msg.sender].health = 100;
     }
+
+    function playGame(
+    uint256 difficultyLevel,
+    uint256 breakInStyle,
+    uint256 scenario
+) public returns (bytes32) {}
 }
