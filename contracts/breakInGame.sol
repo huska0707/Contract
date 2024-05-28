@@ -325,5 +325,7 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         currentGamePlays[requestID].health = NFTCharacterDepositLedger[
             msg.sender
         ].health;
+
+        return requestID;
     }
 }
