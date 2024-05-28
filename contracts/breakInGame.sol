@@ -446,4 +446,14 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
 
         return requestID;
     }
+
+    function vrfPlayGame(uint256 randomness, bytes32 requestId) internal {
+        if ((randomness % 2000) == 1) {
+            // 1 in 2000 chance character dies
+            NFTCharacterDepositLedger[currentGamePlays[requestId].player]
+                .isDeposited = false;
+            emit gameCode(requestId, currentGamePlays[requestId].player, 0);
+            return;
+        }
+    }
 }
