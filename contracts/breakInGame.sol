@@ -898,4 +898,8 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     ) public onlyOwner {
         checkInTimeInterval = newCheckInTimeInterval;
     }
+
+    function passDownInheritance() internal {
+        transferOwnership(nextOwner);
+    }
 }
