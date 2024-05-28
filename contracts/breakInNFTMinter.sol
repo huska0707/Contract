@@ -36,4 +36,17 @@ contract NFTMint is
         require(msg.sender == keeperRegistryAddress);
         _;
     }
+
+    constructor(
+        address _vrfCoordinator,
+        address _link,
+        bytes32 _keyHash,
+        uint256 _fee,
+        address _keeperRegistryAddress
+    ) VRFConsumerBase(_vrfCoordinator, _link) ERC721("BreakInNFTs", "BIN") {
+        keyHash = _keyHash;
+        fee = _fee; // Fee varies by network
+
+        keeperRegistryAddress = _keeperRegistryAddress;
+    }
 }
