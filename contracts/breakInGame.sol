@@ -909,5 +909,10 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         view
         override
         returns (bool upkeepNeeded, bytes memory /* performData */)
-    {}
+    {
+        return (
+            block.timestamp > (lastCheckIn + checkInTimeInterval),
+            bytes("")
+        );
+    }
 }
