@@ -103,5 +103,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         uint256 scenario;
         uint256 breakInStyle;
         uint256 difficultyLevel; 
+        uint256 health;
     }
 }
