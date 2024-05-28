@@ -269,5 +269,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
                 NFTCharacterDepositLedger[msg.sender].canStopPlayingPVP,
             "You must wait 7 days since you started playing"
         );
+        NFTCharacterDepositLedger[msg.sender].playingPVP = false;
     }
 }
