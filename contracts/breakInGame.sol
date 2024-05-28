@@ -241,5 +241,10 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         jewelDepositLedger[msg.sender] += amountToDeposit;
     }
 
-    function withdrawJewels(uint256 amountToWithdraw) public {}
+    function withdrawJewels(uint256 amountToWithdraw) public {
+        require(
+            jewelDepositLedger[msg.sender] >= amountToWithdraw,
+            "Trying to withdraw too much money"
+        );
+    }
 }
