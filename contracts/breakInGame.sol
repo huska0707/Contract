@@ -82,4 +82,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         uint256 charm;
         uint256 characterID;
     }
+
+    struct depostedCharacter {}
 }
