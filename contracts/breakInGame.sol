@@ -120,4 +120,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         uint256 charm; 
         address targetPlayer;
     }
+
+    struct PvP {}
 }
