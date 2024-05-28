@@ -85,5 +85,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
 
     struct depostedCharacter {
         uint256 NFTID;
+        bool isDeposited; 
     }
 }
