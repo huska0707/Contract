@@ -250,4 +250,8 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         socialLegoToken.transfer(msg.sender, amountToWithdraw);
         jewelDepositLedger[msg.sender] -= amountToWithdraw;
     }
+
+    function startPlayPVP() public {
+        
+    }
 }
