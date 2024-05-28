@@ -61,5 +61,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
     ) VRFConsumerBase(_vrfCoordinator, _link) {
         keyHash = _keyHash;
         fee = _fee;
+        keeperRegistryAddress = _keeperRegistryAddress;
     }
 }
