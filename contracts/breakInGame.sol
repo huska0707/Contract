@@ -328,4 +328,9 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
 
         return requestID;
     }
+
+    function playBreakOut(
+        uint256 breakInStyle,
+        address targetPlayer
+    ) public returns (bytes32) {}
 }
