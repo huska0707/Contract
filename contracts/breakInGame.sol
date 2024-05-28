@@ -233,5 +233,10 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             NFTCharacterDepositLedger[msg.sender].arrested == false,
             "Character in Prison"
         );
+        socialLegoToken.transferFrom(
+            msg.sender,
+            address(this),
+            amountToDeposit
+        );
     }
 }
