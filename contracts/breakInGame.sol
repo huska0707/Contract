@@ -456,8 +456,24 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             return;
         }
         if (((randomness % 143456) % 20) == 1) {
-        // 1 in 20 chance character is injured
-        uint256 healthDecrease = ((randomness % 123456) % 99);
+            // 1 in 20 chance character is injured
+            uint256 healthDecrease = ((randomness % 123456) % 99);
+
+            if (
+                (100 - currentGamePlays[requestId].health + healthDecrease) >
+                100
+            ) {
+                // players don't have to heal if they get injured before but if they get injured again and its greater than 100, they die
+                NFTCharacterDepositLedger[currentGamePlays[requestId].player]
+                    .isDeposited = false;
+                emit gameCode(requestId, currentGamePlays[requestId].player, 0);
+                return;
+            }
+
+            NFTCharacterDepositLedger[currentGamePlays[requestId].player]
+                .health -= healthDecrease;
+            emit gameCode(requestId, currentGamePlays[requestId].player, 1);
+            return;
         }
     }
 }
