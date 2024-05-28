@@ -935,4 +935,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             "Transfer failed"
         );
     }
+
+    receive() external payable {
 }
