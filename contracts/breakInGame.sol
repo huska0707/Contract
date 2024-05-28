@@ -928,4 +928,6 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         payable(msg.sender).transfer(amount);
         return true;
     }
+
+    function withdrawErc20(IERC20 token) public onlyOwner {}
 }
