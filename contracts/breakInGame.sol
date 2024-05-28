@@ -258,5 +258,8 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         );
 
         NFTCharacterDepositLedger[msg.sender].playingPVP = true;
+        NFTCharacterDepositLedger[msg.sender].canStopPlayingPVP =
+            block.timestamp +
+            604800;
     }
 }
