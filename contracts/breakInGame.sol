@@ -301,5 +301,7 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
             NFTCharacterDepositLedger[msg.sender].arrested == false,
             "Character in Prison"
         );
+
+        require(scenario < differentGameScenarios, "No Game Scenario");
     }
 }
