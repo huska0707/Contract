@@ -861,5 +861,10 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         }
     }
 
-    function getRandomNumber() internal returns (bytes32 requestId) {}
+    function getRandomNumber() internal returns (bytes32 requestId) {
+        require(
+            LINK.balanceOf(address(this)) >= fee,
+            "Not enough LINK - fill contract with faucet"
+        );
+    }
 }
