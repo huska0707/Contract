@@ -868,4 +868,9 @@ contract BreakInGame is VRFConsumerBase, Ownable, KeeperCompatibleInterface {
         );
         return requestRandomness(keyHash, fee);
     }
+
+    function fulfillRandomness(
+        bytes32 requestId,
+        uint256 randomness
+    ) internal override {}
 }
