@@ -44,4 +44,5 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
     uint256 userPosts; 
     mapping(uint256 => Post) postStructs;
     }
+    mapping(address => userProfile) userProfileStructs;
 }
