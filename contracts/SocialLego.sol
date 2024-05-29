@@ -251,5 +251,6 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
             userProfileStructs[msg.sender].exists == true, // Check if the sender has an account
             "Create an Account First" // Error message if the sender does not have an account
         );
+        userProfileStructs[msg.sender].profileImageUrl = url;
     }
 }
