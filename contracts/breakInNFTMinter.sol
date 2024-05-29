@@ -151,6 +151,7 @@ contract NFTMint is
             characters[NFTID].strength,
             characters[NFTID].charm,
             characters[NFTID].sneak,
+            characters[NFTID].health 
         );
     }
 }
