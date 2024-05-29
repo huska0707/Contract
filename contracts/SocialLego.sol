@@ -112,7 +112,8 @@ function getUserProfile(address userAddress)
          ) {
 
             return (
-                userProfileStructs[userAddress].userProfileBio
+                userProfileStructs[userAddress].userProfileBio,
+                userProfileStructs[userAddress].userPosts
             )
          }
 }
