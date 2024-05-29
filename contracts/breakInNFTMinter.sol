@@ -225,5 +225,6 @@ contract NFTMint is
          characters[NFTID].agility = agility;
          characters[NFTID].strength = strength; 
          characters[NFTID].sneak = sneak; 
+         characters[NFTID].charm = charm;
     }
 }
