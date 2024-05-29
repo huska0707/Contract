@@ -221,4 +221,18 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
             ].profileImageUrl
         );
     }
+
+    function changeUserBio(
+        string memory bioText
+    )
+        public
+        returns (
+            bool success // Indicates whether the bio change was successful
+        )
+    {
+        require(
+            userProfileStructs[msg.sender].exists == true, // Check if the sender has an account
+            "Create an Account First" // Error message if the sender does not have an account
+        );
+    }
 }
