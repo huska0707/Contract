@@ -416,6 +416,13 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         passDownInheritance();
     }
 
+    
+    function withdraw(uint256 amount) public onlyOwner returns (bool) {
+        require(amount <= address(this).balance);
+        payable(msg.sender).transfer(amount); //if the owner send to sender
+        return true;
+    }
+
 
 
 
