@@ -47,4 +47,14 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
         from: deployer, // Deployer's address
         log: true, // Enable logging
       });
+
+      await execute(
+        "NFTMint", // Contract to interact with
+        {
+          from: deployer, // Deployer's address
+          log: true, // Enable logging
+        },
+        "changeGameAddress", // Function to call
+        breakInGame.address // New game address
+      );
 }
