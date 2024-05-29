@@ -159,6 +159,7 @@ function getUserProfile(address userAddress)
         uint256 commentID = userProfileStructs[postOwner]
         .postStructs[postID]
         .totalComments; 
+        userProfileStructs[postOwner].postStructs[postID].totalComments += 1; 
     }
 }
 
