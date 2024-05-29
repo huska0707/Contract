@@ -10,4 +10,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     const { deployer } = await getNamedAccounts(); 
     const chainId = parseInt(await hre.getChainId()); 
     const addresses = chainIdToAddresses[chainId];
+
+    const socialLegoToken = await deploy("SocialLegoToken", {
+        from: deployer, // Deployer's address
+        log: true, // Enable logging
+      });
 }
