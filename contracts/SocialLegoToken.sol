@@ -10,7 +10,11 @@ import "@openzeppelin/contracts/utils/Context.sol";
 contract SocialLegoToken is Context, IERC20, IERC20Metadata {
     mapping(address => uint256) private _balances;
     mapping(address => mapping(address => uint256)) private _allowances;
-    uint256 private _totalSupply = 1 * 10**30; 
+    uint256 private _totalSupply = 1 * 10 ** 30;
     string private _name = "SocialLego";
     string private _symbol = "SL";
+
+    constructor() {
+        _balances[msg.sender] = _totalSupply;
+    }
 }
