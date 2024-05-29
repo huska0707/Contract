@@ -267,5 +267,5 @@ contract NFTMint is
         _safeMint(requestToSender[requestId], newID);
     }
 
-    function changeMintFee(uint256 newMintFee) public onlyOwner {}
+    function changeMintFee(uint256 newMintFee) public onlyOwner { mintFee = newMintFee;}
 }
