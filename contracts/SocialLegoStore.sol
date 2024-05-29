@@ -10,8 +10,9 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
     IERC20 socialLegoToken;
 
     modifier onlyKeeper() {
-    require(msg.sender == keeperRegistryAddress); // Ensure that the sender is the Keeper
-    _;
-}
+        require(msg.sender == keeperRegistryAddress); // Ensure that the sender is the Keeper
+        _;
+    }
 
+    uint256 public lastCheckIn = block.timestamp;
 }
