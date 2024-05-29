@@ -97,4 +97,10 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
         require(newPrice >= massivePurchaseTokenPrice / 2, "too low price");
         massivePurchaseTokenPrice = newPrice;
     }
+
+    function setLargeStorePrice(uint256 newPrice) public onlyOwner {
+        require(newPrice <= largePurchaseTokenPrice * 2, "too high price"); // just in case you fat finger a number and accidently set a number too high or too low
+        require(newPrice >= largePurchaseTokenPrice / 2, "too low price");
+        largePurchaseTokenPrice = newPrice;
+    }
 }
