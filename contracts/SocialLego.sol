@@ -97,4 +97,9 @@ function newProfile(string memory newProfileBio, string memory nickName)
     userProfileList.push(msg.sender); 
     return true;
 }
+
+function getUserProfile(address userAddress)
+    public
+    view
+    return (string memory profileBio)
 }
