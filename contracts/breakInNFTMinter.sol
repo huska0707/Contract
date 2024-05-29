@@ -223,5 +223,6 @@ contract NFTMint is
     ) external onlyGame {
         characters[NFTID].health = health;
          characters[NFTID].agility = agility;
+         characters[NFTID].strength = strength; 
     }
 }
