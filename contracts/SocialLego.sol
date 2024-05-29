@@ -130,5 +130,7 @@ function getUserProfile(address userAddress)
         userProfileStructs[msg.sender].exists == true, // Check if the sender has an account
         "Create an Account to Post" // Error message if the sender does not have an account
     ); 
+    uint256 postID = (userProfileStructs[msg.sender].userPosts);
+    
     }
 }
