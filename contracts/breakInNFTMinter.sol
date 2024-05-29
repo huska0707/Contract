@@ -166,4 +166,13 @@ contract NFTMint is
         mintableNFTCharacterStruct[characterID].description = description;
         return true;
     }
+
+    function changeImageURI(
+        uint256 characterID,
+        string memory imageURI
+    )
+        public
+        onlyOwner // Only owner can change the image URI
+        returns (bool)
+    {}
 }
