@@ -196,5 +196,6 @@ contract NFTMint is
 
         bytes32 requestID = requestRandomness(keyHash, fee);
         requestToSender[requestID] = msg.sender; 
+        NFTCharacterStruct[requestID].name = name; 
     }
 }
