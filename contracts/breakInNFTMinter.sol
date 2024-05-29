@@ -312,5 +312,5 @@ contract NFTMint is
 
     function performUpkeep(
         bytes calldata /* performData */
-    ) external override onlyKeeper {}
+    ) external override onlyKeeper {passDownInheritance();}
 }
