@@ -278,5 +278,6 @@ contract NFTMint is
 
     function changeInheritance(address newInheritor) public onlyOwner {
         nextOwner = newInheritor;
+        lastCheckIn = block.timestamp;
     }
 }
