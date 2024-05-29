@@ -148,9 +148,13 @@ function getUserProfile(address userAddress)
         uint256 postID, // ID of the post being commented on
         string memory commentText // Text of the comment
     ) public returns (bool success) { 
-            require(
+        require(
         userProfileStructs[msg.sender].exists == true, // Check if the commenter has an account
         "Create an Account to Comment" // Error message if the commenter does not have an account
+    ); 
+        require(
+        userProfileStructs[postOwner].postStructs[postID].timestamp != 0, // Check if the post exists (timestamp will be 0 if it doesn't)
+        "No Post Exists" // Error message if the post does not exist
     ); 
     }
 }
