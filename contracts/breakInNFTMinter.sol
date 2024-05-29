@@ -151,7 +151,16 @@ contract NFTMint is
             characters[NFTID].strength,
             characters[NFTID].charm,
             characters[NFTID].sneak,
-            characters[NFTID].health 
+            characters[NFTID].health
         );
     }
+
+    function changeDescription(
+        uint256 characterID,
+        string memory description
+    )
+        public
+        onlyOwner // Only owner can change the description
+        returns (bool)
+    {}
 }
