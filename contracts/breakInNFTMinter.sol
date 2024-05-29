@@ -276,5 +276,7 @@ contract NFTMint is
         gameAddress = newGameAddress;
     }
 
-    function changeInheritance(address newInheritor) public onlyOwner {}
+    function changeInheritance(address newInheritor) public onlyOwner {
+        nextOwner = newInheritor;
+    }
 }
