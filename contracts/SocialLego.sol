@@ -19,5 +19,6 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
     address public nextOwner;
     struct Comment {
         address commenter;
+        string message;
     }
 }
