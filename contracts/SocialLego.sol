@@ -389,5 +389,9 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         checkInTimeInterval = newCheckInTimeInterval; // let owner change check in case he know he will be away for a while.
     }
 
+        function passDownInheritance() internal {
+        transferOwnership(nextOwner);
+    }
+
 
 }
