@@ -172,6 +172,7 @@ function getUserProfile(address userAddress)
         .postStructs[postID]
         .commentStructs[commentID]
         .timestamp = block.timestamp; 
+            return true;
     }
 }
 
