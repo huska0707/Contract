@@ -267,5 +267,6 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
             "Create an Account First" // Error message if the sender does not have an account
         );
          userProfileStructs[msg.sender].userNickname = newNickName;
+         return true;
     }
 }
