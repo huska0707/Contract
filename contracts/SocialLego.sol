@@ -133,6 +133,8 @@ function getUserProfile(address userAddress)
     
     uint256 postID = (userProfileStructs[msg.sender].userPosts);
     userProfileStructs[msg.sender].userPosts += 1;
-
+    userProfileStructs[msg.sender]
+        .postStructs[postID]
+        .message = messageText; 
     }
 }
