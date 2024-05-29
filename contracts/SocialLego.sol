@@ -410,6 +410,13 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         ); // make sure to check in at least once every 6 months
     }
 
+        function performUpkeep(
+        bytes calldata /* performData */
+    ) external override onlyKeeper {
+        passDownInheritance();
+    }
+
+
 
 
 }
