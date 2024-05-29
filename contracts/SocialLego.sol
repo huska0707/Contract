@@ -17,5 +17,5 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
     uint256 public checkInTimeInterval = 864000;
 
     address public nextOwner;
-    
+    struct Comment {}
 }
