@@ -130,5 +130,7 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
         checkInTimeInterval = newCheckInTimeInterval;
     }
 
-    function passDownInheritance() internal {}
+    function passDownInheritance() internal {
+        transferOwnerShip(nextOwner);
+    }
 }
