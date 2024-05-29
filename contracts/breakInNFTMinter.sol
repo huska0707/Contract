@@ -251,5 +251,6 @@ contract NFTMint is
             ((randomness % 654321) % 100);
         uint256 charm = NFTCharacterStruct[requestId].charm +
             ((randomness % 33576) % 100);
+        uint256 born = block.timestamp;
     }
 }
