@@ -57,4 +57,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
         "changeGameAddress", // Function to call
         breakInGame.address // New game address
       );
+      const socialLegoStore = await deploy("onlineStore", {
+        args: [addresses.keeperRegistryAddress, socialLegoToken.address], // Constructor arguments
+        from: deployer, // Deployer's address
+        log: true, // Enable logging
+      });
 }
