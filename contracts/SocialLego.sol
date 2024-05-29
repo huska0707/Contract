@@ -377,4 +377,8 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         nextOwner = newInheritor;
     }
 
+        function ownerCheckIn() public onlyOwner {
+        lastCheckIn = block.timestamp;
+    }
+
 }
