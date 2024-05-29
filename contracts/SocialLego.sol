@@ -168,6 +168,10 @@ function getUserProfile(address userAddress)
         .postStructs[postID]
         .commentStructs[commentID]
         .message = commentText;
+            userProfileStructs[postOwner]
+        .postStructs[postID]
+        .commentStructs[commentID]
+        .timestamp = block.timestamp; 
     }
 }
 
