@@ -128,21 +128,24 @@ contract NFTMint is
         intableNFTCharacterStruct[characterID].sneak = 250;
         mintableNFTCharacterStruct[characterID].charm = 250;
         mintableNFTCharacterStruct[characterID].imageURI = imageURI;
-        mintableNFTCharacterStruct[characterID].name = name; 
+        mintableNFTCharacterStruct[characterID].name = name;
         mintableNFTCharacterStruct[characterID].description = description;
         totalMintableCharacters += 1;
     }
 
-    function getNFTAttributes(uint256 NFTID)
-    external
-    view
-    returns (
-        uint256 agility,
-        uint256 strength,
-        uint256 charm,
-        uint256 sneak,
-        uint256 health
+    function getNFTAttributes(
+        uint256 NFTID
     )
-{
-    return ();}
+        external
+        view
+        returns (
+            uint256 agility,
+            uint256 strength,
+            uint256 charm,
+            uint256 sneak,
+            uint256 health
+        )
+    {
+        return (characters[NFTID].agility, characters[NFTID].strength, );
+    }
 }
