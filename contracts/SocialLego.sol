@@ -368,4 +368,9 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         return true;
     }
 
+    
+    function getBalance() public view returns (uint256) {
+        return address(this).balance;
+    }
+
 }
