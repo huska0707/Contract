@@ -259,6 +259,7 @@ contract NFTMint is
                 born,
                 NFTCharacterStruct[requestId].health,
                 agility,
+                strength,
             )
         );
     }
