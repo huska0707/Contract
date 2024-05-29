@@ -121,11 +121,12 @@ contract NFTMint is
         string memory name, // Name of the character
         string memory description // Description of the character
     ) public {
-        uint256 characterID = totalMintableCharacters; 
-        mintableNFTCharacterStruct[characterID].health = health; 
-         mintableNFTCharacterStruct[characterID].agility = 250;
-         mintableNFTCharacterStruct[characterID].strength = 500; 
-         intableNFTCharacterStruct[characterID].sneak = 250;
-          mintableNFTCharacterStruct[characterID].charm = 250;
+        uint256 characterID = totalMintableCharacters;
+        mintableNFTCharacterStruct[characterID].health = health;
+        mintableNFTCharacterStruct[characterID].agility = 250;
+        mintableNFTCharacterStruct[characterID].strength = 500;
+        intableNFTCharacterStruct[characterID].sneak = 250;
+        mintableNFTCharacterStruct[characterID].charm = 250;
+        mintableNFTCharacterStruct[characterID].imageURI = imageURI;
     }
 }
