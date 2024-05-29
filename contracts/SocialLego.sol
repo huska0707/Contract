@@ -88,5 +88,6 @@ function newProfile(string memory newProfileBio, string memory nickName)
         "Account Already Created" // Error message if the sender already has an account
     ); 
     userProfileStructs[msg.sender].userProfileBio = newProfileBio;
+    userProfileStructs[msg.sender].userNickname = nickName;
 }
 }
