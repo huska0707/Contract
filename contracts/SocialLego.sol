@@ -42,5 +42,6 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
     uint256 joinDate;
     uint256 featuredPost;
     uint256 userPosts; 
+    mapping(uint256 => Post) postStructs;
     }
 }
