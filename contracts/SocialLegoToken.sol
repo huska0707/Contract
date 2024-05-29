@@ -81,4 +81,16 @@ contract SocialLegoToken is Context, IERC20, IERC20Metadata {
 
         return true;
     }
+
+    function increaseAllowance(
+        address spender,
+        uint256 addedValue
+    ) public virtual returns (bool) {
+        _approve(
+            _msgSender(),
+            spender,
+            _allowances[_msgSender()][spender] + addedValue
+        );
+        return true;
+    }
 }
