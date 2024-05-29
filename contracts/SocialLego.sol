@@ -59,5 +59,7 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
     address senderAddress,
     uint256 postID 
     );
-constructor(address _keeperRegistryAddress) {}
+    constructor(address _keeperRegistryAddress) {
+        keeperRegistryAddress = _keeperRegistryAddress; // Set the keeper registry address
+    }
 }
