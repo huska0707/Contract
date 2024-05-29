@@ -178,4 +178,9 @@ contract NFTMint is
         mintableNFTCharacterStruct[characterID].imageURI = imageURI;
         return true;
     }
+
+    function mintAnyCharacter(
+        string memory name,
+        uint256 characterID
+    ) public payable returns (bytes32) {}
 }
