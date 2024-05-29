@@ -15,10 +15,15 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
     }
 
     uint256 public lastCheckIn = block.timestamp;
-    uint256 public checkInTimeInterval = 864000; 
+    uint256 public checkInTimeInterval = 864000;
     address public nextOwner;
-    uint256 public massivePurchaseTokenPrice = 0.001 * 10**18;
-    uint256 public largePurchaseTokenPrice = 0.00015 * 10**18; 
-    uint256 public mediumPurchaseTokenPrice = 0.00004 * 10**18;
-    uint256 public smallPurchaseTokenPrice = 0.000025 * 10**18;
+    uint256 public massivePurchaseTokenPrice = 0.001 * 10 ** 18;
+    uint256 public largePurchaseTokenPrice = 0.00015 * 10 ** 18;
+    uint256 public mediumPurchaseTokenPrice = 0.00004 * 10 ** 18;
+    uint256 public smallPurchaseTokenPrice = 0.000025 * 10 ** 18;
+
+    constructor(address _keeperRegistryAddress, address _socialLegoToken) {
+        keeperRegistryAddress = _keeperRegistryAddress; // Set the Keeper Registry address
+        socialLegoToken = IERC20(_socialLegoToken); // Initialize the SocialLego token interface
+    }
 }
