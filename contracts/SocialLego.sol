@@ -136,5 +136,8 @@ function getUserProfile(address userAddress)
     userProfileStructs[msg.sender]
         .postStructs[postID]
         .message = messageText; 
+    userProfileStructs[msg.sender].postStructs[postID].timestamp = block
+        .timestamp;
     }
 }
+
