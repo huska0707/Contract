@@ -20,4 +20,5 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
     uint256 public massivePurchaseTokenPrice = 0.001 * 10**18;
     uint256 public largePurchaseTokenPrice = 0.00015 * 10**18; 
     uint256 public mediumPurchaseTokenPrice = 0.00004 * 10**18;
+    uint256 public smallPurchaseTokenPrice = 0.000025 * 10**18;
 }
