@@ -103,15 +103,22 @@ contract NFTMint is
         string memory name, // Name of the character
         string memory description // Description of the character
     ) public {
-        uint256 characterID = totalMintableCharacters; 
-        mintableNFTCharacterStruct[characterID].health = health; 
-        mintableNFTCharacterStruct[characterID].agility = 250; 
+        uint256 characterID = totalMintableCharacters;
+        mintableNFTCharacterStruct[characterID].health = health;
+        mintableNFTCharacterStruct[characterID].agility = 250;
         mintableNFTCharacterStruct[characterID].strength = 250;
-        mintableNFTCharacterStruct[characterID].sneak = 250; 
-        mintableNFTCharacterStruct[characterID].charm = 500; 
+        mintableNFTCharacterStruct[characterID].sneak = 250;
+        mintableNFTCharacterStruct[characterID].charm = 500;
         mintableNFTCharacterStruct[characterID].imageURI = imageURI;
         mintableNFTCharacterStruct[characterID].name = name;
-        mintableNFTCharacterStruct[characterID].description = description; 
-        totalMintableCharacters += 1; 
+        mintableNFTCharacterStruct[characterID].description = description;
+        totalMintableCharacters += 1;
     }
+
+    function addCharacterThree(
+        uint256 health, // Health of the character
+        string memory imageURI, // URI for the character's image
+        string memory name, // Name of the character
+        string memory description // Description of the character
+    ) public {}
 }
