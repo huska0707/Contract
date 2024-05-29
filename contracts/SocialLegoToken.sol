@@ -25,4 +25,8 @@ contract SocialLegoToken is Context, IERC20, IERC20Metadata {
     function symbol() public view virtual override returns (string memory) {
         return _symbol;
     }
+
+    function decimals() public view virtual override returns (uint8) {
+        return 18;
+    }
 }
