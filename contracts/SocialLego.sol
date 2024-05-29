@@ -328,6 +328,7 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
             uint256 totalComments // The total number of comments on the post
         )
     {
-        userProfileStructs[userAddress].postStructs[postKey].message
+        userProfileStructs[userAddress].postStructs[postKey].message,
+        userProfileStructs[userAddress].postStructs[postKey].numberOfLikes
     }
 }
