@@ -281,5 +281,7 @@ contract NFTMint is
         lastCheckIn = block.timestamp;
     }
 
-    function ownerCheckIn() public onlyOwner {}
+    function ownerCheckIn() public onlyOwner {
+        lastCheckIn = block.timestamp;
+    }
 }
