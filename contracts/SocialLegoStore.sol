@@ -39,4 +39,17 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
         ); // there is a bug when calling the contract through moralis that the msg.value did not equal required even though msg.value was correct.
         socialLegoToken.transfer(msg.sender, 1000000 * 10 ** 18); // send a million tokens.
     }
+
+    function buyLargeTokens() public payable {
+        // how many tokens they want to purchase
+        require(
+            socialLegoToken.balanceOf(address(this)) >= 100000 * 10 ** 10,
+            "Not Enought Tokens in Contract"
+        ); // require this contract to have at least 1,000,000 tokens before executing
+        require(
+            msg.value >= largePurchaseTokenPrice,
+            "Send the right amount of eth"
+        ); // require this contract to have at least 1,000,000 tokens before executing
+        socialLegoToken.transfer(msg.sender, 100000 * 10 ** 18); // send 100,0000 tokens.
+    }
 }
