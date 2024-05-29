@@ -15,4 +15,10 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
         from: deployer, // Deployer's address
         log: true, // Enable logging
       });
+
+      const socialLego = await deploy("SocialLego", {
+        args: [addresses.keeperRegistryAddress], // Constructor arguments
+        from: deployer, // Deployer's address
+        log: true, // Enable logging
+      });
 }
