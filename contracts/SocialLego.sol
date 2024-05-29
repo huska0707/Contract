@@ -101,5 +101,7 @@ function newProfile(string memory newProfileBio, string memory nickName)
 function getUserProfile(address userAddress)
     public
     view
-    return (string memory profileBio)
+    return (
+        string memory profileBio,
+        uint256 totalPosts, ) {}
 }
