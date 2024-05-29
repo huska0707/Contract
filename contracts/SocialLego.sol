@@ -331,6 +331,7 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         userProfileStructs[userAddress].postStructs[postKey].message,
         userProfileStructs[userAddress].postStructs[postKey].numberOfLikes,
         userProfileStructs[userAddress].postStructs[postKey].timestamp,
-        userProfileStructs[userAddress].postStructs[postKey].url
+        userProfileStructs[userAddress].postStructs[postKey].url,
+        userProfileStructs[userAddress].userNickname,
     }
 }
