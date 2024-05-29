@@ -32,5 +32,7 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
          mappig (uint256 => Comment) commentStructs;
     }
 
-    struct userProfile { bool exists;}
+    struct userProfile { 
+        bool exists;
+    address userAddress;}
 }
