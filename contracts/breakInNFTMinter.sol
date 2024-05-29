@@ -260,6 +260,7 @@ contract NFTMint is
                 NFTCharacterStruct[requestId].health,
                 agility,
                 strength,
+                sneak
             )
         );
     }
