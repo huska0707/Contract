@@ -266,7 +266,18 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
             userProfileStructs[msg.sender].exists == true, // Check if the sender has an account
             "Create an Account First" // Error message if the sender does not have an account
         );
-         userProfileStructs[msg.sender].userNickname = newNickName;
-         return true;
+        userProfileStructs[msg.sender].userNickname = newNickName;
+        return true;
+    }
+
+    function changeUserBio(
+        string memory bioText
+    ) public returns (bool success) {
+        require(
+            userProfileStructs[msg.sender].exists == true,
+            "Create an Account First"
+        ); // Check to see if they have an account
+        userProfileStructs[msg.sender].userProfileBio = bioText;
+        return true;
     }
 }
