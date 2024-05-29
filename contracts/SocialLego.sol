@@ -138,6 +138,7 @@ function getUserProfile(address userAddress)
         .message = messageText; 
     userProfileStructs[msg.sender].postStructs[postID].timestamp = block
         .timestamp;
+    userProfileStructs[msg.sender].postStructs[postID].numberOfLikes = 0;
     }
 }
 
