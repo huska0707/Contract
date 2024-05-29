@@ -21,7 +21,7 @@ contract NFTMint is
     uint256 public randomResult;
 
     uint256 public lastCheckIn = block.timestamp;
-    uint256 public checkInTimeInterval = 864000;
+    uint256 public checkInTimeInterval = 864000; //default to six months
     address public nextOwner;
 
     address keeperRegistryAddress;
@@ -45,7 +45,7 @@ contract NFTMint is
         address _keeperRegistryAddress
     ) VRFConsumerBase(_vrfCoordinator, _link) ERC721("BreakInNFTs", "BIN") {
         keyHash = _keyHash;
-        fee = _fee; // Fee varies by network
+        fee = _fee; // (Varies by network)
 
         keeperRegistryAddress = _keeperRegistryAddress;
     }
@@ -60,7 +60,6 @@ contract NFTMint is
         uint256 charm;
         uint256 characterID;
     }
-
     struct mintableNFTCharacter {
         uint256 health;
         uint256 agility;
@@ -73,12 +72,12 @@ contract NFTMint is
     }
     uint256 public totalMintableCharacters;
 
-    mapping(uint256 => mintableNFTCharacter) public mintableNFTCharacterStruct;
-    mapping(bytes32 => NFTCharacter) NFTCharacterStruct;
-    mapping(bytes32 => address) requestToSender;
-
+    mapping(uint256 => mintableNFTCharacter) public mintableNFTCharacterStruct; //
+    mapping(bytes32 => NFTCharacter) NFTCharacterStruct; //
+    mapping(bytes32 => address) requestToSender; //
     NFTCharacter[] public characters;
 
+    //anyone can add characters that they want to mint so long as it fits a predefined scheme
     function addCharacterOne(
         uint256 health,
         string memory imageURI,
@@ -98,10 +97,10 @@ contract NFTMint is
     }
 
     function addCharacterTwo(
-        uint256 health, // Health of the character
-        string memory imageURI, // URI for the character's image
-        string memory name, // Name of the character
-        string memory description // Description of the character
+        uint256 health,
+        string memory imageURI,
+        string memory name,
+        string memory description
     ) public {
         uint256 characterID = totalMintableCharacters;
         mintableNFTCharacterStruct[characterID].health = health;
@@ -116,16 +115,16 @@ contract NFTMint is
     }
 
     function addCharacterThree(
-        uint256 health, // Health of the character
-        string memory imageURI, // URI for the character's image
-        string memory name, // Name of the character
-        string memory description // Description of the character
+        uint256 health,
+        string memory imageURI,
+        string memory name,
+        string memory description
     ) public {
         uint256 characterID = totalMintableCharacters;
         mintableNFTCharacterStruct[characterID].health = health;
         mintableNFTCharacterStruct[characterID].agility = 250;
         mintableNFTCharacterStruct[characterID].strength = 500;
-        intableNFTCharacterStruct[characterID].sneak = 250;
+        mintableNFTCharacterStruct[characterID].sneak = 250;
         mintableNFTCharacterStruct[characterID].charm = 250;
         mintableNFTCharacterStruct[characterID].imageURI = imageURI;
         mintableNFTCharacterStruct[characterID].name = name;
@@ -158,11 +157,8 @@ contract NFTMint is
     function changeDescription(
         uint256 characterID,
         string memory description
-    )
-        public
-        onlyOwner // Only owner can change the description
-        returns (bool)
-    {
+    ) public onlyOwner returns (bool) {
+        //So I can fill in the character description later. Wouldn't be in mainnet
         mintableNFTCharacterStruct[characterID].description = description;
         return true;
     }
@@ -170,11 +166,8 @@ contract NFTMint is
     function changeImageURI(
         uint256 characterID,
         string memory imageURI
-    )
-        public
-        onlyOwner // Only owner can change the image URI
-        returns (bool)
-    {
+    ) public onlyOwner returns (bool) {
+        //Just in case the image changes. Wouldn't be in mainnet
         mintableNFTCharacterStruct[characterID].imageURI = imageURI;
         return true;
     }
@@ -185,15 +178,13 @@ contract NFTMint is
     ) public payable returns (bytes32) {
         require(
             LINK.balanceOf(address(this)) >= fee,
-            "Not enough LINK - fill contract with faucet" // Check if there's enough LINK balance
+            "Not enough LINK - fill contract with faucet"
         );
         require(
             characterID < totalMintableCharacters,
-            "No Character With That ID" // Check if character with given ID exists
+            "No Character With That ID"
         );
-
-        require(msg.value >= mintFee, "Send 0.002 Ether to mint New Character");
-
+        require(msg.value >= mintFee, "Send 0.002 Ether to mint New Character"); //someone gotta pay for the vrf fee and to prevent spamming of new characters
         bytes32 requestID = requestRandomness(keyHash, fee);
         requestToSender[requestID] = msg.sender;
         NFTCharacterStruct[requestID].name = name;
@@ -209,10 +200,14 @@ contract NFTMint is
         NFTCharacterStruct[requestID].sneak = mintableNFTCharacterStruct[
             characterID
         ].sneak;
+        NFTCharacterStruct[requestID].charm = mintableNFTCharacterStruct[
+            characterID
+        ].charm;
         NFTCharacterStruct[requestID].characterID = characterID;
         return requestID;
     }
 
+    // Hire me please
     function changeNFTAttributes(
         uint256 NFTID,
         uint256 health,
@@ -220,7 +215,8 @@ contract NFTMint is
         uint256 strength,
         uint256 sneak,
         uint256 charm
-    ) external onlyGame {
+    ) external onlyGame returns (bool) {
+        //allows the game to modify character attributes.
         characters[NFTID].health = health;
         characters[NFTID].agility = agility;
         characters[NFTID].strength = strength;
@@ -229,15 +225,22 @@ contract NFTMint is
         return true;
     }
 
-    function getRandomNumber() internal returns (bytes32 requestId) {
-        require(
-            LINK.balanceOf(address(this)) >= fee, // Check if contract has enough LINK to pay the VRF fee
-            "Not enough LINK - fill contract with faucet" // Error message if there isn't enough LINK
-        );
+    /**
+     * Requests randomness
+     */
 
+    function getRandomNumber() internal returns (bytes32 requestId) {
+        // internal
+        require(
+            LINK.balanceOf(address(this)) >= fee,
+            "Not enough LINK - fill contract with faucet"
+        );
         return requestRandomness(keyHash, fee);
     }
 
+    /**
+     * Callback function used by VRF Coordinator
+     */
     function fulfillRandomness(
         bytes32 requestId,
         uint256 randomness
@@ -252,7 +255,6 @@ contract NFTMint is
         uint256 charm = NFTCharacterStruct[requestId].charm +
             ((randomness % 33576) % 100);
         uint256 born = block.timestamp;
-
         characters.push(
             NFTCharacter(
                 NFTCharacterStruct[requestId].name,
@@ -261,6 +263,7 @@ contract NFTMint is
                 agility,
                 strength,
                 sneak,
+                charm,
                 NFTCharacterStruct[requestId].characterID
             )
         );
@@ -273,6 +276,7 @@ contract NFTMint is
     }
 
     function changeGameAddress(address newGameAddress) public onlyOwner {
+        //this function would be only called once at the begnning to allow only the game to modify character attributes. On mainnet it would include onlyGame
         gameAddress = newGameAddress;
     }
 
@@ -288,7 +292,7 @@ contract NFTMint is
     function changeCheckInTime(
         uint256 newCheckInTimeInterval
     ) public onlyOwner {
-        checkInTimeInterval = newCheckInTimeInterval;
+        checkInTimeInterval = newCheckInTimeInterval; // let owner change check in case he know he will be away for a while.
         lastCheckIn = block.timestamp;
     }
 
@@ -306,8 +310,8 @@ contract NFTMint is
     {
         return (
             block.timestamp > (lastCheckIn + checkInTimeInterval),
-            bytes("") // Return empty bytes as performData
-        );
+            bytes("")
+        ); // make sure to check in at least once every 6 months
     }
 
     function performUpkeep(
@@ -318,14 +322,18 @@ contract NFTMint is
 
     function withdraw(uint256 amount) public onlyOwner returns (bool) {
         require(amount <= address(this).balance);
-        payable(msg.sender).transfer(amount);
+        payable(msg.sender).transfer(amount); //if the owner send to sender
         return true;
     }
 
     function withdrawErc20(IERC20 token) public onlyOwner {
         require(
-            token.transfer(msg.sender, token.balanceOf(address(this))), // Transfer all tokens of the specified type to the owner
-            "Transfer failed" // Error message if the transfer fails
+            token.transfer(msg.sender, token.balanceOf(address(this))),
+            "Transfer failed"
         );
+    }
+
+    receive() external payable {
+        // nothing to do but accept money
     }
 }
