@@ -327,5 +327,7 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
             string memory userNickname, // The nickname of the post owner
             uint256 totalComments // The total number of comments on the post
         )
-    {}
+    {
+        userProfileStructs[userAddress].postStructs[postKey].message
+    }
 }
