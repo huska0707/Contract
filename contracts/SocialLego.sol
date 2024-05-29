@@ -33,6 +33,8 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
     }
 
     struct userProfile { 
-        bool exists;
-    address userAddress;}
+    bool exists;
+    address userAddress;
+    string profileImageUrl;
+    }
 }
