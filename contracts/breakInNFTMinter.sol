@@ -234,5 +234,7 @@ contract NFTMint is
             LINK.balanceOf(address(this)) >= fee, // Check if contract has enough LINK to pay the VRF fee
             "Not enough LINK - fill contract with faucet" // Error message if there isn't enough LINK
         );
+
+        return requestRandomness(keyHash, fee);
     }
 }
