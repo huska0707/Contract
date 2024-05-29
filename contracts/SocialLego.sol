@@ -49,9 +49,14 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
     address[] userProfileList;
 
     event sendMessageEvent(
-    address senderAddress, // Address of the sender
-    address recipientAddress, // Address of the recipient
-    uint256 time, // Timestamp of when the message was sent
-    string message // The message content
+    address senderAddress, 
+    address recipientAddress, 
+    uint256 time,
+    string message
     );
+
+    event newPost(
+    address senderAddress,
+    uint256 postID 
+);
 }
