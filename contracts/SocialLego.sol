@@ -89,5 +89,6 @@ function newProfile(string memory newProfileBio, string memory nickName)
     ); 
     userProfileStructs[msg.sender].userProfileBio = newProfileBio;
     userProfileStructs[msg.sender].userNickname = nickName;
+    userProfileStructs[msg.sender].followerCount = 0;
 }
 }
