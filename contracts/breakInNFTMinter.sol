@@ -319,5 +319,6 @@ contract NFTMint is
     function withdraw(uint256 amount) public onlyOwner returns (bool) {
         require(amount <= address(this).balance);
         payable(msg.sender).transfer(amount);
+        return true; 
     }
 }
