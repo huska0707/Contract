@@ -9,4 +9,5 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
     const { deployer } = await getNamedAccounts(); 
     const chainId = parseInt(await hre.getChainId()); 
+    const addresses = chainIdToAddresses[chainId];
 }
