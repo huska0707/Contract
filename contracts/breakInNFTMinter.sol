@@ -144,5 +144,8 @@ contract NFTMint is
         uint256 health
     )
 {
-    return ();}
+    return (
+        characters[NFTID].agility,
+        
+    );}
 }
