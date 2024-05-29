@@ -224,5 +224,6 @@ contract NFTMint is
         characters[NFTID].health = health;
          characters[NFTID].agility = agility;
          characters[NFTID].strength = strength; 
+         characters[NFTID].sneak = sneak; 
     }
 }
