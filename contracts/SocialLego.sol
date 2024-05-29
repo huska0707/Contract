@@ -38,5 +38,6 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
     string profileImageUrl;
     string userProfileBio;
     string userNickname;
+    uint256 followerCount; 
     }
 }
