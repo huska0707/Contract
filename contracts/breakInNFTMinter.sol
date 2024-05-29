@@ -204,4 +204,13 @@ contract NFTMint is
         NFTCharacterStruct[requestID].characterID = characterID; 
         return requestID;
     }
+
+    function changeNFTAttributes(
+    uint256 NFTID,
+    uint256 health,
+    uint256 agility,
+    uint256 strength,
+    uint256 sneak,
+    uint256 charm
+) external onlyGame
 }
