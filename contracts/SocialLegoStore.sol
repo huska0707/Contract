@@ -26,4 +26,17 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
         keeperRegistryAddress = _keeperRegistryAddress; // Set the Keeper Registry address
         socialLegoToken = IERC20(_socialLegoToken); // Initialize the SocialLego token interface
     }
+
+    function buyMassiveTokens() public payable {
+        // how many tokens they want to purchase
+        require(
+            socialLegoToken.balanceOf(address(this)) >= 1000000 * 10 ** 10,
+            "Not Enought Tokens in Contract"
+        ); // require this contract to have at least 1,000,000 tokens before executing
+        require(
+            msg.value >= massivePurchaseTokenPrice,
+            "Send the right amount of eth"
+        ); // there is a bug when calling the contract through moralis that the msg.value did not equal required even though msg.value was correct.
+        socialLegoToken.transfer(msg.sender, 1000000 * 10 ** 18); // send a million tokens.
+    }
 }
