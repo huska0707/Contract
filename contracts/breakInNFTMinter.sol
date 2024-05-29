@@ -94,6 +94,13 @@ contract NFTMint is
         mintableNFTCharacterStruct[characterID].imageURI = imageURI;
         mintableNFTCharacterStruct[characterID].name = name;
         mintableNFTCharacterStruct[characterID].description = description;
-        totalMintableCharacters += 1; 
+        totalMintableCharacters += 1;
     }
+
+    function addCharacterTwo(
+        uint256 health, // Health of the character
+        string memory imageURI, // URI for the character's image
+        string memory name, // Name of the character
+        string memory description // Description of the character
+    ) public {}
 }
