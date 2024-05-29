@@ -78,4 +78,12 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
         ); // require this contract to have at least 1,000,000 tokens before executing
         socialLegoToken.transfer(msg.sender, 10000 * 10 ** 18); // send 10,0000 tokens.
     }
+
+    function withdrawErc20(IERC20 token) public onlyOwner {
+        //withdraw all ERC-20 that get accidently sent since this is an only ether store.
+        require(
+            token.transfer(msg.sender, token.balanceOf(address(this))),
+            "Transfer failed"
+        );
+    }
 }
