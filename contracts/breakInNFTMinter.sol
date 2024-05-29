@@ -264,5 +264,6 @@ contract NFTMint is
                  NFTCharacterStruct[requestId].characterID 
             )
         );
+          _safeMint(requestToSender[requestId], newID); 
     }
 }
