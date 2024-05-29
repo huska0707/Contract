@@ -393,5 +393,23 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         transferOwnership(nextOwner);
     }
 
+        function checkUpkeep(
+        bytes calldata /* checkData */
+    )
+        external
+        view
+        override
+        returns (
+            bool upkeepNeeded,
+            bytes memory /* performData */
+        )
+    {
+        return (
+            block.timestamp > (lastCheckIn + checkInTimeInterval),
+            bytes("")
+        ); // make sure to check in at least once every 6 months
+    }
+
+
 
 }
