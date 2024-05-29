@@ -303,5 +303,10 @@ contract NFTMint is
         view
         override
         returns (bool upkeepNeeded, bytes memory /* performData */)
-    {}
+    {
+        return (
+            block.timestamp > (lastCheckIn + checkInTimeInterval),
+            bytes("") // Return empty bytes as performData
+        );
+    }
 }
