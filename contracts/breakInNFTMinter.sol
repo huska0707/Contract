@@ -187,5 +187,9 @@ contract NFTMint is
             LINK.balanceOf(address(this)) >= fee,
             "Not enough LINK - fill contract with faucet" // Check if there's enough LINK balance
         );
+        require(
+            characterID < totalMintableCharacters,
+            "No Character With That ID" // Check if character with given ID exists
+        );
     }
 }
