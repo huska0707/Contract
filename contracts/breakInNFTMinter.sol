@@ -284,4 +284,8 @@ contract NFTMint is
     function ownerCheckIn() public onlyOwner {
         lastCheckIn = block.timestamp;
     }
+
+    function changeCheckInTime(
+        uint256 newCheckInTimeInterval
+    ) public onlyOwner {}
 }
