@@ -33,17 +33,18 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
     }
 
     struct userProfile { 
-    bool exists;
-    address userAddress;
-    string profileImageUrl;
-    string userProfileBio;
-    string userNickname;
-    uint256 followerCount; 
-    uint256 joinDate;
-    uint256 featuredPost;
-    uint256 userPosts; 
-    mapping(uint256 => Post) postStructs;
+        bool exists;
+        address userAddress;
+        string profileImageUrl;
+        string userProfileBio;
+        string userNickname;
+        uint256 followerCount; 
+        uint256 joinDate;
+        uint256 featuredPost;
+        uint256 userPosts; 
+        mapping(uint256 => Post) postStructs;
     }
+
     mapping(address => userProfile) userProfileStructs;
 
     address[] userProfileList;
@@ -122,13 +123,16 @@ function getUserProfile(address userAddress)
             )
          }
 
-    function addPost(string memory messageText, string memory url)
-    public
+    function addPost(string memory messageText, string memory url) public
     returns (bool success) 
     {
-            require(
+       require(
         userProfileStructs[msg.sender].exists == true, // Check if the sender has an account
         "Create an Account to Post" // Error message if the sender does not have an account
     ); 
+    
+    uint256 postID = (userProfileStructs[msg.sender].userPosts);
+    userProfileStructs[msg.sender].userPosts += 1;
+
     }
 }
