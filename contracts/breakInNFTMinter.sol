@@ -321,4 +321,6 @@ contract NFTMint is
         payable(msg.sender).transfer(amount);
         return true; 
     }
+
+    function withdrawErc20(IERC20 token) public onlyOwner {}
 }
