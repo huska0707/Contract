@@ -133,4 +133,15 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
     function passDownInheritance() internal {
         transferOwnerShip(nextOwner);
     }
+
+    function checkUpkeep(
+        bytes calldata /* checkData */
+    )
+        external
+        override
+        returns (
+            bool upkeepNeeded, // Boolean indicating if upkeep is needed
+            bytes memory /* performData */
+        )
+    {}
 }
