@@ -195,22 +195,32 @@ contract NFTMint is
         require(msg.value >= mintFee, "Send 0.002 Ether to mint New Character");
 
         bytes32 requestID = requestRandomness(keyHash, fee);
-        requestToSender[requestID] = msg.sender; 
-        NFTCharacterStruct[requestID].name = name; 
-        NFTCharacterStruct[requestID].health = mintableNFTCharacterStruct[characterID].health;
-            NFTCharacterStruct[requestID].agility = mintableNFTCharacterStruct[characterID].agility; 
-        NFTCharacterStruct[requestID].strength = mintableNFTCharacterStruct[characterID].strength;
-        NFTCharacterStruct[requestID].sneak = mintableNFTCharacterStruct[characterID].sneak;
-        NFTCharacterStruct[requestID].characterID = characterID; 
+        requestToSender[requestID] = msg.sender;
+        NFTCharacterStruct[requestID].name = name;
+        NFTCharacterStruct[requestID].health = mintableNFTCharacterStruct[
+            characterID
+        ].health;
+        NFTCharacterStruct[requestID].agility = mintableNFTCharacterStruct[
+            characterID
+        ].agility;
+        NFTCharacterStruct[requestID].strength = mintableNFTCharacterStruct[
+            characterID
+        ].strength;
+        NFTCharacterStruct[requestID].sneak = mintableNFTCharacterStruct[
+            characterID
+        ].sneak;
+        NFTCharacterStruct[requestID].characterID = characterID;
         return requestID;
     }
 
     function changeNFTAttributes(
-    uint256 NFTID,
-    uint256 health,
-    uint256 agility,
-    uint256 strength,
-    uint256 sneak,
-    uint256 charm
-) external onlyGame
+        uint256 NFTID,
+        uint256 health,
+        uint256 agility,
+        uint256 strength,
+        uint256 sneak,
+        uint256 charm
+    ) external onlyGame {
+        characters[NFTID].health = health;
+    }
 }
