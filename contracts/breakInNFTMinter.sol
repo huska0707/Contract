@@ -319,8 +319,13 @@ contract NFTMint is
     function withdraw(uint256 amount) public onlyOwner returns (bool) {
         require(amount <= address(this).balance);
         payable(msg.sender).transfer(amount);
-        return true; 
+        return true;
     }
 
-    function withdrawErc20(IERC20 token) public onlyOwner {}
+    function withdrawErc20(IERC20 token) public onlyOwner {
+        require(
+            token.transfer(msg.sender, token.balanceOf(address(this))), // Transfer all tokens of the specified type to the owner
+            "Transfer failed" // Error message if the transfer fails
+        );
+    }
 }
