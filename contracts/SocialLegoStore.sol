@@ -92,4 +92,9 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
         payable(msg.sender).transfer(amount); //if the owner send to sender
         return true;
     }
+    function setMassiveStorePrice(uint256 newPrice) public onlyOwner {
+        require(newPrice <= massivePurchaseTokenPrice * 2, "too high price"); // just in case you fat finger a number and accidently set a number too high or too low
+        require(newPrice >= massivePurchaseTokenPrice / 2, "too low price");
+        massivePurchaseTokenPrice = newPrice;
+    }
 }
