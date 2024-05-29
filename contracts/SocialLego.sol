@@ -178,4 +178,47 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
             .timestamp = block.timestamp;
         return true;
     }
+
+    function getComment(
+        address postOwner,
+        uint256 postID,
+        uint256 commentID
+    )
+        public
+        view
+        returns (
+            address commenter,
+            string memory message,
+            uint256 timestamp,
+            string memory userNickname,
+            string memory profileImageUrl
+        )
+    {
+        return (
+            userProfileStructs[postOwner]
+                .postStructs[postID]
+                .commentStructs[commentID]
+                .commenter,
+            userProfileStructs[postOwner]
+                .postStructs[postID]
+                .commentStructs[commentID]
+                .message,
+            userProfileStructs[postOwner]
+                .postStructs[postID]
+                .commentStructs[commentID]
+                .timestamp,
+            userProfileStructs[
+                userProfileStructs[postOwner]
+                    .postStructs[postID]
+                    .commentStructs[commentID]
+                    .commenter
+            ].userNickname,
+            userProfileStructs[
+                userProfileStructs[postOwner]
+                    .postStructs[postID]
+                    .commentStructs[commentID]
+                    .commenter
+            ].profileImageUrl
+        );
+    }
 }
