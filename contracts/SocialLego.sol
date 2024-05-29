@@ -95,5 +95,6 @@ function newProfile(string memory newProfileBio, string memory nickName)
     userProfileStructs[msg.sender].featuredPost = 0;
     userProfileStructs[msg.sender].userProfileBio = ""; 
     userProfileList.push(msg.sender); 
+    return true;
 }
 }
