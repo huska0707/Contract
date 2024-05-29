@@ -115,4 +115,8 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
         require(newPrice >= smallPurchaseTokenPrice / 2, "too low price");
         smallPurchaseTokenPrice = newPrice; 
     }
+
+    function changeInheritance(address newInheritor) public onlyOwner{
+        
+    }
 }
