@@ -373,4 +373,8 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         return address(this).balance;
     }
 
+        function changeInheritance(address newInheritor) public onlyOwner {
+        nextOwner = newInheritor;
+    }
+
 }
