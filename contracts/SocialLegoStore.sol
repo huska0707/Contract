@@ -119,4 +119,6 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
     function changeInheritance(address newInheritor) public onlyOwner{
         nextOwner = newInheritor; 
     }
+
+    function ownerCheckIn() public onlyOwner {}
 }
