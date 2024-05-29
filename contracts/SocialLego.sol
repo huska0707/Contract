@@ -113,7 +113,8 @@ function getUserProfile(address userAddress)
 
             return (
                 userProfileStructs[userAddress].userProfileBio,
-                userProfileStructs[userAddress].userPosts
+                userProfileStructs[userAddress].userPosts,
+                userProfileStructs[userAddress].joinDate
             )
          }
 }
