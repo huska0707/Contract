@@ -140,6 +140,7 @@ function getUserProfile(address userAddress)
         .timestamp;
     userProfileStructs[msg.sender].postStructs[postID].numberOfLikes = 0;
     emit newPost(msg.sender, postID);
+    return true; 
     }
 }
 
