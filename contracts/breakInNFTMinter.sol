@@ -226,5 +226,6 @@ contract NFTMint is
          characters[NFTID].strength = strength; 
          characters[NFTID].sneak = sneak; 
          characters[NFTID].charm = charm;
+         return true;
     }
 }
