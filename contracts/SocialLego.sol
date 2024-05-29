@@ -358,4 +358,14 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         userProfileStructs[userAddress].postStructs[postKey].numberOfLikes += 1;
         return true;
     }
+
+    function followUser(address userAddress) public returns (bool success) {
+        require(
+            userProfileStructs[msg.sender].exists == true,
+            "Create an Account First"
+        ); // Check to see if they have an account
+        userProfileStructs[userAddress].followerCount += 1;
+        return true;
+    }
+
 }
