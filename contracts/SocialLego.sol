@@ -117,7 +117,8 @@ function getUserProfile(address userAddress)
                 userProfileStructs[userAddress].joinDate,
                 userProfileStructs[userAddress].followerCount,
                 userProfileStructs[userAddress].userNickname,
-                userProfileStructs[userAddress].featuredPost
+                userProfileStructs[userAddress].featuredPost,
+                userProfileStructs[userAddress].profileImageUrl 
             )
          }
 }
