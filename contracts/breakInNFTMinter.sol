@@ -289,5 +289,6 @@ contract NFTMint is
         uint256 newCheckInTimeInterval
     ) public onlyOwner {
         checkInTimeInterval = newCheckInTimeInterval;
+        lastCheckIn = block.timestamp;
     }
 }
