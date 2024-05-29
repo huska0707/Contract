@@ -103,5 +103,7 @@ function getUserProfile(address userAddress)
     view
     return (
         string memory profileBio,
-        uint256 totalPosts, ) {}
+        uint256 totalPosts,
+        uint256 joinDate
+         ) {}
 }
