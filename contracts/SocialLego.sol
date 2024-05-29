@@ -335,4 +335,12 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         userProfileStructs[userAddress].userNickname,
         userProfileStructs[userAddress].postStructs[postKey].totalComments
     }
+
+    function getAllUserPosts(address userAddress)
+        public
+        view
+        returns (uint256 userPosts)
+    {
+        return (userProfileStructs[userAddress].userPosts);
+    }
 }
