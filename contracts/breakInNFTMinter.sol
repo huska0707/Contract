@@ -132,4 +132,17 @@ contract NFTMint is
         mintableNFTCharacterStruct[characterID].description = description;
         totalMintableCharacters += 1;
     }
+
+    function getNFTAttributes(uint256 NFTID)
+    external
+    view
+    returns (
+        uint256 agility,
+        uint256 strength,
+        uint256 charm,
+        uint256 sneak,
+        uint256 health
+    )
+{
+    return ();}
 }
