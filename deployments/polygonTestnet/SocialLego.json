@@ -1,0 +1,1024 @@
+{
+  "address": "0x9F741C9b6e5c34E8247A09CA125374437FfAC92B",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_keeperRegistryAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "senderAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "postID",
+          "type": "uint256"
+        }
+      ],
+      "name": "newPost",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "senderAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "recipientAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "time",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "name": "sendMessageEvent",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "postOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "postID",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "commentText",
+          "type": "string"
+        }
+      ],
+      "name": "addComment",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "messageText",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "url",
+          "type": "string"
+        }
+      ],
+      "name": "addPost",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "newCheckInTimeInterval",
+          "type": "uint256"
+        }
+      ],
+      "name": "changeCheckInTime",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "postNumber",
+          "type": "uint256"
+        }
+      ],
+      "name": "changeFeaturedPost",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newInheritor",
+          "type": "address"
+        }
+      ],
+      "name": "changeInheritance",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "bioText",
+          "type": "string"
+        }
+      ],
+      "name": "changeUserBio",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "newNickName",
+          "type": "string"
+        }
+      ],
+      "name": "changeUserNickname",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "url",
+          "type": "string"
+        }
+      ],
+      "name": "changeUserProfilePicture",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "checkInTimeInterval",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "name": "checkUpkeep",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "upkeepNeeded",
+          "type": "bool"
+        },
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        }
+      ],
+      "name": "followUser",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getAllUserPosts",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "userPosts",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "postOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "postID",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "commentID",
+          "type": "uint256"
+        }
+      ],
+      "name": "getComment",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "commenter",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "userNickname",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "profileImageUrl",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getTotalUsers",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "totalUsers",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "postKey",
+          "type": "uint256"
+        }
+      ],
+      "name": "getUserPost",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "numberOfLikes",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "url",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "userNickname",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalComments",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getUserProfile",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "profileBio",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalPosts",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "joinDate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "followerCount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "userNickname",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "featuredPost",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "profileImageUrl",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "lastCheckIn",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "postKey",
+          "type": "uint256"
+        }
+      ],
+      "name": "likePost",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "newProfileBio",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "nickName",
+          "type": "string"
+        }
+      ],
+      "name": "newProfile",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "nextOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "ownerCheckIn",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "name": "performUpkeep",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "recipientAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "name": "sendMessage",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "withdrawErc20",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "transactionHash": "0x0894cfd73581a3f4e1326e704cbb3a888d15e0aa212fd4a98f54f80195dea7dd",
+  "receipt": {
+    "to": null,
+    "from": "0xDeAdA90a7B242FC396eB277717a31e67A6005c93",
+    "contractAddress": "0x9F741C9b6e5c34E8247A09CA125374437FfAC92B",
+    "transactionIndex": 25,
+    "gasUsed": "1785754",
+    "logsBloom": "0x00000000000000020000000000000000000000000000000000800000000000000000000000000000000000000000000000008000100000000000000001000000000000000000000000000000000000800001000000000000000100000000000000000000020000000000000000000800000000000000000080040000000000400000000000000000000000000000000000000000000000000000000000000000200000000000000020000000020000000001000000000000000000000100004000000000000000000001000000000000000000000000000000100000000020000000000000000000000000000000000000008000000000000000000000100000",
+    "blockHash": "0x4d9cdae0724d7e0d18cc2ec89900680b5c0970efd2cc63570f51a1ca4769c582",
+    "transactionHash": "0x0894cfd73581a3f4e1326e704cbb3a888d15e0aa212fd4a98f54f80195dea7dd",
+    "logs": [
+      {
+        "transactionIndex": 25,
+        "blockNumber": 26500793,
+        "transactionHash": "0x0894cfd73581a3f4e1326e704cbb3a888d15e0aa212fd4a98f54f80195dea7dd",
+        "address": "0x9F741C9b6e5c34E8247A09CA125374437FfAC92B",
+        "topics": [
+          "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x000000000000000000000000deada90a7b242fc396eb277717a31e67a6005c93"
+        ],
+        "data": "0x",
+        "logIndex": 55,
+        "blockHash": "0x4d9cdae0724d7e0d18cc2ec89900680b5c0970efd2cc63570f51a1ca4769c582"
+      },
+      {
+        "transactionIndex": 25,
+        "blockNumber": 26500793,
+        "transactionHash": "0x0894cfd73581a3f4e1326e704cbb3a888d15e0aa212fd4a98f54f80195dea7dd",
+        "address": "0x0000000000000000000000000000000000001010",
+        "topics": [
+          "0x4dfe1bbbcf077ddc3e01291eea2d5c70c2b422b415d95645b9adcfd678cb1d63",
+          "0x0000000000000000000000000000000000000000000000000000000000001010",
+          "0x000000000000000000000000deada90a7b242fc396eb277717a31e67a6005c93",
+          "0x000000000000000000000000c26880a0af2ea0c7e8130e6ec47af756465452e8"
+        ],
+        "data": "0x000000000000000000000000000000000000000000000000000e15259997875c0000000000000000000000000000000000000000000000003e64d0aa1213c772000000000000000000000000000000000000000000000dd3813247be168c559f0000000000000000000000000000000000000000000000003e56bb84787c4016000000000000000000000000000000000000000000000dd381405ce3b023dcfb",
+        "logIndex": 56,
+        "blockHash": "0x4d9cdae0724d7e0d18cc2ec89900680b5c0970efd2cc63570f51a1ca4769c582"
+      }
+    ],
+    "blockNumber": 26500793,
+    "cumulativeGasUsed": "3334093",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x6179B349067af80D0c171f43E6d767E4A00775Cd"
+  ],
+  "solcInputHash": "0fe244a96d5e7d7382f6e351ada9a92a",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_keeperRegistryAddress\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"senderAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"postID\",\"type\":\"uint256\"}],\"name\":\"newPost\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"senderAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"recipientAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"name\":\"sendMessageEvent\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"postOwner\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"postID\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"commentText\",\"type\":\"string\"}],\"name\":\"addComment\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"messageText\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"url\",\"type\":\"string\"}],\"name\":\"addPost\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"newCheckInTimeInterval\",\"type\":\"uint256\"}],\"name\":\"changeCheckInTime\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"postNumber\",\"type\":\"uint256\"}],\"name\":\"changeFeaturedPost\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newInheritor\",\"type\":\"address\"}],\"name\":\"changeInheritance\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"bioText\",\"type\":\"string\"}],\"name\":\"changeUserBio\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"newNickName\",\"type\":\"string\"}],\"name\":\"changeUserNickname\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"url\",\"type\":\"string\"}],\"name\":\"changeUserProfilePicture\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"checkInTimeInterval\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"name\":\"checkUpkeep\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"upkeepNeeded\",\"type\":\"bool\"},{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"}],\"name\":\"followUser\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"}],\"name\":\"getAllUserPosts\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"userPosts\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"postOwner\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"postID\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"commentID\",\"type\":\"uint256\"}],\"name\":\"getComment\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"commenter\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"userNickname\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"profileImageUrl\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getTotalUsers\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"totalUsers\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"postKey\",\"type\":\"uint256\"}],\"name\":\"getUserPost\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"numberOfLikes\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"url\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"userNickname\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"totalComments\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"}],\"name\":\"getUserProfile\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"profileBio\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"totalPosts\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"joinDate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"followerCount\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"userNickname\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"featuredPost\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"profileImageUrl\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"lastCheckIn\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"postKey\",\"type\":\"uint256\"}],\"name\":\"likePost\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"newProfileBio\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"nickName\",\"type\":\"string\"}],\"name\":\"newProfile\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"nextOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"ownerCheckIn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"name\":\"performUpkeep\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"recipientAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"name\":\"sendMessage\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"withdrawErc20\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/SocialLego.sol\":\"SocialLego\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@chainlink/contracts/src/v0.8/interfaces/KeeperCompatibleInterface.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\ninterface KeeperCompatibleInterface {\\n  /**\\n   * @notice method that is simulated by the keepers to see if any work actually\\n   * needs to be performed. This method does does not actually need to be\\n   * executable, and since it is only ever simulated it can consume lots of gas.\\n   * @dev To ensure that it is never called, you may want to add the\\n   * cannotExecute modifier from KeeperBase to your implementation of this\\n   * method.\\n   * @param checkData specified in the upkeep registration so it is always the\\n   * same for a registered upkeep. This can easily be broken down into specific\\n   * arguments using `abi.decode`, so multiple upkeeps can be registered on the\\n   * same contract and easily differentiated by the contract.\\n   * @return upkeepNeeded boolean to indicate whether the keeper should call\\n   * performUpkeep or not.\\n   * @return performData bytes that the keeper should call performUpkeep with, if\\n   * upkeep is needed. If you would like to encode data to decode later, try\\n   * `abi.encode`.\\n   */\\n  function checkUpkeep(bytes calldata checkData) external returns (bool upkeepNeeded, bytes memory performData);\\n\\n  /**\\n   * @notice method that is actually executed by the keepers, via the registry.\\n   * The data returned by the checkUpkeep simulation will be passed into\\n   * this method to actually be executed.\\n   * @dev The input to this method should not be trusted, and the caller of the\\n   * method should not even be restricted to any single registry. Anyone should\\n   * be able call it, and the input should be validated, there is no guarantee\\n   * that the data passed in is the performData returned from checkUpkeep. This\\n   * could happen due to malicious keepers, racing keepers, or simply a state\\n   * change while the performUpkeep transaction is waiting for confirmation.\\n   * Always validate the data passed in.\\n   * @param performData is the data which was passed back from the checkData\\n   * simulation. If it is encoded, it can easily be decoded into other types by\\n   * calling `abi.decode`. This data should not be trusted, and should be\\n   * validated against the contract's current state.\\n   */\\n  function performUpkeep(bytes calldata performData) external;\\n}\\n\",\"keccak256\":\"0xb6577cda6b731b655aebcb6e3c24f8658d3f4c5eda07200622d07d4570af33ea\",\"license\":\"MIT\"},\"@openzeppelin/contracts/access/Ownable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity ^0.8.0;\\n\\nimport \\\"../utils/Context.sol\\\";\\n\\n/**\\n * @dev Contract module which provides a basic access control mechanism, where\\n * there is an account (an owner) that can be granted exclusive access to\\n * specific functions.\\n *\\n * By default, the owner account will be the one that deploys the contract. This\\n * can later be changed with {transferOwnership}.\\n *\\n * This module is used through inheritance. It will make available the modifier\\n * `onlyOwner`, which can be applied to your functions to restrict their use to\\n * the owner.\\n */\\nabstract contract Ownable is Context {\\n    address private _owner;\\n\\n    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\\n\\n    /**\\n     * @dev Initializes the contract setting the deployer as the initial owner.\\n     */\\n    constructor() {\\n        _setOwner(_msgSender());\\n    }\\n\\n    /**\\n     * @dev Returns the address of the current owner.\\n     */\\n    function owner() public view virtual returns (address) {\\n        return _owner;\\n    }\\n\\n    /**\\n     * @dev Throws if called by any account other than the owner.\\n     */\\n    modifier onlyOwner() {\\n        require(owner() == _msgSender(), \\\"Ownable: caller is not the owner\\\");\\n        _;\\n    }\\n\\n    /**\\n     * @dev Leaves the contract without owner. It will not be possible to call\\n     * `onlyOwner` functions anymore. Can only be called by the current owner.\\n     *\\n     * NOTE: Renouncing ownership will leave the contract without an owner,\\n     * thereby removing any functionality that is only available to the owner.\\n     */\\n    function renounceOwnership() public virtual onlyOwner {\\n        _setOwner(address(0));\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Can only be called by the current owner.\\n     */\\n    function transferOwnership(address newOwner) public virtual onlyOwner {\\n        require(newOwner != address(0), \\\"Ownable: new owner is the zero address\\\");\\n        _setOwner(newOwner);\\n    }\\n\\n    function _setOwner(address newOwner) private {\\n        address oldOwner = _owner;\\n        _owner = newOwner;\\n        emit OwnershipTransferred(oldOwner, newOwner);\\n    }\\n}\\n\",\"keccak256\":\"0x6bb804a310218875e89d12c053e94a13a4607cdf7cc2052f3e52bd32a0dc50a1\",\"license\":\"MIT\"},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev Interface of the ERC20 standard as defined in the EIP.\\n */\\ninterface IERC20 {\\n    /**\\n     * @dev Returns the amount of tokens in existence.\\n     */\\n    function totalSupply() external view returns (uint256);\\n\\n    /**\\n     * @dev Returns the amount of tokens owned by `account`.\\n     */\\n    function balanceOf(address account) external view returns (uint256);\\n\\n    /**\\n     * @dev Moves `amount` tokens from the caller's account to `recipient`.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transfer(address recipient, uint256 amount) external returns (bool);\\n\\n    /**\\n     * @dev Returns the remaining number of tokens that `spender` will be\\n     * allowed to spend on behalf of `owner` through {transferFrom}. This is\\n     * zero by default.\\n     *\\n     * This value changes when {approve} or {transferFrom} are called.\\n     */\\n    function allowance(address owner, address spender) external view returns (uint256);\\n\\n    /**\\n     * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * IMPORTANT: Beware that changing an allowance with this method brings the risk\\n     * that someone may use both the old and the new allowance by unfortunate\\n     * transaction ordering. One possible solution to mitigate this race\\n     * condition is to first reduce the spender's allowance to 0 and set the\\n     * desired value afterwards:\\n     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729\\n     *\\n     * Emits an {Approval} event.\\n     */\\n    function approve(address spender, uint256 amount) external returns (bool);\\n\\n    /**\\n     * @dev Moves `amount` tokens from `sender` to `recipient` using the\\n     * allowance mechanism. `amount` is then deducted from the caller's\\n     * allowance.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transferFrom(\\n        address sender,\\n        address recipient,\\n        uint256 amount\\n    ) external returns (bool);\\n\\n    /**\\n     * @dev Emitted when `value` tokens are moved from one account (`from`) to\\n     * another (`to`).\\n     *\\n     * Note that `value` may be zero.\\n     */\\n    event Transfer(address indexed from, address indexed to, uint256 value);\\n\\n    /**\\n     * @dev Emitted when the allowance of a `spender` for an `owner` is set by\\n     * a call to {approve}. `value` is the new allowance.\\n     */\\n    event Approval(address indexed owner, address indexed spender, uint256 value);\\n}\\n\",\"keccak256\":\"0x027b891937d20ccf213fdb9c31531574256de774bda99d3a70ecef6e1913ed2a\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Context.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev Provides information about the current execution context, including the\\n * sender of the transaction and its data. While these are generally available\\n * via msg.sender and msg.data, they should not be accessed in such a direct\\n * manner, since when dealing with meta-transactions the account sending and\\n * paying for execution may not be the actual sender (as far as an application\\n * is concerned).\\n *\\n * This contract is only required for intermediate, library-like contracts.\\n */\\nabstract contract Context {\\n    function _msgSender() internal view virtual returns (address) {\\n        return msg.sender;\\n    }\\n\\n    function _msgData() internal view virtual returns (bytes calldata) {\\n        return msg.data;\\n    }\\n}\\n\",\"keccak256\":\"0x90565a39ae45c80f0468dc96c7b20d0afc3055f344c8203a0c9258239f350b9f\",\"license\":\"MIT\"},\"contracts/SocialLego.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.0;\\r\\n\\r\\nimport \\\"@openzeppelin/contracts/access/Ownable.sol\\\";\\r\\nimport \\\"@openzeppelin/contracts/token/ERC20/IERC20.sol\\\";\\r\\nimport \\\"@chainlink/contracts/src/v0.8/interfaces/KeeperCompatibleInterface.sol\\\";\\r\\n\\r\\ncontract SocialLego is KeeperCompatibleInterface, Ownable {\\r\\n    address keeperRegistryAddress;\\r\\n\\r\\n    modifier onlyKeeper() {\\r\\n        require(msg.sender == keeperRegistryAddress);\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    uint256 public lastCheckIn = block.timestamp;\\r\\n    uint256 public checkInTimeInterval = 864000; //default to six months\\r\\n    address public nextOwner;\\r\\n\\r\\n    struct Comment {\\r\\n        address commenter;\\r\\n        string message;\\r\\n        uint256 timestamp;\\r\\n    }\\r\\n\\r\\n    struct Post {\\r\\n        uint256 numberOfLikes;\\r\\n        uint256 timestamp;\\r\\n        string message;\\r\\n        string url;\\r\\n        uint256 totalComments; // list of userPosts. probably can remove\\r\\n        mapping(uint256 => Comment) commentStructs; // mapping of postkey to post\\r\\n    }\\r\\n\\r\\n    struct userProfile {\\r\\n        bool exists;\\r\\n        address userAddress; // Might not need\\r\\n        string profileImageUrl;\\r\\n        string userProfileBio;\\r\\n        string userNickname;\\r\\n        uint256 followerCount;\\r\\n        uint256 joinDate;\\r\\n        uint256 featuredPost;\\r\\n        uint256 userPosts; // list of userPosts. probably can remove\\r\\n        mapping(uint256 => Post) postStructs; // mapping of postkey to post\\r\\n    }\\r\\n\\r\\n    mapping(address => userProfile) userProfileStructs; // mapping useraddress to user profile\\r\\n    address[] userProfileList; // list of user profiles\\r\\n    event sendMessageEvent(\\r\\n        address senderAddress,\\r\\n        address recipientAddress,\\r\\n        uint256 time,\\r\\n        string message\\r\\n    );\\r\\n    event newPost(address senderAddress, uint256 postID);\\r\\n\\r\\n    constructor(address _keeperRegistryAddress) {\\r\\n        keeperRegistryAddress = _keeperRegistryAddress;\\r\\n    }\\r\\n\\r\\n    function sendMessage(address recipientAddress, string memory message)\\r\\n        public\\r\\n    {\\r\\n        require(\\r\\n            userProfileStructs[msg.sender].exists == true,\\r\\n            \\\"Create an Account to Post\\\"\\r\\n        ); // Check to see if they have an account\\r\\n        emit sendMessageEvent(\\r\\n            msg.sender,\\r\\n            recipientAddress,\\r\\n            block.timestamp,\\r\\n            message\\r\\n        );\\r\\n    }\\r\\n\\r\\n    function newProfile(string memory newProfileBio, string memory nickName)\\r\\n        public\\r\\n        returns (\\r\\n            // onlyOwner\\r\\n            bool success\\r\\n        )\\r\\n    {\\r\\n        require(\\r\\n            userProfileStructs[msg.sender].exists == false,\\r\\n            \\\"Account Already Created\\\"\\r\\n        ); // Check to see if they have an account\\r\\n        userProfileStructs[msg.sender].userProfileBio = newProfileBio;\\r\\n        userProfileStructs[msg.sender].userNickname = nickName;\\r\\n        userProfileStructs[msg.sender].followerCount = 0;\\r\\n        userProfileStructs[msg.sender].exists = true;\\r\\n        userProfileStructs[msg.sender].joinDate = block.timestamp;\\r\\n        userProfileStructs[msg.sender].featuredPost = 0;\\r\\n        userProfileStructs[msg.sender].userProfileBio = \\\"\\\";\\r\\n        userProfileList.push(msg.sender);\\r\\n        return true;\\r\\n    }\\r\\n\\r\\n    function getUserProfile(address userAddress)\\r\\n        public\\r\\n        view\\r\\n        returns (\\r\\n            string memory profileBio,\\r\\n            uint256 totalPosts,\\r\\n            uint256 joinDate,\\r\\n            uint256 followerCount,\\r\\n            string memory userNickname,\\r\\n            uint256 featuredPost,\\r\\n            string memory profileImageUrl\\r\\n        )\\r\\n    {\\r\\n        return (\\r\\n            userProfileStructs[userAddress].userProfileBio,\\r\\n            userProfileStructs[userAddress].userPosts,\\r\\n            userProfileStructs[userAddress].joinDate,\\r\\n            userProfileStructs[userAddress].followerCount,\\r\\n            userProfileStructs[userAddress].userNickname,\\r\\n            userProfileStructs[userAddress].featuredPost,\\r\\n            userProfileStructs[userAddress].profileImageUrl\\r\\n        );\\r\\n    }\\r\\n\\r\\n    function addPost(string memory messageText, string memory url)\\r\\n        public\\r\\n        returns (bool success)\\r\\n    {\\r\\n        require(\\r\\n            userProfileStructs[msg.sender].exists == true,\\r\\n            \\\"Create an Account to Post\\\"\\r\\n        ); // Check to see if they have an account\\r\\n        uint256 postID = (userProfileStructs[msg.sender].userPosts); // ID is just an increment. No need to be random since it is associated to each unique account\\r\\n        userProfileStructs[msg.sender].userPosts += 1;\\r\\n        userProfileStructs[msg.sender]\\r\\n            .postStructs[postID]\\r\\n            .message = messageText;\\r\\n        userProfileStructs[msg.sender].postStructs[postID].timestamp = block\\r\\n            .timestamp;\\r\\n        userProfileStructs[msg.sender].postStructs[postID].numberOfLikes = 0;\\r\\n        userProfileStructs[msg.sender].postStructs[postID].url = url;\\r\\n        emit newPost(msg.sender, postID); // emit a post to be used on the explore page\\r\\n        return true;\\r\\n    }\\r\\n\\r\\n    function addComment(\\r\\n        address postOwner,\\r\\n        uint256 postID,\\r\\n        string memory commentText\\r\\n    ) public returns (bool success) {\\r\\n        require(\\r\\n            userProfileStructs[msg.sender].exists == true,\\r\\n            \\\"Create an Account to Comment\\\"\\r\\n        ); // Check to see if they have an account\\r\\n        require(\\r\\n            userProfileStructs[postOwner].postStructs[postID].timestamp != 0,\\r\\n            \\\"No Post Exists\\\"\\r\\n        ); //Check to see if comment exists. Timestamps default to 0\\r\\n        uint256 commentID = userProfileStructs[postOwner]\\r\\n            .postStructs[postID]\\r\\n            .totalComments; // ID is just an increment. No need to be random since it is associated to each unique account\\r\\n        userProfileStructs[postOwner].postStructs[postID].totalComments += 1;\\r\\n        userProfileStructs[postOwner]\\r\\n            .postStructs[postID]\\r\\n            .commentStructs[commentID]\\r\\n            .commenter = msg.sender;\\r\\n        userProfileStructs[postOwner]\\r\\n            .postStructs[postID]\\r\\n            .commentStructs[commentID]\\r\\n            .message = commentText;\\r\\n        userProfileStructs[postOwner]\\r\\n            .postStructs[postID]\\r\\n            .commentStructs[commentID]\\r\\n            .timestamp = block.timestamp;\\r\\n        return true;\\r\\n    }\\r\\n\\r\\n    function getComment(\\r\\n        address postOwner,\\r\\n        uint256 postID,\\r\\n        uint256 commentID\\r\\n    )\\r\\n        public\\r\\n        view\\r\\n        returns (\\r\\n            address commenter,\\r\\n            string memory message,\\r\\n            uint256 timestamp,\\r\\n            string memory userNickname,\\r\\n            string memory profileImageUrl\\r\\n        )\\r\\n    {\\r\\n        return (\\r\\n            userProfileStructs[postOwner]\\r\\n                .postStructs[postID]\\r\\n                .commentStructs[commentID]\\r\\n                .commenter,\\r\\n            userProfileStructs[postOwner]\\r\\n                .postStructs[postID]\\r\\n                .commentStructs[commentID]\\r\\n                .message,\\r\\n            userProfileStructs[postOwner]\\r\\n                .postStructs[postID]\\r\\n                .commentStructs[commentID]\\r\\n                .timestamp,\\r\\n            userProfileStructs[\\r\\n                userProfileStructs[postOwner]\\r\\n                    .postStructs[postID]\\r\\n                    .commentStructs[commentID]\\r\\n                    .commenter\\r\\n            ].userNickname,\\r\\n            userProfileStructs[\\r\\n                userProfileStructs[postOwner]\\r\\n                    .postStructs[postID]\\r\\n                    .commentStructs[commentID]\\r\\n                    .commenter\\r\\n            ].profileImageUrl\\r\\n        );\\r\\n    }\\r\\n\\r\\n    // Please Hire me\\r\\n\\r\\n    function changeUserBio(string memory bioText)\\r\\n        public\\r\\n        returns (bool success)\\r\\n    {\\r\\n        require(\\r\\n            userProfileStructs[msg.sender].exists == true,\\r\\n            \\\"Create an Account First\\\"\\r\\n        ); // Check to see if they have an account\\r\\n        userProfileStructs[msg.sender].userProfileBio = bioText;\\r\\n        return true;\\r\\n    }\\r\\n\\r\\n    function changeUserProfilePicture(string memory url)\\r\\n        public\\r\\n        returns (bool success)\\r\\n    {\\r\\n        require(\\r\\n            userProfileStructs[msg.sender].exists == true,\\r\\n            \\\"Create an Account First\\\"\\r\\n        ); // Check to see if they have an account\\r\\n        userProfileStructs[msg.sender].profileImageUrl = url;\\r\\n        return true;\\r\\n    }\\r\\n\\r\\n    function changeUserNickname(string memory newNickName)\\r\\n        public\\r\\n        returns (bool success)\\r\\n    {\\r\\n        require(\\r\\n            userProfileStructs[msg.sender].exists == true,\\r\\n            \\\"Create an Account First\\\"\\r\\n        ); // Check to see if they have an account\\r\\n        userProfileStructs[msg.sender].userNickname = newNickName;\\r\\n        return true;\\r\\n    }\\r\\n\\r\\n    function changeFeaturedPost(uint256 postNumber)\\r\\n        public\\r\\n        returns (bool success)\\r\\n    {\\r\\n        require(\\r\\n            userProfileStructs[msg.sender].exists == true,\\r\\n            \\\"Create an Account First\\\"\\r\\n        ); // Check to see if they have an account\\r\\n        userProfileStructs[msg.sender].featuredPost = postNumber;\\r\\n        return true;\\r\\n    }\\r\\n\\r\\n    function getUserPost(address userAddress, uint256 postKey)\\r\\n        external\\r\\n        view\\r\\n        returns (\\r\\n            string memory message,\\r\\n            uint256 numberOfLikes,\\r\\n            uint256 timestamp,\\r\\n            string memory url,\\r\\n            string memory userNickname,\\r\\n            uint256 totalComments\\r\\n        )\\r\\n    {\\r\\n        return (\\r\\n            userProfileStructs[userAddress].postStructs[postKey].message,\\r\\n            userProfileStructs[userAddress].postStructs[postKey].numberOfLikes,\\r\\n            userProfileStructs[userAddress].postStructs[postKey].timestamp,\\r\\n            userProfileStructs[userAddress].postStructs[postKey].url,\\r\\n            userProfileStructs[userAddress].userNickname,\\r\\n            userProfileStructs[userAddress].postStructs[postKey].totalComments\\r\\n        ); // stack is too deep if I try to call profileImageUrl as well\\r\\n    }\\r\\n\\r\\n    function getAllUserPosts(address userAddress)\\r\\n        public\\r\\n        view\\r\\n        returns (uint256 userPosts)\\r\\n    {\\r\\n        return (userProfileStructs[userAddress].userPosts);\\r\\n    }\\r\\n\\r\\n    function getTotalUsers() public view returns (uint256 totalUsers) {\\r\\n        return userProfileList.length;\\r\\n    }\\r\\n\\r\\n    function likePost(address userAddress, uint256 postKey)\\r\\n        public\\r\\n        returns (bool success)\\r\\n    {\\r\\n        require(\\r\\n            userProfileStructs[msg.sender].exists == true,\\r\\n            \\\"Create an Account First\\\"\\r\\n        ); // Check to see if they have an account\\r\\n        userProfileStructs[userAddress].postStructs[postKey].numberOfLikes += 1;\\r\\n        return true;\\r\\n    }\\r\\n\\r\\n    function followUser(address userAddress) public returns (bool success) {\\r\\n        require(\\r\\n            userProfileStructs[msg.sender].exists == true,\\r\\n            \\\"Create an Account First\\\"\\r\\n        ); // Check to see if they have an account\\r\\n        userProfileStructs[userAddress].followerCount += 1;\\r\\n        return true;\\r\\n    }\\r\\n\\r\\n    function getBalance() public view returns (uint256) {\\r\\n        return address(this).balance;\\r\\n    }\\r\\n\\r\\n    // Hire me so I don\\u2019t grow to be your competitor ;)\\r\\n\\r\\n    function changeInheritance(address newInheritor) public onlyOwner {\\r\\n        nextOwner = newInheritor;\\r\\n    }\\r\\n\\r\\n    function ownerCheckIn() public onlyOwner {\\r\\n        lastCheckIn = block.timestamp;\\r\\n    }\\r\\n\\r\\n    function changeCheckInTime(uint256 newCheckInTimeInterval)\\r\\n        public\\r\\n        onlyOwner\\r\\n    {\\r\\n        checkInTimeInterval = newCheckInTimeInterval; // let owner change check in case he know he will be away for a while.\\r\\n    }\\r\\n\\r\\n    function passDownInheritance() internal {\\r\\n        transferOwnership(nextOwner);\\r\\n    }\\r\\n\\r\\n    function checkUpkeep(\\r\\n        bytes calldata /* checkData */\\r\\n    )\\r\\n        external\\r\\n        view\\r\\n        override\\r\\n        returns (\\r\\n            bool upkeepNeeded,\\r\\n            bytes memory /* performData */\\r\\n        )\\r\\n    {\\r\\n        return (\\r\\n            block.timestamp > (lastCheckIn + checkInTimeInterval),\\r\\n            bytes(\\\"\\\")\\r\\n        ); // make sure to check in at least once every 6 months\\r\\n    }\\r\\n\\r\\n    function performUpkeep(\\r\\n        bytes calldata /* performData */\\r\\n    ) external override onlyKeeper {\\r\\n        passDownInheritance();\\r\\n    }\\r\\n\\r\\n    function withdraw(uint256 amount) public onlyOwner returns (bool) {\\r\\n        require(amount <= address(this).balance);\\r\\n        payable(msg.sender).transfer(amount); //if the owner send to sender\\r\\n        return true;\\r\\n    }\\r\\n\\r\\n    function withdrawErc20(IERC20 token) public onlyOwner {\\r\\n        require(\\r\\n            token.transfer(msg.sender, token.balanceOf(address(this))),\\r\\n            \\\"Transfer failed\\\"\\r\\n        );\\r\\n    }\\r\\n\\r\\n    receive() external payable {\\r\\n        // nothing to do but accept money\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0xb34dfdf6ddebeb0de6007d48688add325a3836944085c9582fe2f64572bfc7a1\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405242600255620d2f006003553480156200001c57600080fd5b5060405162001ea738038062001ea78339810160408190526200003f91620000c0565b6200004a3362000070565b600180546001600160a01b0319166001600160a01b0392909216919091179055620000f2565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b600060208284031215620000d357600080fd5b81516001600160a01b0381168114620000eb57600080fd5b9392505050565b611da580620001026000396000f3fe6080604052600436106101c65760003560e01c8063948f04f4116100f7578063bf285e0c11610095578063d5c6c55611610064578063d5c6c55614610558578063db78dabd1461056e578063de6f24bb14610584578063f2fde38b146105a457600080fd5b8063bf285e0c146104c7578063bffd85ff146104e7578063c622f9f014610518578063c7e42b1b1461053857600080fd5b8063a0ecbd34116100d1578063a0ecbd3414610435578063a70806f714610467578063aae741c414610487578063b02c6516146104a757600080fd5b8063948f04f4146103b4578063987ee156146103ed5780639be572f61461042057600080fd5b80636e04ff0d116101645780637a22f6be1161013e5780637a22f6be146103365780637b5f2b72146103565780638b5927e9146103765780638da5cb5b1461039657600080fd5b80636e04ff0d146102d3578063715018a61461030157806375b80d981461031657600080fd5b80634585e33b116101a05780634585e33b1461023b578063483515291461025b5780635966572f1461027b57806369f3331d1461029b57600080fd5b806312065fe0146101d25780632e1a7d4d146101f457806339dd4f6d1461022457600080fd5b366101cd57005b600080fd5b3480156101de57600080fd5b50475b6040519081526020015b60405180910390f35b34801561020057600080fd5b5061021461020f366004611a8c565b6105c4565b60405190151581526020016101eb565b34801561023057600080fd5b5061023961063b565b005b34801561024757600080fd5b50610239610256366004611983565b61066b565b34801561026757600080fd5b506102146102763660046118a7565b61068e565b34801561028757600080fd5b50610239610296366004611833565b610707565b3480156102a757600080fd5b506004546102bb906001600160a01b031681565b6040516001600160a01b0390911681526020016101eb565b3480156102df57600080fd5b506102f36102ee366004611983565b610753565b6040516101eb929190611ba4565b34801561030d57600080fd5b50610239610784565b34801561032257600080fd5b50610239610331366004611a8c565b6107ba565b34801561034257600080fd5b506102146103513660046119f5565b6107e9565b34801561036257600080fd5b506102146103713660046119f5565b610843565b34801561038257600080fd5b50610214610391366004611a32565b61089d565b3480156103a257600080fd5b506000546001600160a01b03166102bb565b3480156103c057600080fd5b506101e16103cf366004611833565b6001600160a01b031660009081526005602052604090206007015490565b3480156103f957600080fd5b5061040d610408366004611833565b6109eb565b6040516101eb9796959493929190611c18565b34801561042c57600080fd5b506006546101e1565b34801561044157600080fd5b506104556104503660046118a7565b610bf6565b6040516101eb96959493929190611bbf565b34801561047357600080fd5b50610214610482366004611833565b610e01565b34801561049357600080fd5b506102146104a23660046118d3565b610e6e565b3480156104b357600080fd5b506102146104c2366004611a32565b61100e565b3480156104d357600080fd5b506102146104e2366004611a8c565b611143565b3480156104f357600080fd5b5061050761050236600461192c565b611190565b6040516101eb959493929190611b48565b34801561052457600080fd5b506102146105333660046119f5565b6113ab565b34801561054457600080fd5b50610239610553366004611833565b611405565b34801561056457600080fd5b506101e160035481565b34801561057a57600080fd5b506101e160025481565b34801561059057600080fd5b5061023961059f366004611857565b61156f565b3480156105b057600080fd5b506102396105bf366004611833565b611610565b600080546001600160a01b031633146105f85760405162461bcd60e51b81526004016105ef90611cae565b60405180910390fd5b4782111561060557600080fd5b604051339083156108fc029084906000818181858888f19350505050158015610632573d6000803e3d6000fd5b50600192915050565b6000546001600160a01b031633146106655760405162461bcd60e51b81526004016105ef90611cae565b42600255565b6001546001600160a01b0316331461068257600080fd5b61068a6116a8565b5050565b3360009081526005602052604081205460ff1615156001146106c25760405162461bcd60e51b81526004016105ef90611c77565b6001600160a01b038316600090815260056020908152604080832085845260080190915281208054600192906106f9908490611ce3565b909155506001949350505050565b6000546001600160a01b031633146107315760405162461bcd60e51b81526004016105ef90611cae565b600480546001600160a01b0319166001600160a01b0392909216919091179055565b600060606003546002546107679190611ce3565b421160405180602001604052806000815250915091509250929050565b6000546001600160a01b031633146107ae5760405162461bcd60e51b81526004016105ef90611cae565b6107b860006116bd565b565b6000546001600160a01b031633146107e45760405162461bcd60e51b81526004016105ef90611cae565b600355565b3360009081526005602052604081205460ff16151560011461081d5760405162461bcd60e51b81526004016105ef90611c77565b33600090815260056020908152604090912083516106329260019092019185019061170d565b3360009081526005602052604081205460ff1615156001146108775760405162461bcd60e51b81526004016105ef90611c77565b33600090815260056020908152604090912083516106329260029092019185019061170d565b3360009081526005602052604081205460ff16156108fd5760405162461bcd60e51b815260206004820152601760248201527f4163636f756e7420416c7265616479204372656174656400000000000000000060448201526064016105ef565b33600090815260056020908152604090912084516109239260029092019186019061170d565b50336000908152600560209081526040909120835161094a9260039092019185019061170d565b5033600081815260056020818152604080842060048101859055805460ff191660011781554281850155600681018590558151808401928390528581529590945291905291516109a0926002909201919061170d565b505060068054600181810183556000929092527ff652222313e28459528d920b65115c16c04f3efc82aaedc97be59f3f377c0d3f0180546001600160a01b0319163317905592915050565b6001600160a01b038116600090815260056020819052604082206007810154918101546004820154600683015460028401805460609796879687968a968896889695929391926003830192600101908790610a4590611d09565b80601f0160208091040260200160405190810160405280929190818152602001828054610a7190611d09565b8015610abe5780601f10610a9357610100808354040283529160200191610abe565b820191906000526020600020905b815481529060010190602001808311610aa157829003601f168201915b50505050509650828054610ad190611d09565b80601f0160208091040260200160405190810160405280929190818152602001828054610afd90611d09565b8015610b4a5780601f10610b1f57610100808354040283529160200191610b4a565b820191906000526020600020905b815481529060010190602001808311610b2d57829003601f168201915b50505050509250808054610b5d90611d09565b80601f0160208091040260200160405190810160405280929190818152602001828054610b8990611d09565b8015610bd65780601f10610bab57610100808354040283529160200191610bd6565b820191906000526020600020905b815481529060010190602001808311610bb957829003601f168201915b505050505090509650965096509650965096509650919395979092949650565b6001600160a01b0382166000908152600560209081526040808320848452600881019092528220805460018201546004830154600284018054606097968796899687968996919490936003938401930191908690610c5390611d09565b80601f0160208091040260200160405190810160405280929190818152602001828054610c7f90611d09565b8015610ccc5780601f10610ca157610100808354040283529160200191610ccc565b820191906000526020600020905b815481529060010190602001808311610caf57829003601f168201915b50505050509550828054610cdf90611d09565b80601f0160208091040260200160405190810160405280929190818152602001828054610d0b90611d09565b8015610d585780601f10610d2d57610100808354040283529160200191610d58565b820191906000526020600020905b815481529060010190602001808311610d3b57829003601f168201915b50505050509250818054610d6b90611d09565b80601f0160208091040260200160405190810160405280929190818152602001828054610d9790611d09565b8015610de45780601f10610db957610100808354040283529160200191610de4565b820191906000526020600020905b815481529060010190602001808311610dc757829003601f168201915b505050505091509550955095509550955095509295509295509295565b3360009081526005602052604081205460ff161515600114610e355760405162461bcd60e51b81526004016105ef90611c77565b6001600160a01b0382166000908152600560205260408120600401805460019290610e61908490611ce3565b9091555060019392505050565b3360009081526005602052604081205460ff161515600114610ed25760405162461bcd60e51b815260206004820152601c60248201527f43726561746520616e204163636f756e7420746f20436f6d6d656e740000000060448201526064016105ef565b6001600160a01b0384166000908152600560209081526040808320868452600801909152902060010154610f395760405162461bcd60e51b815260206004820152600e60248201526d4e6f20506f73742045786973747360901b60448201526064016105ef565b6001600160a01b0384166000908152600560209081526040808320868452600801909152812060040180549160019190610f738385611ce3565b90915550506001600160a01b038516600090815260056020818152604080842088855260080182528084208585529092018152912080546001600160a01b031916331781558451610fcc9260019092019186019061170d565b506001600160a01b0385166000908152600560208181526040808420888552600801825280842094845293909101905220426002909101555060019392505050565b3360009081526005602052604081205460ff16151560011461106e5760405162461bcd60e51b815260206004820152601960248201527810dc99585d1948185b881058d8dbdd5b9d081d1bc8141bdcdd603a1b60448201526064016105ef565b336000908152600560205260408120600701805491600191906110918385611ce3565b9091555050336000908152600560209081526040808320848452600801825290912085516110c79260029092019187019061170d565b503360009081526005602090815260408083208484526008018252822042600182015591825584516110ff926003019186019061170d565b5060408051338152602081018390527f65bfdc1ae9d1320f0a11b9ca81804b679ca29aafe128ceb05fdb79680f2fb753910160405180910390a15060019392505050565b3360009081526005602052604081205460ff1615156001146111775760405162461bcd60e51b81526004016105ef90611c77565b5033600090815260056020526040902060060155600190565b6001600160a01b038381166000908152600560208181526040808420878552600801825280842086855283018252808420805460028201549616808652939092528320600191820180549495606095879587958695919493926003830192919091019084906111fe90611d09565b80601f016020809104026020016040519081016040528092919081815260200182805461122a90611d09565b80156112775780601f1061124c57610100808354040283529160200191611277565b820191906000526020600020905b81548152906001019060200180831161125a57829003601f168201915b5050505050935081805461128a90611d09565b80601f01602080910402602001604051908101604052809291908181526020018280546112b690611d09565b80156113035780601f106112d857610100808354040283529160200191611303565b820191906000526020600020905b8154815290600101906020018083116112e657829003601f168201915b5050505050915080805461131690611d09565b80601f016020809104026020016040519081016040528092919081815260200182805461134290611d09565b801561138f5780601f106113645761010080835404028352916020019161138f565b820191906000526020600020905b81548152906001019060200180831161137257829003601f168201915b5050505050905094509450945094509450939792965093509350565b3360009081526005602052604081205460ff1615156001146113df5760405162461bcd60e51b81526004016105ef90611c77565b33600090815260056020908152604090912083516106329260039092019185019061170d565b6000546001600160a01b0316331461142f5760405162461bcd60e51b81526004016105ef90611cae565b6040516370a0823160e01b81523060048201526001600160a01b0382169063a9059cbb90339083906370a082319060240160206040518083038186803b15801561147857600080fd5b505afa15801561148c573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906114b09190611aa5565b6040516001600160e01b031960e085901b1681526001600160a01b0390921660048301526024820152604401602060405180830381600087803b1580156114f657600080fd5b505af115801561150a573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061152e9190611961565b61156c5760405162461bcd60e51b815260206004820152600f60248201526e151c985b9cd9995c8819985a5b1959608a1b60448201526064016105ef565b50565b3360009081526005602052604090205460ff1615156001146115cf5760405162461bcd60e51b815260206004820152601960248201527810dc99585d1948185b881058d8dbdd5b9d081d1bc8141bdcdd603a1b60448201526064016105ef565b7fc81ef6b6c907ebb13ff0efd46920b202d58262f9e53a52fac0ab2668df199ff1338342846040516116049493929190611b0b565b60405180910390a15050565b6000546001600160a01b0316331461163a5760405162461bcd60e51b81526004016105ef90611cae565b6001600160a01b03811661169f5760405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201526564647265737360d01b60648201526084016105ef565b61156c816116bd565b6004546107b8906001600160a01b0316611610565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b82805461171990611d09565b90600052602060002090601f01602090048101928261173b5760008555611781565b82601f1061175457805160ff1916838001178555611781565b82800160010185558215611781579182015b82811115611781578251825591602001919060010190611766565b5061178d929150611791565b5090565b5b8082111561178d5760008155600101611792565b600082601f8301126117b757600080fd5b813567ffffffffffffffff808211156117d2576117d2611d44565b604051601f8301601f19908116603f011681019082821181831017156117fa576117fa611d44565b8160405283815286602085880101111561181357600080fd5b836020870160208301376000602085830101528094505050505092915050565b60006020828403121561184557600080fd5b813561185081611d5a565b9392505050565b6000806040838503121561186a57600080fd5b823561187581611d5a565b9150602083013567ffffffffffffffff81111561189157600080fd5b61189d858286016117a6565b9150509250929050565b600080604083850312156118ba57600080fd5b82356118c581611d5a565b946020939093013593505050565b6000806000606084860312156118e857600080fd5b83356118f381611d5a565b925060208401359150604084013567ffffffffffffffff81111561191657600080fd5b611922868287016117a6565b9150509250925092565b60008060006060848603121561194157600080fd5b833561194c81611d5a565b95602085013595506040909401359392505050565b60006020828403121561197357600080fd5b8151801515811461185057600080fd5b6000806020838503121561199657600080fd5b823567ffffffffffffffff808211156119ae57600080fd5b818501915085601f8301126119c257600080fd5b8135818111156119d157600080fd5b8660208285010111156119e357600080fd5b60209290920196919550909350505050565b600060208284031215611a0757600080fd5b813567ffffffffffffffff811115611a1e57600080fd5b611a2a848285016117a6565b949350505050565b60008060408385031215611a4557600080fd5b823567ffffffffffffffff80821115611a5d57600080fd5b611a69868387016117a6565b93506020850135915080821115611a7f57600080fd5b5061189d858286016117a6565b600060208284031215611a9e57600080fd5b5035919050565b600060208284031215611ab757600080fd5b5051919050565b6000815180845260005b81811015611ae457602081850181015186830182015201611ac8565b81811115611af6576000602083870101525b50601f01601f19169290920160200192915050565b6001600160a01b0385811682528416602082015260408101839052608060608201819052600090611b3e90830184611abe565b9695505050505050565b6001600160a01b038616815260a060208201819052600090611b6c90830187611abe565b8560408401528281036060840152611b848186611abe565b90508281036080840152611b988185611abe565b98975050505050505050565b8215158152604060208201526000611a2a6040830184611abe565b60c081526000611bd260c0830189611abe565b8760208401528660408401528281036060840152611bf08187611abe565b90508281036080840152611c048186611abe565b9150508260a0830152979650505050505050565b60e081526000611c2b60e083018a611abe565b8860208401528760408401528660608401528281036080840152611c4f8187611abe565b90508460a084015282810360c0840152611c698185611abe565b9a9950505050505050505050565b60208082526017908201527f43726561746520616e204163636f756e74204669727374000000000000000000604082015260600190565b6020808252818101527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604082015260600190565b60008219821115611d0457634e487b7160e01b600052601160045260246000fd5b500190565b600181811c90821680611d1d57607f821691505b60208210811415611d3e57634e487b7160e01b600052602260045260246000fd5b50919050565b634e487b7160e01b600052604160045260246000fd5b6001600160a01b038116811461156c57600080fdfea26469706673582212201659862b08421f8e3af62ff3bfcc6132669269b67c5a4d96ebf2ee163aa41ea864736f6c63430008070033",
+  "deployedBytecode": "0x6080604052600436106101c65760003560e01c8063948f04f4116100f7578063bf285e0c11610095578063d5c6c55611610064578063d5c6c55614610558578063db78dabd1461056e578063de6f24bb14610584578063f2fde38b146105a457600080fd5b8063bf285e0c146104c7578063bffd85ff146104e7578063c622f9f014610518578063c7e42b1b1461053857600080fd5b8063a0ecbd34116100d1578063a0ecbd3414610435578063a70806f714610467578063aae741c414610487578063b02c6516146104a757600080fd5b8063948f04f4146103b4578063987ee156146103ed5780639be572f61461042057600080fd5b80636e04ff0d116101645780637a22f6be1161013e5780637a22f6be146103365780637b5f2b72146103565780638b5927e9146103765780638da5cb5b1461039657600080fd5b80636e04ff0d146102d3578063715018a61461030157806375b80d981461031657600080fd5b80634585e33b116101a05780634585e33b1461023b578063483515291461025b5780635966572f1461027b57806369f3331d1461029b57600080fd5b806312065fe0146101d25780632e1a7d4d146101f457806339dd4f6d1461022457600080fd5b366101cd57005b600080fd5b3480156101de57600080fd5b50475b6040519081526020015b60405180910390f35b34801561020057600080fd5b5061021461020f366004611a8c565b6105c4565b60405190151581526020016101eb565b34801561023057600080fd5b5061023961063b565b005b34801561024757600080fd5b50610239610256366004611983565b61066b565b34801561026757600080fd5b506102146102763660046118a7565b61068e565b34801561028757600080fd5b50610239610296366004611833565b610707565b3480156102a757600080fd5b506004546102bb906001600160a01b031681565b6040516001600160a01b0390911681526020016101eb565b3480156102df57600080fd5b506102f36102ee366004611983565b610753565b6040516101eb929190611ba4565b34801561030d57600080fd5b50610239610784565b34801561032257600080fd5b50610239610331366004611a8c565b6107ba565b34801561034257600080fd5b506102146103513660046119f5565b6107e9565b34801561036257600080fd5b506102146103713660046119f5565b610843565b34801561038257600080fd5b50610214610391366004611a32565b61089d565b3480156103a257600080fd5b506000546001600160a01b03166102bb565b3480156103c057600080fd5b506101e16103cf366004611833565b6001600160a01b031660009081526005602052604090206007015490565b3480156103f957600080fd5b5061040d610408366004611833565b6109eb565b6040516101eb9796959493929190611c18565b34801561042c57600080fd5b506006546101e1565b34801561044157600080fd5b506104556104503660046118a7565b610bf6565b6040516101eb96959493929190611bbf565b34801561047357600080fd5b50610214610482366004611833565b610e01565b34801561049357600080fd5b506102146104a23660046118d3565b610e6e565b3480156104b357600080fd5b506102146104c2366004611a32565b61100e565b3480156104d357600080fd5b506102146104e2366004611a8c565b611143565b3480156104f357600080fd5b5061050761050236600461192c565b611190565b6040516101eb959493929190611b48565b34801561052457600080fd5b506102146105333660046119f5565b6113ab565b34801561054457600080fd5b50610239610553366004611833565b611405565b34801561056457600080fd5b506101e160035481565b34801561057a57600080fd5b506101e160025481565b34801561059057600080fd5b5061023961059f366004611857565b61156f565b3480156105b057600080fd5b506102396105bf366004611833565b611610565b600080546001600160a01b031633146105f85760405162461bcd60e51b81526004016105ef90611cae565b60405180910390fd5b4782111561060557600080fd5b604051339083156108fc029084906000818181858888f19350505050158015610632573d6000803e3d6000fd5b50600192915050565b6000546001600160a01b031633146106655760405162461bcd60e51b81526004016105ef90611cae565b42600255565b6001546001600160a01b0316331461068257600080fd5b61068a6116a8565b5050565b3360009081526005602052604081205460ff1615156001146106c25760405162461bcd60e51b81526004016105ef90611c77565b6001600160a01b038316600090815260056020908152604080832085845260080190915281208054600192906106f9908490611ce3565b909155506001949350505050565b6000546001600160a01b031633146107315760405162461bcd60e51b81526004016105ef90611cae565b600480546001600160a01b0319166001600160a01b0392909216919091179055565b600060606003546002546107679190611ce3565b421160405180602001604052806000815250915091509250929050565b6000546001600160a01b031633146107ae5760405162461bcd60e51b81526004016105ef90611cae565b6107b860006116bd565b565b6000546001600160a01b031633146107e45760405162461bcd60e51b81526004016105ef90611cae565b600355565b3360009081526005602052604081205460ff16151560011461081d5760405162461bcd60e51b81526004016105ef90611c77565b33600090815260056020908152604090912083516106329260019092019185019061170d565b3360009081526005602052604081205460ff1615156001146108775760405162461bcd60e51b81526004016105ef90611c77565b33600090815260056020908152604090912083516106329260029092019185019061170d565b3360009081526005602052604081205460ff16156108fd5760405162461bcd60e51b815260206004820152601760248201527f4163636f756e7420416c7265616479204372656174656400000000000000000060448201526064016105ef565b33600090815260056020908152604090912084516109239260029092019186019061170d565b50336000908152600560209081526040909120835161094a9260039092019185019061170d565b5033600081815260056020818152604080842060048101859055805460ff191660011781554281850155600681018590558151808401928390528581529590945291905291516109a0926002909201919061170d565b505060068054600181810183556000929092527ff652222313e28459528d920b65115c16c04f3efc82aaedc97be59f3f377c0d3f0180546001600160a01b0319163317905592915050565b6001600160a01b038116600090815260056020819052604082206007810154918101546004820154600683015460028401805460609796879687968a968896889695929391926003830192600101908790610a4590611d09565b80601f0160208091040260200160405190810160405280929190818152602001828054610a7190611d09565b8015610abe5780601f10610a9357610100808354040283529160200191610abe565b820191906000526020600020905b815481529060010190602001808311610aa157829003601f168201915b50505050509650828054610ad190611d09565b80601f0160208091040260200160405190810160405280929190818152602001828054610afd90611d09565b8015610b4a5780601f10610b1f57610100808354040283529160200191610b4a565b820191906000526020600020905b815481529060010190602001808311610b2d57829003601f168201915b50505050509250808054610b5d90611d09565b80601f0160208091040260200160405190810160405280929190818152602001828054610b8990611d09565b8015610bd65780601f10610bab57610100808354040283529160200191610bd6565b820191906000526020600020905b815481529060010190602001808311610bb957829003601f168201915b505050505090509650965096509650965096509650919395979092949650565b6001600160a01b0382166000908152600560209081526040808320848452600881019092528220805460018201546004830154600284018054606097968796899687968996919490936003938401930191908690610c5390611d09565b80601f0160208091040260200160405190810160405280929190818152602001828054610c7f90611d09565b8015610ccc5780601f10610ca157610100808354040283529160200191610ccc565b820191906000526020600020905b815481529060010190602001808311610caf57829003601f168201915b50505050509550828054610cdf90611d09565b80601f0160208091040260200160405190810160405280929190818152602001828054610d0b90611d09565b8015610d585780601f10610d2d57610100808354040283529160200191610d58565b820191906000526020600020905b815481529060010190602001808311610d3b57829003601f168201915b50505050509250818054610d6b90611d09565b80601f0160208091040260200160405190810160405280929190818152602001828054610d9790611d09565b8015610de45780601f10610db957610100808354040283529160200191610de4565b820191906000526020600020905b815481529060010190602001808311610dc757829003601f168201915b505050505091509550955095509550955095509295509295509295565b3360009081526005602052604081205460ff161515600114610e355760405162461bcd60e51b81526004016105ef90611c77565b6001600160a01b0382166000908152600560205260408120600401805460019290610e61908490611ce3565b9091555060019392505050565b3360009081526005602052604081205460ff161515600114610ed25760405162461bcd60e51b815260206004820152601c60248201527f43726561746520616e204163636f756e7420746f20436f6d6d656e740000000060448201526064016105ef565b6001600160a01b0384166000908152600560209081526040808320868452600801909152902060010154610f395760405162461bcd60e51b815260206004820152600e60248201526d4e6f20506f73742045786973747360901b60448201526064016105ef565b6001600160a01b0384166000908152600560209081526040808320868452600801909152812060040180549160019190610f738385611ce3565b90915550506001600160a01b038516600090815260056020818152604080842088855260080182528084208585529092018152912080546001600160a01b031916331781558451610fcc9260019092019186019061170d565b506001600160a01b0385166000908152600560208181526040808420888552600801825280842094845293909101905220426002909101555060019392505050565b3360009081526005602052604081205460ff16151560011461106e5760405162461bcd60e51b815260206004820152601960248201527810dc99585d1948185b881058d8dbdd5b9d081d1bc8141bdcdd603a1b60448201526064016105ef565b336000908152600560205260408120600701805491600191906110918385611ce3565b9091555050336000908152600560209081526040808320848452600801825290912085516110c79260029092019187019061170d565b503360009081526005602090815260408083208484526008018252822042600182015591825584516110ff926003019186019061170d565b5060408051338152602081018390527f65bfdc1ae9d1320f0a11b9ca81804b679ca29aafe128ceb05fdb79680f2fb753910160405180910390a15060019392505050565b3360009081526005602052604081205460ff1615156001146111775760405162461bcd60e51b81526004016105ef90611c77565b5033600090815260056020526040902060060155600190565b6001600160a01b038381166000908152600560208181526040808420878552600801825280842086855283018252808420805460028201549616808652939092528320600191820180549495606095879587958695919493926003830192919091019084906111fe90611d09565b80601f016020809104026020016040519081016040528092919081815260200182805461122a90611d09565b80156112775780601f1061124c57610100808354040283529160200191611277565b820191906000526020600020905b81548152906001019060200180831161125a57829003601f168201915b5050505050935081805461128a90611d09565b80601f01602080910402602001604051908101604052809291908181526020018280546112b690611d09565b80156113035780601f106112d857610100808354040283529160200191611303565b820191906000526020600020905b8154815290600101906020018083116112e657829003601f168201915b5050505050915080805461131690611d09565b80601f016020809104026020016040519081016040528092919081815260200182805461134290611d09565b801561138f5780601f106113645761010080835404028352916020019161138f565b820191906000526020600020905b81548152906001019060200180831161137257829003601f168201915b5050505050905094509450945094509450939792965093509350565b3360009081526005602052604081205460ff1615156001146113df5760405162461bcd60e51b81526004016105ef90611c77565b33600090815260056020908152604090912083516106329260039092019185019061170d565b6000546001600160a01b0316331461142f5760405162461bcd60e51b81526004016105ef90611cae565b6040516370a0823160e01b81523060048201526001600160a01b0382169063a9059cbb90339083906370a082319060240160206040518083038186803b15801561147857600080fd5b505afa15801561148c573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906114b09190611aa5565b6040516001600160e01b031960e085901b1681526001600160a01b0390921660048301526024820152604401602060405180830381600087803b1580156114f657600080fd5b505af115801561150a573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061152e9190611961565b61156c5760405162461bcd60e51b815260206004820152600f60248201526e151c985b9cd9995c8819985a5b1959608a1b60448201526064016105ef565b50565b3360009081526005602052604090205460ff1615156001146115cf5760405162461bcd60e51b815260206004820152601960248201527810dc99585d1948185b881058d8dbdd5b9d081d1bc8141bdcdd603a1b60448201526064016105ef565b7fc81ef6b6c907ebb13ff0efd46920b202d58262f9e53a52fac0ab2668df199ff1338342846040516116049493929190611b0b565b60405180910390a15050565b6000546001600160a01b0316331461163a5760405162461bcd60e51b81526004016105ef90611cae565b6001600160a01b03811661169f5760405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201526564647265737360d01b60648201526084016105ef565b61156c816116bd565b6004546107b8906001600160a01b0316611610565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b82805461171990611d09565b90600052602060002090601f01602090048101928261173b5760008555611781565b82601f1061175457805160ff1916838001178555611781565b82800160010185558215611781579182015b82811115611781578251825591602001919060010190611766565b5061178d929150611791565b5090565b5b8082111561178d5760008155600101611792565b600082601f8301126117b757600080fd5b813567ffffffffffffffff808211156117d2576117d2611d44565b604051601f8301601f19908116603f011681019082821181831017156117fa576117fa611d44565b8160405283815286602085880101111561181357600080fd5b836020870160208301376000602085830101528094505050505092915050565b60006020828403121561184557600080fd5b813561185081611d5a565b9392505050565b6000806040838503121561186a57600080fd5b823561187581611d5a565b9150602083013567ffffffffffffffff81111561189157600080fd5b61189d858286016117a6565b9150509250929050565b600080604083850312156118ba57600080fd5b82356118c581611d5a565b946020939093013593505050565b6000806000606084860312156118e857600080fd5b83356118f381611d5a565b925060208401359150604084013567ffffffffffffffff81111561191657600080fd5b611922868287016117a6565b9150509250925092565b60008060006060848603121561194157600080fd5b833561194c81611d5a565b95602085013595506040909401359392505050565b60006020828403121561197357600080fd5b8151801515811461185057600080fd5b6000806020838503121561199657600080fd5b823567ffffffffffffffff808211156119ae57600080fd5b818501915085601f8301126119c257600080fd5b8135818111156119d157600080fd5b8660208285010111156119e357600080fd5b60209290920196919550909350505050565b600060208284031215611a0757600080fd5b813567ffffffffffffffff811115611a1e57600080fd5b611a2a848285016117a6565b949350505050565b60008060408385031215611a4557600080fd5b823567ffffffffffffffff80821115611a5d57600080fd5b611a69868387016117a6565b93506020850135915080821115611a7f57600080fd5b5061189d858286016117a6565b600060208284031215611a9e57600080fd5b5035919050565b600060208284031215611ab757600080fd5b5051919050565b6000815180845260005b81811015611ae457602081850181015186830182015201611ac8565b81811115611af6576000602083870101525b50601f01601f19169290920160200192915050565b6001600160a01b0385811682528416602082015260408101839052608060608201819052600090611b3e90830184611abe565b9695505050505050565b6001600160a01b038616815260a060208201819052600090611b6c90830187611abe565b8560408401528281036060840152611b848186611abe565b90508281036080840152611b988185611abe565b98975050505050505050565b8215158152604060208201526000611a2a6040830184611abe565b60c081526000611bd260c0830189611abe565b8760208401528660408401528281036060840152611bf08187611abe565b90508281036080840152611c048186611abe565b9150508260a0830152979650505050505050565b60e081526000611c2b60e083018a611abe565b8860208401528760408401528660608401528281036080840152611c4f8187611abe565b90508460a084015282810360c0840152611c698185611abe565b9a9950505050505050505050565b60208082526017908201527f43726561746520616e204163636f756e74204669727374000000000000000000604082015260600190565b6020808252818101527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604082015260600190565b60008219821115611d0457634e487b7160e01b600052601160045260246000fd5b500190565b600181811c90821680611d1d57607f821691505b60208210811415611d3e57634e487b7160e01b600052602260045260246000fd5b50919050565b634e487b7160e01b600052604160045260246000fd5b6001600160a01b038116811461156c57600080fdfea26469706673582212201659862b08421f8e3af62ff3bfcc6132669269b67c5a4d96ebf2ee163aa41ea864736f6c63430008070033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 292,
+        "contract": "contracts/SocialLego.sol:SocialLego",
+        "label": "_owner",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 2111,
+        "contract": "contracts/SocialLego.sol:SocialLego",
+        "label": "keeperRegistryAddress",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_address"
+      },
+      {
+        "astId": 2126,
+        "contract": "contracts/SocialLego.sol:SocialLego",
+        "label": "lastCheckIn",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 2129,
+        "contract": "contracts/SocialLego.sol:SocialLego",
+        "label": "checkInTimeInterval",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 2131,
+        "contract": "contracts/SocialLego.sol:SocialLego",
+        "label": "nextOwner",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_address"
+      },
+      {
+        "astId": 2183,
+        "contract": "contracts/SocialLego.sol:SocialLego",
+        "label": "userProfileStructs",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_mapping(t_address,t_struct(userProfile)2178_storage)"
+      },
+      {
+        "astId": 2186,
+        "contract": "contracts/SocialLego.sol:SocialLego",
+        "label": "userProfileList",
+        "offset": 0,
+        "slot": "6",
+        "type": "t_array(t_address)dyn_storage"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_address)dyn_storage": {
+        "base": "t_address",
+        "encoding": "dynamic_array",
+        "label": "address[]",
+        "numberOfBytes": "32"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_address,t_struct(userProfile)2178_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct SocialLego.userProfile)",
+        "numberOfBytes": "32",
+        "value": "t_struct(userProfile)2178_storage"
+      },
+      "t_mapping(t_uint256,t_struct(Comment)2138_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => struct SocialLego.Comment)",
+        "numberOfBytes": "32",
+        "value": "t_struct(Comment)2138_storage"
+      },
+      "t_mapping(t_uint256,t_struct(Post)2154_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => struct SocialLego.Post)",
+        "numberOfBytes": "32",
+        "value": "t_struct(Post)2154_storage"
+      },
+      "t_string_storage": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_struct(Comment)2138_storage": {
+        "encoding": "inplace",
+        "label": "struct SocialLego.Comment",
+        "members": [
+          {
+            "astId": 2133,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "commenter",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address"
+          },
+          {
+            "astId": 2135,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "message",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 2137,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "timestamp",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          }
+        ],
+        "numberOfBytes": "96"
+      },
+      "t_struct(Post)2154_storage": {
+        "encoding": "inplace",
+        "label": "struct SocialLego.Post",
+        "members": [
+          {
+            "astId": 2140,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "numberOfLikes",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 2142,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "timestamp",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 2144,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "message",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 2146,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "url",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 2148,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "totalComments",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 2153,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "commentStructs",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_mapping(t_uint256,t_struct(Comment)2138_storage)"
+          }
+        ],
+        "numberOfBytes": "192"
+      },
+      "t_struct(userProfile)2178_storage": {
+        "encoding": "inplace",
+        "label": "struct SocialLego.userProfile",
+        "members": [
+          {
+            "astId": 2156,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "exists",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_bool"
+          },
+          {
+            "astId": 2158,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "userAddress",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_address"
+          },
+          {
+            "astId": 2160,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "profileImageUrl",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 2162,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "userProfileBio",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 2164,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "userNickname",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 2166,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "followerCount",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 2168,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "joinDate",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 2170,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "featuredPost",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 2172,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "userPosts",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 2177,
+            "contract": "contracts/SocialLego.sol:SocialLego",
+            "label": "postStructs",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_mapping(t_uint256,t_struct(Post)2154_storage)"
+          }
+        ],
+        "numberOfBytes": "288"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
