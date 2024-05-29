@@ -174,5 +174,5 @@ contract NFTMint is
         public
         onlyOwner // Only owner can change the image URI
         returns (bool)
-    {}
+    {mintableNFTCharacterStruct[characterID].imageURI = imageURI;}
 }
