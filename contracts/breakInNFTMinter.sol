@@ -93,5 +93,6 @@ contract NFTMint is
         mintableNFTCharacterStruct[characterID].charm = 250;
         mintableNFTCharacterStruct[characterID].imageURI = imageURI;
         mintableNFTCharacterStruct[characterID].name = name;
+        mintableNFTCharacterStruct[characterID].description = description;
     }
 }
