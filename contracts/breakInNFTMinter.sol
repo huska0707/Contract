@@ -193,5 +193,7 @@ contract NFTMint is
         );
 
         require(msg.value >= mintFee, "Send 0.002 Ether to mint New Character");
+
+        bytes32 requestID = requestRandomness(keyHash, fee);
     }
 }
