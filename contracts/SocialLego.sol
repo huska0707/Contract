@@ -58,5 +58,6 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
     event newPost(
     address senderAddress,
     uint256 postID 
-);
+    );
+constructor(address _keeperRegistryAddress) {}
 }
