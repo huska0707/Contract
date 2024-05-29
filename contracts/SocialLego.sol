@@ -156,6 +156,9 @@ function getUserProfile(address userAddress)
         userProfileStructs[postOwner].postStructs[postID].timestamp != 0, // Check if the post exists (timestamp will be 0 if it doesn't)
         "No Post Exists" // Error message if the post does not exist
     ); 
+        uint256 commentID = userProfileStructs[postOwner]
+        .postStructs[postID]
+        .totalComments; 
     }
 }
 
