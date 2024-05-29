@@ -62,4 +62,18 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
     constructor(address _keeperRegistryAddress) {
         keeperRegistryAddress = _keeperRegistryAddress; // Set the keeper registry address
     }
+function sendMessage(address recipientAddress, string memory message)
+    public
+{
+    require(
+        userProfileStructs[msg.sender].exists == true, // Ensure the sender has an account
+        "Create an Account to Post" // Error message if the sender does not have an account
+    ); 
+    emit sendMessageEvent(
+        msg.sender, // The address of the sender
+        recipientAddress, // The address of the recipient
+        block.timestamp, // The timestamp of the message
+        message // The content of the message
+    );
+}
 }
