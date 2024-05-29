@@ -253,4 +253,13 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         );
         userProfileStructs[msg.sender].profileImageUrl = url;
     }
+
+    function changeUserNickname(
+        string memory newNickName
+    )
+        public
+        returns (
+            bool success // Indicates whether the nickname change was successful
+        )
+    {}
 }
