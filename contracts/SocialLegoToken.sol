@@ -54,4 +54,12 @@ contract SocialLegoToken is Context, IERC20, IERC20Metadata {
     ) public view virtual override returns (uint256) {
         return _allowances[owner][spender];
     }
+
+    function approve(
+        address spender,
+        uint256 amount
+    ) public virtual override returns (bool) {
+        _approve(_msgSender(), spender, amount);
+        return true;
+    }
 }
