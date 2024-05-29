@@ -151,5 +151,7 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
     }
     function performUpkeep(
         bytes calldata /* performData */
-    ) external override onlyKeeper {}
+    ) external override onlyKeeper {
+        passDownInheritance();
+    }
 }
