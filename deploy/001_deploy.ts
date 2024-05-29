@@ -33,4 +33,18 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
         from: deployer, // Deployer's address
         log: true, // Enable logging
       });
+
+      const breakInGame = await deploy("BreakInGame", {
+        args: [
+          addresses.vrfCoordinatorAddress, // VRF coordinator address
+          addresses.linkTokenAddress, // LINK token address
+          addresses.VRFKeyHash, // VRF key hash
+          addresses.VRFFee, // VRF fee
+          addresses.keeperRegistryAddress, // Keeper registry address
+          nftMint.address, // NFTMint contract address
+          socialLegoToken.address, // SocialLegoToken contract address
+        ],
+        from: deployer, // Deployer's address
+        log: true, // Enable logging
+      });
 }
