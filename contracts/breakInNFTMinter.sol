@@ -108,5 +108,6 @@ contract NFTMint is
         mintableNFTCharacterStruct[characterID].agility = 250; 
         mintableNFTCharacterStruct[characterID].strength = 250;
         mintableNFTCharacterStruct[characterID].sneak = 250; 
+        mintableNFTCharacterStruct[characterID].charm = 500; 
     }
 }
