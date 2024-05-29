@@ -7,24 +7,25 @@ import "@chainlink/contracts/src/v0.8/interfaces/KeeperCompatibleInterface.sol";
 
 contract onlineStore is KeeperCompatibleInterface, Ownable {
     address keeperRegistryAddress;
-    IERC20 socialLegoToken;
+    IERC20 socialLegoToken; //address of SocialLego token
 
     modifier onlyKeeper() {
-        require(msg.sender == keeperRegistryAddress); // Ensure that the sender is the Keeper
+        require(msg.sender == keeperRegistryAddress);
         _;
     }
 
     uint256 public lastCheckIn = block.timestamp;
-    uint256 public checkInTimeInterval = 864000;
+    uint256 public checkInTimeInterval = 864000; //default to six months
     address public nextOwner;
-    uint256 public massivePurchaseTokenPrice = 0.001 * 10 ** 18;
-    uint256 public largePurchaseTokenPrice = 0.00015 * 10 ** 18;
-    uint256 public mediumPurchaseTokenPrice = 0.00004 * 10 ** 18;
-    uint256 public smallPurchaseTokenPrice = 0.000025 * 10 ** 18;
+
+    uint256 public massivePurchaseTokenPrice = 0.001 * 10 ** 18; // 1 Million tokens is 1 Ether
+    uint256 public largePurchaseTokenPrice = 0.00015 * 10 ** 18; // 100,000 tokens is 0.15 Ether
+    uint256 public mediumPurchaseTokenPrice = 0.00004 * 10 ** 18; // 20,0000 tokens is 0.04 Ether
+    uint256 public smallPurchaseTokenPrice = 0.000025 * 10 ** 18; // 10,0000 tokens is 0.025 Ether
 
     constructor(address _keeperRegistryAddress, address _socialLegoToken) {
-        keeperRegistryAddress = _keeperRegistryAddress; // Set the Keeper Registry address
-        socialLegoToken = IERC20(_socialLegoToken); // Initialize the SocialLego token interface
+        keeperRegistryAddress = _keeperRegistryAddress;
+        socialLegoToken = IERC20(_socialLegoToken);
     }
 
     function buyMassiveTokens() public payable {
@@ -92,6 +93,7 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
         payable(msg.sender).transfer(amount); //if the owner send to sender
         return true;
     }
+
     function setMassiveStorePrice(uint256 newPrice) public onlyOwner {
         require(newPrice <= massivePurchaseTokenPrice * 2, "too high price"); // just in case you fat finger a number and accidently set a number too high or too low
         require(newPrice >= massivePurchaseTokenPrice / 2, "too low price");
@@ -105,13 +107,13 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
     }
 
     function setMediumStorePrice(uint256 newPrice) public onlyOwner {
-        require(newPrice <= mediumPurchaseTokenPrice * 2, "too high price");
+        require(newPrice <= mediumPurchaseTokenPrice * 2, "too high price"); // just in case you fat finger a number and accidently set a number too high or too low
         require(newPrice >= mediumPurchaseTokenPrice / 2, "too low price");
         mediumPurchaseTokenPrice = newPrice;
     }
 
     function setsmallStorePrice(uint256 newPrice) public onlyOwner {
-        require(newPrice <= smallPurchaseTokenPrice * 2, "too high price");
+        require(newPrice <= smallPurchaseTokenPrice * 2, "too high price"); // just in case you fat finger a number and accidently set a number too high or too low
         require(newPrice >= smallPurchaseTokenPrice / 2, "too low price");
         smallPurchaseTokenPrice = newPrice;
     }
@@ -127,11 +129,11 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
     function changeCheckInTime(
         uint256 newCheckInTimeInterval
     ) public onlyOwner {
-        checkInTimeInterval = newCheckInTimeInterval;
+        checkInTimeInterval = newCheckInTimeInterval; // let owner change check in case he know he will be away for a while.
     }
 
     function passDownInheritance() internal {
-        transferOwnerShip(nextOwner);
+        transferOwnership(nextOwner);
     }
 
     function checkUpkeep(
@@ -139,16 +141,16 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
     )
         external
         override
-        returns (
-            bool upkeepNeeded, // Boolean indicating if upkeep is needed
-            bytes memory /* performData */
-        )
+        returns (bool upkeepNeeded, bytes memory /* performData */)
     {
+        //upkeepNeeded = (block.timestamp > (lastCheck + 5184000));
+        // We don't use the checkData in this example. The checkData is defined when the Upkeep was registered.
         return (
-            block.timestamp > (lastCheckIn + checkInTimeInterval), // Check if the current timestamp is greater than the last check-in time plus the check-in interval
-            bytes("") // Return an empty bytes array as performData
-        );
+            block.timestamp > (lastCheckIn + checkInTimeInterval),
+            bytes("")
+        ); // make sure to check in at least once every 6 months
     }
+
     function performUpkeep(
         bytes calldata /* performData */
     ) external override onlyKeeper {
