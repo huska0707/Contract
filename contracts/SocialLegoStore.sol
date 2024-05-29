@@ -123,4 +123,8 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
     function ownerCheckIn() public onlyOwner {
         lastCheckIn = block.timestamp;
     }
+
+    function changeCheckInTime(
+        uint256 newCheckInTimeInterval
+    ) public onlyOwner {}
 }
