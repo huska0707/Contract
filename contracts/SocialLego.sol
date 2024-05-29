@@ -40,5 +40,6 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
     string userNickname;
     uint256 followerCount; 
     uint256 joinDate;
+    uint256 featuredPost;
     }
 }
