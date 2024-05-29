@@ -24,6 +24,6 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
     }
 
     struct Post {
-        
+        uint256 numberOfLikes; 
     }
 }
