@@ -125,5 +125,10 @@ function getUserProfile(address userAddress)
     function addPost(string memory messageText, string memory url)
     public
     returns (bool success) 
-    {}
+    {
+            require(
+        userProfileStructs[msg.sender].exists == true, // Check if the sender has an account
+        "Create an Account to Post" // Error message if the sender does not have an account
+    ); 
+    }
 }
