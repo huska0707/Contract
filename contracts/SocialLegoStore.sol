@@ -129,4 +129,6 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
     ) public onlyOwner {
         checkInTimeInterval = newCheckInTimeInterval;
     }
+
+    function passDownInheritance() internal {}
 }
