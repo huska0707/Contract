@@ -302,4 +302,15 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         userProfileStructs[msg.sender].userNickname = newNickName;
         return true;
     }
+
+    function changeFeaturedPost(
+        uint256 postNumber
+    ) public returns (bool success) {
+        require(
+            userProfileStructs[msg.sender].exists == true,
+            "Create an Account First"
+        ); // Check to see if they have an account
+        userProfileStructs[msg.sender].featuredPost = postNumber;
+        return true;
+    }
 }
