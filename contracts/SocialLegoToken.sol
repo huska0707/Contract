@@ -12,4 +12,5 @@ contract SocialLegoToken is Context, IERC20, IERC20Metadata {
     mapping(address => mapping(address => uint256)) private _allowances;
     uint256 private _totalSupply = 1 * 10**30; 
     string private _name = "SocialLego";
+    string private _symbol = "SL";
 }
