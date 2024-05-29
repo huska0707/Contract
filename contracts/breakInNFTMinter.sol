@@ -222,5 +222,6 @@ contract NFTMint is
         uint256 charm
     ) external onlyGame {
         characters[NFTID].health = health;
+         characters[NFTID].agility = agility;
     }
 }
