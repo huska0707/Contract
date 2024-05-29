@@ -102,5 +102,7 @@ contract NFTMint is
         string memory imageURI, // URI for the character's image
         string memory name, // Name of the character
         string memory description // Description of the character
-    ) public {}
+    ) public {
+        uint256 characterID = totalMintableCharacters; 
+    }
 }
