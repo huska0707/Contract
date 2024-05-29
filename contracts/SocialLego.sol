@@ -346,4 +346,16 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
     function getTotalUsers() public view returns (uint256 totalUsers) {
         return userProfileList.length;
     }
+
+    function likePost(address userAddress, uint256 postKey)
+        public
+        returns (bool success)
+    {
+        require(
+            userProfileStructs[msg.sender].exists == true,
+            "Create an Account First"
+        ); // Check to see if they have an account
+        userProfileStructs[userAddress].postStructs[postKey].numberOfLikes += 1;
+        return true;
+    }
 }
