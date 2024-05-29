@@ -291,4 +291,6 @@ contract NFTMint is
         checkInTimeInterval = newCheckInTimeInterval;
         lastCheckIn = block.timestamp;
     }
+
+    function passDownInheritance() internal {}
 }
