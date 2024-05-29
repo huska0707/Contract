@@ -65,4 +65,17 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
         ); // require this contract to have at least 1,000,000 tokens before executing
         socialLegoToken.transfer(msg.sender, 20000 * 10 ** 18); // send 20,0000 tokens.
     }
+
+    function buySmallTokens() public payable {
+        // how many tokens they want to purchase
+        require(
+            socialLegoToken.balanceOf(address(this)) >= 10000 * 10 ** 10,
+            "Not Enought Tokens in Contract"
+        ); // require this contract to have at least 1,000,000 tokens before executing
+        require(
+            msg.value >= smallPurchaseTokenPrice,
+            "Send the right amount of eth"
+        ); // require this contract to have at least 1,000,000 tokens before executing
+        socialLegoToken.transfer(msg.sender, 10000 * 10 ** 18); // send 10,0000 tokens.
+    }
 }
