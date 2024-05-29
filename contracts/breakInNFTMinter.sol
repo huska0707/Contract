@@ -249,5 +249,7 @@ contract NFTMint is
             ((randomness % 123456) % 100);
         uint256 sneak = NFTCharacterStruct[requestId].sneak +
             ((randomness % 654321) % 100);
+        uint256 charm = NFTCharacterStruct[requestId].charm +
+            ((randomness % 33576) % 100);
     }
 }
