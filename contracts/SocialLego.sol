@@ -222,53 +222,7 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         );
     }
 
-    function changeUserBio(
-        string memory bioText
-    )
-        public
-        returns (
-            bool success // Indicates whether the bio change was successful
-        )
-    {
-        require(
-            userProfileStructs[msg.sender].exists == true, // Check if the sender has an account
-            "Create an Account First" // Error message if the sender does not have an account
-        );
-
-        userProfileStructs[msg.sender].userProfileBio = bioText;
-        return true;
-    }
-
-    function changeUserProfilePicture(
-        string memory url
-    )
-        public
-        returns (
-            bool success // Indicates whether the profile picture change was successful
-        )
-    {
-        require(
-            userProfileStructs[msg.sender].exists == true, // Check if the sender has an account
-            "Create an Account First" // Error message if the sender does not have an account
-        );
-        userProfileStructs[msg.sender].profileImageUrl = url;
-    }
-
-    function changeUserNickname(
-        string memory newNickName
-    )
-        public
-        returns (
-            bool success // Indicates whether the nickname change was successful
-        )
-    {
-        require(
-            userProfileStructs[msg.sender].exists == true, // Check if the sender has an account
-            "Create an Account First" // Error message if the sender does not have an account
-        );
-        userProfileStructs[msg.sender].userNickname = newNickName;
-        return true;
-    }
+    // Please Hire me
 
     function changeUserBio(
         string memory bioText
@@ -313,6 +267,7 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         userProfileStructs[msg.sender].featuredPost = postNumber;
         return true;
     }
+
     function getUserPost(
         address userAddress,
         uint256 postKey
@@ -320,37 +275,38 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         external
         view
         returns (
-            string memory message, // The message content of the post
-            uint256 numberOfLikes, // The number of likes on the post
-            uint256 timestamp, // The timestamp of the post
-            string memory url, // The URL associated with the post
-            string memory userNickname, // The nickname of the post owner
-            uint256 totalComments // The total number of comments on the post
+            string memory message,
+            uint256 numberOfLikes,
+            uint256 timestamp,
+            string memory url,
+            string memory userNickname,
+            uint256 totalComments
         )
     {
-        userProfileStructs[userAddress].postStructs[postKey].message,
-        userProfileStructs[userAddress].postStructs[postKey].numberOfLikes,
-        userProfileStructs[userAddress].postStructs[postKey].timestamp,
-        userProfileStructs[userAddress].postStructs[postKey].url,
-        userProfileStructs[userAddress].userNickname,
-        userProfileStructs[userAddress].postStructs[postKey].totalComments
+        return (
+            userProfileStructs[userAddress].postStructs[postKey].message,
+            userProfileStructs[userAddress].postStructs[postKey].numberOfLikes,
+            userProfileStructs[userAddress].postStructs[postKey].timestamp,
+            userProfileStructs[userAddress].postStructs[postKey].url,
+            userProfileStructs[userAddress].userNickname,
+            userProfileStructs[userAddress].postStructs[postKey].totalComments
+        ); // stack is too deep if I try to call profileImageUrl as well
     }
 
-    function getAllUserPosts(address userAddress)
-        public
-        view
-        returns (uint256 userPosts)
-    {
+    function getAllUserPosts(
+        address userAddress
+    ) public view returns (uint256 userPosts) {
         return (userProfileStructs[userAddress].userPosts);
     }
+
     function getTotalUsers() public view returns (uint256 totalUsers) {
         return userProfileList.length;
     }
 
-    function likePost(address userAddress, uint256 postKey)
-        public
-        returns (bool success)
-    {
+    function likePost(
+        address userAddress,
+        uint256 postKey
+    ) public returns (bool success) {
         require(
             userProfileStructs[msg.sender].exists == true,
             "Create an Account First"
@@ -368,41 +324,37 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         return true;
     }
 
-    
     function getBalance() public view returns (uint256) {
         return address(this).balance;
     }
 
-        function changeInheritance(address newInheritor) public onlyOwner {
+    // Hire me so I don’t grow to be your competitor ;)
+
+    function changeInheritance(address newInheritor) public onlyOwner {
         nextOwner = newInheritor;
     }
 
-        function ownerCheckIn() public onlyOwner {
+    function ownerCheckIn() public onlyOwner {
         lastCheckIn = block.timestamp;
     }
 
-    
-    function changeCheckInTime(uint256 newCheckInTimeInterval)
-        public
-        onlyOwner
-    {
+    function changeCheckInTime(
+        uint256 newCheckInTimeInterval
+    ) public onlyOwner {
         checkInTimeInterval = newCheckInTimeInterval; // let owner change check in case he know he will be away for a while.
     }
 
-        function passDownInheritance() internal {
+    function passDownInheritance() internal {
         transferOwnership(nextOwner);
     }
 
-        function checkUpkeep(
+    function checkUpkeep(
         bytes calldata /* checkData */
     )
         external
         view
         override
-        returns (
-            bool upkeepNeeded,
-            bytes memory /* performData */
-        )
+        returns (bool upkeepNeeded, bytes memory /* performData */)
     {
         return (
             block.timestamp > (lastCheckIn + checkInTimeInterval),
@@ -410,20 +362,18 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         ); // make sure to check in at least once every 6 months
     }
 
-        function performUpkeep(
+    function performUpkeep(
         bytes calldata /* performData */
     ) external override onlyKeeper {
         passDownInheritance();
     }
 
-    
     function withdraw(uint256 amount) public onlyOwner returns (bool) {
         require(amount <= address(this).balance);
         payable(msg.sender).transfer(amount); //if the owner send to sender
         return true;
     }
 
-    
     function withdrawErc20(IERC20 token) public onlyOwner {
         require(
             token.transfer(msg.sender, token.balanceOf(address(this))),
@@ -431,11 +381,7 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         );
     }
 
-        receive() external payable {
+    receive() external payable {
         // nothing to do but accept money
     }
-
-
-
-
 }
