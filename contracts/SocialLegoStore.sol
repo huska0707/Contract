@@ -17,4 +17,5 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
     uint256 public lastCheckIn = block.timestamp;
     uint256 public checkInTimeInterval = 864000; 
     address public nextOwner;
+    uint256 public massivePurchaseTokenPrice = 0.001 * 10**18;
 }
