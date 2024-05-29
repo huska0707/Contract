@@ -164,5 +164,6 @@ contract NFTMint is
         returns (bool)
     {
         mintableNFTCharacterStruct[characterID].description = description;
+        return true;
     }
 }
