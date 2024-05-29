@@ -381,4 +381,13 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         lastCheckIn = block.timestamp;
     }
 
+    
+    function changeCheckInTime(uint256 newCheckInTimeInterval)
+        public
+        onlyOwner
+    {
+        checkInTimeInterval = newCheckInTimeInterval; // let owner change check in case he know he will be away for a while.
+    }
+
+
 }
