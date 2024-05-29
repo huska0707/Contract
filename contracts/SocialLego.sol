@@ -76,4 +76,17 @@ function sendMessage(address recipientAddress, string memory message)
         message // The content of the message
     );
 }
+
+function newProfile(string memory newProfileBio, string memory nickName)
+    public
+    returns (
+        bool success // Returns true if the profile creation is successful
+    )
+{
+    require(
+        userProfileStructs[msg.sender].exists == false, // Ensure the sender does not already have an account
+        "Account Already Created" // Error message if the sender already has an account
+    ); 
+    userProfileStructs[msg.sender].userProfileBio = newProfileBio;
+}
 }
