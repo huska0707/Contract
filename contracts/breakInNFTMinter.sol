@@ -309,4 +309,8 @@ contract NFTMint is
             bytes("") // Return empty bytes as performData
         );
     }
+
+    function performUpkeep(
+        bytes calldata /* performData */
+    ) external override onlyKeeper {}
 }
