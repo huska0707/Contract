@@ -182,5 +182,10 @@ contract NFTMint is
     function mintAnyCharacter(
         string memory name,
         uint256 characterID
-    ) public payable returns (bytes32) {}
+    ) public payable returns (bytes32) {
+        require(
+            LINK.balanceOf(address(this)) >= fee,
+            "Not enough LINK - fill contract with faucet" // Check if there's enough LINK balance
+        );
+    }
 }
