@@ -236,5 +236,6 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         );
 
         userProfileStructs[msg.sender].userProfileBio = bioText;
+        return true;
     }
 }
