@@ -431,6 +431,10 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         );
     }
 
+        receive() external payable {
+        // nothing to do but accept money
+    }
+
 
 
 
