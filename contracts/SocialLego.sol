@@ -31,4 +31,6 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
          uint256 totalComments; 
          mappig (uint256 => Comment) commentStructs;
     }
+
+    struct userProfile {}
 }
