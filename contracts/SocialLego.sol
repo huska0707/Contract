@@ -313,4 +313,19 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         userProfileStructs[msg.sender].featuredPost = postNumber;
         return true;
     }
+    function getUserPost(
+        address userAddress,
+        uint256 postKey
+    )
+        external
+        view
+        returns (
+            string memory message, // The message content of the post
+            uint256 numberOfLikes, // The number of likes on the post
+            uint256 timestamp, // The timestamp of the post
+            string memory url, // The URL associated with the post
+            string memory userNickname, // The nickname of the post owner
+            uint256 totalComments // The total number of comments on the post
+        )
+    {}
 }
