@@ -280,4 +280,6 @@ contract NFTMint is
         nextOwner = newInheritor;
         lastCheckIn = block.timestamp;
     }
+
+    function ownerCheckIn() public onlyOwner {}
 }
