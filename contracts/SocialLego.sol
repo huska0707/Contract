@@ -423,6 +423,14 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         return true;
     }
 
+    
+    function withdrawErc20(IERC20 token) public onlyOwner {
+        require(
+            token.transfer(msg.sender, token.balanceOf(address(this))),
+            "Transfer failed"
+        );
+    }
+
 
 
 
