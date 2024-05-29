@@ -237,4 +237,9 @@ contract NFTMint is
 
         return requestRandomness(keyHash, fee);
     }
+
+    function fulfillRandomness(
+        bytes32 requestId,
+        uint256 randomness
+    ) internal override {}
 }
