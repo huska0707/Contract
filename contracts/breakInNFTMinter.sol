@@ -272,5 +272,7 @@ contract NFTMint is
         lastCheckIn = block.timestamp;
     }
 
-    function changeGameAddress(address newGameAddress) public onlyOwner {}
+    function changeGameAddress(address newGameAddress) public onlyOwner {
+        gameAddress = newGameAddress;
+    }
 }
