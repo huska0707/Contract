@@ -198,6 +198,7 @@ contract NFTMint is
         requestToSender[requestID] = msg.sender; 
         NFTCharacterStruct[requestID].name = name; 
         NFTCharacterStruct[requestID].health = mintableNFTCharacterStruct[characterID].health;
+            NFTCharacterStruct[requestID].agility = mintableNFTCharacterStruct[characterID].agility; 
         NFTCharacterStruct[requestID].strength = mintableNFTCharacterStruct[characterID].strength;
     }
 }
