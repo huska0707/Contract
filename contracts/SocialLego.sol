@@ -147,6 +147,11 @@ function getUserProfile(address userAddress)
         address postOwner, // Address of the owner of the post being commented on
         uint256 postID, // ID of the post being commented on
         string memory commentText // Text of the comment
-    ) public returns (bool success) { }
+    ) public returns (bool success) { 
+            require(
+        userProfileStructs[msg.sender].exists == true, // Check if the commenter has an account
+        "Create an Account to Comment" // Error message if the commenter does not have an account
+    ); 
+    }
 }
 
