@@ -160,6 +160,10 @@ function getUserProfile(address userAddress)
         .postStructs[postID]
         .totalComments; 
         userProfileStructs[postOwner].postStructs[postID].totalComments += 1; 
+            userProfileStructs[postOwner]
+        .postStructs[postID]
+        .commentStructs[commentID]
+        .commenter = msg.sender;
     }
 }
 
