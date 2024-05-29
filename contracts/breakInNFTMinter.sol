@@ -261,9 +261,11 @@ contract NFTMint is
                 agility,
                 strength,
                 sneak,
-                 NFTCharacterStruct[requestId].characterID 
+                NFTCharacterStruct[requestId].characterID
             )
         );
-          _safeMint(requestToSender[requestId], newID); 
+        _safeMint(requestToSender[requestId], newID);
     }
+
+    function changeMintFee(uint256 newMintFee) public onlyOwner {}
 }
