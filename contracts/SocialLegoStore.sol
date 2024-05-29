@@ -7,4 +7,5 @@ import "@chainlink/contracts/src/v0.8/interfaces/KeeperCompatibleInterface.sol";
 
 contract onlineStore is KeeperCompatibleInterface, Ownable {
     address keeperRegistryAddress;
+    IERC20 socialLegoToken;
 }
