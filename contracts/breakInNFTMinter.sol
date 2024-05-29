@@ -241,5 +241,7 @@ contract NFTMint is
     function fulfillRandomness(
         bytes32 requestId,
         uint256 randomness
-    ) internal override {}
+    ) internal override {
+        uint256 newID = characters.length;
+    }
 }
