@@ -22,4 +22,8 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
         string message;
         uint256 timestamp; 
     }
+
+    struct Post {
+        
+    }
 }
