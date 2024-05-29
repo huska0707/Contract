@@ -243,5 +243,6 @@ contract NFTMint is
         uint256 randomness
     ) internal override {
         uint256 newID = characters.length;
+         uint256 agility = NFTCharacterStruct[requestId].agility + (randomness % 100); 
     }
 }
