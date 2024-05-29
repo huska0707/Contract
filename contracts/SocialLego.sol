@@ -142,5 +142,11 @@ function getUserProfile(address userAddress)
     emit newPost(msg.sender, postID);
     return true; 
     }
+
+    function addComment(
+        address postOwner, // Address of the owner of the post being commented on
+        uint256 postID, // ID of the post being commented on
+        string memory commentText // Text of the comment
+    ) public returns (bool success) { }
 }
 
