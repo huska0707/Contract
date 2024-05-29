@@ -222,12 +222,17 @@ contract NFTMint is
         uint256 charm
     ) external onlyGame {
         characters[NFTID].health = health;
-         characters[NFTID].agility = agility;
-         characters[NFTID].strength = strength; 
-         characters[NFTID].sneak = sneak; 
-         characters[NFTID].charm = charm;
-         return true;
+        characters[NFTID].agility = agility;
+        characters[NFTID].strength = strength;
+        characters[NFTID].sneak = sneak;
+        characters[NFTID].charm = charm;
+        return true;
     }
 
-    function getRandomNumber() internal returns (bytes32 requestId) {}
+    function getRandomNumber() internal returns (bytes32 requestId) {
+        require(
+            LINK.balanceOf(address(this)) >= fee, // Check if contract has enough LINK to pay the VRF fee
+            "Not enough LINK - fill contract with faucet" // Error message if there isn't enough LINK
+        );
+    }
 }
