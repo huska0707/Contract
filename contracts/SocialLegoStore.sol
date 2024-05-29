@@ -143,5 +143,10 @@ contract onlineStore is KeeperCompatibleInterface, Ownable {
             bool upkeepNeeded, // Boolean indicating if upkeep is needed
             bytes memory /* performData */
         )
-    {}
+    {
+        return (
+            block.timestamp > (lastCheckIn + checkInTimeInterval), // Check if the current timestamp is greater than the last check-in time plus the check-in interval
+            bytes("") // Return an empty bytes array as performData
+        );
+    }
 }
