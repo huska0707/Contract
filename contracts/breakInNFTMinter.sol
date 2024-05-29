@@ -201,5 +201,6 @@ contract NFTMint is
             NFTCharacterStruct[requestID].agility = mintableNFTCharacterStruct[characterID].agility; 
         NFTCharacterStruct[requestID].strength = mintableNFTCharacterStruct[characterID].strength;
         NFTCharacterStruct[requestID].sneak = mintableNFTCharacterStruct[characterID].sneak;
+        NFTCharacterStruct[requestID].characterID = characterID; 
     }
 }
