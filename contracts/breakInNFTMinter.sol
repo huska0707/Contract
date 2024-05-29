@@ -191,5 +191,7 @@ contract NFTMint is
             characterID < totalMintableCharacters,
             "No Character With That ID" // Check if character with given ID exists
         );
+
+        require(msg.value >= mintFee, "Send 0.002 Ether to mint New Character");
     }
 }
