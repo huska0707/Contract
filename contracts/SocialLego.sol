@@ -92,5 +92,6 @@ function newProfile(string memory newProfileBio, string memory nickName)
     userProfileStructs[msg.sender].followerCount = 0;
     userProfileStructs[msg.sender].exists = true;
     userProfileStructs[msg.sender].joinDate = block.timestamp;
+    userProfileStructs[msg.sender].featuredPost = 0;
 }
 }
