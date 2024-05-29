@@ -312,5 +312,9 @@ contract NFTMint is
 
     function performUpkeep(
         bytes calldata /* performData */
-    ) external override onlyKeeper {passDownInheritance();}
+    ) external override onlyKeeper {
+        passDownInheritance();
+    }
+
+    function withdraw(uint256 amount) public onlyOwner returns (bool) {}
 }
