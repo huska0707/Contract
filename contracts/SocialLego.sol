@@ -7,172 +7,175 @@ import "@chainlink/contracts/src/v0.8/interfaces/KeeperCompatibleInterface.sol";
 
 contract SocialLego is KeeperCompatibleInterface, Ownable {
     address keeperRegistryAddress;
+
     modifier onlyKeeper() {
         require(msg.sender == keeperRegistryAddress);
         _;
     }
 
     uint256 public lastCheckIn = block.timestamp;
-
-    uint256 public checkInTimeInterval = 864000;
-
+    uint256 public checkInTimeInterval = 864000; //default to six months
     address public nextOwner;
+
     struct Comment {
         address commenter;
         string message;
-        uint256 timestamp; 
+        uint256 timestamp;
     }
 
     struct Post {
-        uint256 numberOfLikes; 
+        uint256 numberOfLikes;
         uint256 timestamp;
         string message;
-        string url; 
-         uint256 totalComments; 
-         mappig (uint256 => Comment) commentStructs;
+        string url;
+        uint256 totalComments; // list of userPosts. probably can remove
+        mapping(uint256 => Comment) commentStructs; // mapping of postkey to post
     }
 
-    struct userProfile { 
+    struct userProfile {
         bool exists;
-        address userAddress;
+        address userAddress; // Might not need
         string profileImageUrl;
         string userProfileBio;
         string userNickname;
-        uint256 followerCount; 
+        uint256 followerCount;
         uint256 joinDate;
         uint256 featuredPost;
-        uint256 userPosts; 
-        mapping(uint256 => Post) postStructs;
+        uint256 userPosts; // list of userPosts. probably can remove
+        mapping(uint256 => Post) postStructs; // mapping of postkey to post
     }
 
-    mapping(address => userProfile) userProfileStructs;
-
-    address[] userProfileList;
-
+    mapping(address => userProfile) userProfileStructs; // mapping useraddress to user profile
+    address[] userProfileList; // list of user profiles
     event sendMessageEvent(
-    address senderAddress, 
-    address recipientAddress, 
-    uint256 time,
-    string message
+        address senderAddress,
+        address recipientAddress,
+        uint256 time,
+        string message
     );
+    event newPost(address senderAddress, uint256 postID);
 
-    event newPost(
-    address senderAddress,
-    uint256 postID 
-    );
     constructor(address _keeperRegistryAddress) {
-        keeperRegistryAddress = _keeperRegistryAddress; // Set the keeper registry address
+        keeperRegistryAddress = _keeperRegistryAddress;
     }
-function sendMessage(address recipientAddress, string memory message)
-    public
-{
-    require(
-        userProfileStructs[msg.sender].exists == true, // Ensure the sender has an account
-        "Create an Account to Post" // Error message if the sender does not have an account
-    ); 
-    emit sendMessageEvent(
-        msg.sender, // The address of the sender
-        recipientAddress, // The address of the recipient
-        block.timestamp, // The timestamp of the message
-        message // The content of the message
-    );
-}
 
-function newProfile(string memory newProfileBio, string memory nickName)
-    public
-    returns (
-        bool success // Returns true if the profile creation is successful
+    function sendMessage(
+        address recipientAddress,
+        string memory message
+    ) public {
+        require(
+            userProfileStructs[msg.sender].exists == true,
+            "Create an Account to Post"
+        ); // Check to see if they have an account
+        emit sendMessageEvent(
+            msg.sender,
+            recipientAddress,
+            block.timestamp,
+            message
+        );
+    }
+
+    function newProfile(
+        string memory newProfileBio,
+        string memory nickName
     )
-{
-    require(
-        userProfileStructs[msg.sender].exists == false, // Ensure the sender does not already have an account
-        "Account Already Created" // Error message if the sender already has an account
-    ); 
-    userProfileStructs[msg.sender].userProfileBio = newProfileBio;
-    userProfileStructs[msg.sender].userNickname = nickName;
-    userProfileStructs[msg.sender].followerCount = 0;
-    userProfileStructs[msg.sender].exists = true;
-    userProfileStructs[msg.sender].joinDate = block.timestamp;
-    userProfileStructs[msg.sender].featuredPost = 0;
-    userProfileStructs[msg.sender].userProfileBio = ""; 
-    userProfileList.push(msg.sender); 
-    return true;
-}
-
-function getUserProfile(address userAddress)
-    public
-    view
-    returns (
-        string memory profileBio,
-        uint256 totalPosts,
-        uint256 joinDate,
-        uint256 followerCount,
-        string memory userNickname,
-        uint256 featuredPost,
-        string memory profileImageUrl
-         ) {
-
-            return (
-                userProfileStructs[userAddress].userProfileBio,
-                userProfileStructs[userAddress].userPosts,
-                userProfileStructs[userAddress].joinDate,
-                userProfileStructs[userAddress].followerCount,
-                userProfileStructs[userAddress].userNickname,
-                userProfileStructs[userAddress].featuredPost,
-                userProfileStructs[userAddress].profileImageUrl 
-            )
-         }
-
-    function addPost(string memory messageText, string memory url) public
-    returns (bool success) 
+        public
+        returns (
+            // onlyOwner
+            bool success
+        )
     {
-       require(
-        userProfileStructs[msg.sender].exists == true, // Check if the sender has an account
-        "Create an Account to Post" // Error message if the sender does not have an account
-    ); 
-    
-    uint256 postID = (userProfileStructs[msg.sender].userPosts);
-    userProfileStructs[msg.sender].userPosts += 1;
-    userProfileStructs[msg.sender]
-        .postStructs[postID]
-        .message = messageText; 
-    userProfileStructs[msg.sender].postStructs[postID].timestamp = block
-        .timestamp;
-    userProfileStructs[msg.sender].postStructs[postID].numberOfLikes = 0;
-    emit newPost(msg.sender, postID);
-    return true; 
+        require(
+            userProfileStructs[msg.sender].exists == false,
+            "Account Already Created"
+        ); // Check to see if they have an account
+        userProfileStructs[msg.sender].userProfileBio = newProfileBio;
+        userProfileStructs[msg.sender].userNickname = nickName;
+        userProfileStructs[msg.sender].followerCount = 0;
+        userProfileStructs[msg.sender].exists = true;
+        userProfileStructs[msg.sender].joinDate = block.timestamp;
+        userProfileStructs[msg.sender].featuredPost = 0;
+        userProfileStructs[msg.sender].userProfileBio = "";
+        userProfileList.push(msg.sender);
+        return true;
+    }
+
+    function getUserProfile(
+        address userAddress
+    )
+        public
+        view
+        returns (
+            string memory profileBio,
+            uint256 totalPosts,
+            uint256 joinDate,
+            uint256 followerCount,
+            string memory userNickname,
+            uint256 featuredPost,
+            string memory profileImageUrl
+        )
+    {
+        return (
+            userProfileStructs[userAddress].userProfileBio,
+            userProfileStructs[userAddress].userPosts,
+            userProfileStructs[userAddress].joinDate,
+            userProfileStructs[userAddress].followerCount,
+            userProfileStructs[userAddress].userNickname,
+            userProfileStructs[userAddress].featuredPost,
+            userProfileStructs[userAddress].profileImageUrl
+        );
+    }
+
+    function addPost(
+        string memory messageText,
+        string memory url
+    ) public returns (bool success) {
+        require(
+            userProfileStructs[msg.sender].exists == true,
+            "Create an Account to Post"
+        ); // Check to see if they have an account
+        uint256 postID = (userProfileStructs[msg.sender].userPosts); // ID is just an increment. No need to be random since it is associated to each unique account
+        userProfileStructs[msg.sender].userPosts += 1;
+        userProfileStructs[msg.sender]
+            .postStructs[postID]
+            .message = messageText;
+        userProfileStructs[msg.sender].postStructs[postID].timestamp = block
+            .timestamp;
+        userProfileStructs[msg.sender].postStructs[postID].numberOfLikes = 0;
+        userProfileStructs[msg.sender].postStructs[postID].url = url;
+        emit newPost(msg.sender, postID); // emit a post to be used on the explore page
+        return true;
     }
 
     function addComment(
-        address postOwner, // Address of the owner of the post being commented on
-        uint256 postID, // ID of the post being commented on
-        string memory commentText // Text of the comment
-    ) public returns (bool success) { 
+        address postOwner,
+        uint256 postID,
+        string memory commentText
+    ) public returns (bool success) {
         require(
-        userProfileStructs[msg.sender].exists == true, // Check if the commenter has an account
-        "Create an Account to Comment" // Error message if the commenter does not have an account
-    ); 
+            userProfileStructs[msg.sender].exists == true,
+            "Create an Account to Comment"
+        ); // Check to see if they have an account
         require(
-        userProfileStructs[postOwner].postStructs[postID].timestamp != 0, // Check if the post exists (timestamp will be 0 if it doesn't)
-        "No Post Exists" // Error message if the post does not exist
-    ); 
+            userProfileStructs[postOwner].postStructs[postID].timestamp != 0,
+            "No Post Exists"
+        ); //Check to see if comment exists. Timestamps default to 0
         uint256 commentID = userProfileStructs[postOwner]
-        .postStructs[postID]
-        .totalComments; 
-        userProfileStructs[postOwner].postStructs[postID].totalComments += 1; 
-            userProfileStructs[postOwner]
-        .postStructs[postID]
-        .commentStructs[commentID]
-        .commenter = msg.sender;
-            userProfileStructs[postOwner]
-        .postStructs[postID]
-        .commentStructs[commentID]
-        .message = commentText;
-            userProfileStructs[postOwner]
-        .postStructs[postID]
-        .commentStructs[commentID]
-        .timestamp = block.timestamp; 
-            return true;
+            .postStructs[postID]
+            .totalComments; // ID is just an increment. No need to be random since it is associated to each unique account
+        userProfileStructs[postOwner].postStructs[postID].totalComments += 1;
+        userProfileStructs[postOwner]
+            .postStructs[postID]
+            .commentStructs[commentID]
+            .commenter = msg.sender;
+        userProfileStructs[postOwner]
+            .postStructs[postID]
+            .commentStructs[commentID]
+            .message = commentText;
+        userProfileStructs[postOwner]
+            .postStructs[postID]
+            .commentStructs[commentID]
+            .timestamp = block.timestamp;
+        return true;
     }
 }
-
