@@ -292,5 +292,16 @@ contract NFTMint is
         lastCheckIn = block.timestamp;
     }
 
-    function passDownInheritance() internal { transferOwnership(nextOwner);}
+    function passDownInheritance() internal {
+        transferOwnership(nextOwner);
+    }
+
+    function checkUpkeep(
+        bytes calldata /* checkData */
+    )
+        external
+        view
+        override
+        returns (bool upkeepNeeded, bytes memory /* performData */)
+    {}
 }
