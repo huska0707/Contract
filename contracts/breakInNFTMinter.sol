@@ -123,5 +123,6 @@ contract NFTMint is
     ) public {
         uint256 characterID = totalMintableCharacters; 
         mintableNFTCharacterStruct[characterID].health = health; 
+         mintableNFTCharacterStruct[characterID].agility = 250;
     }
 }
