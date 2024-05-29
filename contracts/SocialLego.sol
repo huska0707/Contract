@@ -343,4 +343,7 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
     {
         return (userProfileStructs[userAddress].userPosts);
     }
+    function getTotalUsers() public view returns (uint256 totalUsers) {
+        return userProfileList.length;
+    }
 }
