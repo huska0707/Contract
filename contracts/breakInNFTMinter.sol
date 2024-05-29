@@ -228,4 +228,6 @@ contract NFTMint is
          characters[NFTID].charm = charm;
          return true;
     }
+
+    function getRandomNumber() internal returns (bytes32 requestId) {}
 }
