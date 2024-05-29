@@ -247,5 +247,7 @@ contract NFTMint is
             (randomness % 100);
         uint256 strength = NFTCharacterStruct[requestId].strength +
             ((randomness % 123456) % 100);
+        uint256 sneak = NFTCharacterStruct[requestId].sneak +
+            ((randomness % 654321) % 100);
     }
 }
