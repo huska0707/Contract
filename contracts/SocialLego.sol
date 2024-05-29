@@ -121,4 +121,9 @@ function getUserProfile(address userAddress)
                 userProfileStructs[userAddress].profileImageUrl 
             )
          }
+
+    function addPost(string memory messageText, string memory url)
+    public
+    returns (bool success) 
+    {}
 }
