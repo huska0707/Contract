@@ -9,5 +9,8 @@ contract SocialLego is KeeperCompatibleInterface, Ownable {
     address keeperRegistryAddress;
     modifier onlyKeeper() {
         require(msg.sender == keeperRegistryAddress);
+        _;
     }
+
+    uint256 public lastCheckIn = block.timestamp;
 }
