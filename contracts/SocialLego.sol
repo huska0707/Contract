@@ -101,7 +101,7 @@ function newProfile(string memory newProfileBio, string memory nickName)
 function getUserProfile(address userAddress)
     public
     view
-    return (
+    returns (
         string memory profileBio,
         uint256 totalPosts,
         uint256 joinDate,
@@ -109,5 +109,10 @@ function getUserProfile(address userAddress)
         string memory userNickname,
         uint256 featuredPost,
         string memory profileImageUrl
-         ) {}
+         ) {
+
+            return (
+                userProfileStructs[userAddress].userProfileBio
+            )
+         }
 }
