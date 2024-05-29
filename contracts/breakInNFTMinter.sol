@@ -162,5 +162,7 @@ contract NFTMint is
         public
         onlyOwner // Only owner can change the description
         returns (bool)
-    {}
+    {
+        mintableNFTCharacterStruct[characterID].description = description;
+    }
 }
