@@ -122,5 +122,6 @@ contract NFTMint is
         string memory description // Description of the character
     ) public {
         uint256 characterID = totalMintableCharacters; 
+        mintableNFTCharacterStruct[characterID].health = health; 
     }
 }
