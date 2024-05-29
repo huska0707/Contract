@@ -253,6 +253,6 @@ contract NFTMint is
             ((randomness % 33576) % 100);
         uint256 born = block.timestamp;
 
-        characters.push(NFTCharacter( NFTCharacterStruct[requestId].name,));
+        characters.push(NFTCharacter( NFTCharacterStruct[requestId].name, born,));
     }
 }
